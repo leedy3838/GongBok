@@ -47,14 +47,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/totalRank"
-                android:text="내가 등록한 문제" />
+                android:text="내가 등록한 문제"
+                android:onClick="goToMyProblem"/>
 
             <Button
                 android:id="@+id/totalRank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체 랭킹"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:onClick="goToTotalRanking"
+                android:text="전체 랭킹" />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/problemList"
@@ -74,7 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:text="문제 풀기" />
+            android:text="문제 풀기"
+            android:onClick="goToProblemSolve"/>
 
         <Button
             android:id="@+id/home"
@@ -88,7 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:text="문제 만들기" />
+            android:text="문제 만들기"
+            android:onClick="goToEnrollProblem"/>
 
     </RelativeLayout>
 

@@ -17,7 +17,7 @@
             android:id="@+id/enrollId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="문제 풀이 등록" />
+            android:text="문제 등록" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,21 +92,23 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:text="문제 풀기" />
+            android:text="문제 풀기"
+            android:onClick="goToProblemSolve"/>
 
         <Button
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:text="홈" />
+            android:text="홈"
+            android:onClick="goToMain"/>
 
         <Button
             android:id="@+id/ProblemMake"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:text="문제 만들기" />
+            android:text="문제 만들기"/>
 
     </RelativeLayout>
 

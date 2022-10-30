@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="전체 랭킹 + rating"/>
+            android:text="문제 분류+ 수학 1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -79,21 +79,23 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:text="문제 풀기" />
+            android:text="문제 풀기"/>
 
         <Button
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:text="홈" />
+            android:text="홈"
+            android:onClick="goToMain"/>
 
         <Button
             android:id="@+id/ProblemMake"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:text="문제 만들기" />
+            android:text="문제 만들기"
+            android:onClick="goToEnrollProblem"/>
 
     </RelativeLayout>
 
