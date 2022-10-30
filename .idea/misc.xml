@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_explanation_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.26974358974358975" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/login_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/main_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_problem.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_select_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_solve_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_next_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/sign_up_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/subject_select_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/total_ranking_screen.xml" value="0.27395833333333336" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

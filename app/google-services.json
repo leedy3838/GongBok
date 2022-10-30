@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358192421590",
+    "project_id": "userinterface-6ee04",
+    "storage_bucket": "userinterface-6ee04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358192421590:android:371304240f1b03ed374777",
+        "android_client_info": {
+          "package_name": "com.gongbok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358192421590-i2lec20bceaoi0g7te6fvr8aitu1ic0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv5PFqttwKLbi8DFXy2fABqIVbRy65gYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358192421590-i2lec20bceaoi0g7te6fvr8aitu1ic0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
