@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/ProblemName"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="문제 이름"
+        android:textColor="@color/black"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/like"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="좋아요 수"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_toStartOf="@id/tier"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/tier"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

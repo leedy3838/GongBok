@@ -7,16 +7,27 @@
     android:orientation="vertical"
     tools:context=".SubjectSelectScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류 + 풀고 싶은 과목을 선택하세요!"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제 분류"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:text="풀고 싶은 과목을 선택하세요!"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_weight="4"
@@ -24,7 +35,7 @@
         android:layout_height="0dp"
         android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/problemList"
+            android:id="@+id/subjectList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
@@ -34,17 +45,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/totalProblemNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="업로드 된 문제 수 : 2149"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="업로드 된 문제 수 : 2149" />
+
         <TextView
+            android:id="@+id/myProblemNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="내가 업로드한 문제 : 1"
             android:layout_alignParentBottom="true"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="내가 업로드한 문제 : 1" />
     </RelativeLayout>
 
     <RelativeLayout
