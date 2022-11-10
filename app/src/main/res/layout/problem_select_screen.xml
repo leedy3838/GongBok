@@ -7,16 +7,28 @@
     android:orientation="vertical"
     tools:context=".ProblemSelectScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류 + 수학 1"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제 분류"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/subjectName"
+            android:text="과목 이름"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_weight="4"
@@ -29,28 +41,43 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
+
         <Button
+            android:id="@+id/toLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/chapter"
+            android:layout_centerVertical="true"
+            android:text="좌"/>
+        <Button
+            android:id="@+id/chapter"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="1"/>
         <Button
+            android:id="@+id/roRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"/>
-        <Button
+            android:layout_toEndOf="@id/chapter"
+            android:layout_centerVertical="true"
+            android:text="우"/>
+
+        <TextView
+            android:id="@+id/pageNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"/>
-    </LinearLayout>
+            android:text="1/85 pages"
+            android:layout_margin="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
