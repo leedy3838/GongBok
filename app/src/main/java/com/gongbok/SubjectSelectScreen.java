@@ -27,7 +27,6 @@ public class SubjectSelectScreen extends AppCompatActivity {
 
         List<SubjectData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("cities").document("SF");
 
         db.collection("문제")
                 .get()

@@ -28,9 +28,9 @@ public class ProblemSolveScreen extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
         DocumentReference docRef = db.collection("문제")
-                .document("[고등]미적분")
-                .collection("[고등]미적분")
-                .document("2021년 9월 모의고사 23번");
+                .document("[고등]확률과 통계")
+                .collection("[고등]확률과 통계")
+                .document("2022년 6월 모의고사 30번");
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/ProblemName"
+        android:id="@+id/problemName"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:gravity="center"
@@ -16,20 +16,30 @@
         android:textColor="@color/black"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/likeNum"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/좋아요"
+        android:gravity="center_vertical|end"
+        android:text="좋아요 수"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/like"
-        android:layout_width="150dp"
+        android:id="@+id/좋아요"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="좋아요 수"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:layout_toStartOf="@id/tier"
-        android:textSize="20sp" />
+        android:layout_toStartOf="@id/tierImage"
+        android:text="likes"
+        android:textSize="15sp" />
 
     <ImageView
-        android:id="@+id/tier"
+        android:id="@+id/tierImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"

@@ -3,6 +3,8 @@ package com.gongbok;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,26 +14,18 @@ import java.util.List;
 class ProblemData{
     String name;
     String link;
-    int like;
-    int tier;
+    long likeNum;
+    long tier;
 
-    ProblemData(String name, String link, int like, int tier){
+    ProblemData(String name, String link, long likeNum, long tier){
         this.name = name;
         this.link = link;
-        this.like = like;
+        this.likeNum = likeNum;
         this.tier = tier;
     }
 }
 
-class ProblemViewHolder extends RecyclerView.ViewHolder{
-    public ProblemViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        //여기서부터 click listener 붙여주면 됨.
-    }
-}
-
-public class ProblemAdapter extends RecyclerView.Adapter<ProblemViewHolder>{
+public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>{
     List<ProblemData> DataList;
 
     public ProblemAdapter(List<ProblemData> problemDataList){
@@ -47,10 +41,29 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
+        ProblemData item = DataList.get(position);
+
+        holder.problemName.setText(item.name);
+        holder.likeNum.setText(String.valueOf(item.likeNum));
+        //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return DataList.size();
+    }
+
+    static class ProblemViewHolder extends RecyclerView.ViewHolder{
+        TextView problemName;
+        TextView likeNum;
+        ImageView tier;
+
+        public ProblemViewHolder(@NonNull View view) {
+            super(view);
+
+            problemName = view.findViewById(R.id.problemName);
+            likeNum = view.findViewById(R.id.likeNum);
+            tier = view.findViewById(R.id.tierImage);
+        }
     }
 }
