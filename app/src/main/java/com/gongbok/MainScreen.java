@@ -23,7 +23,7 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, SubjectSelectScreen.class));
+        startActivity(new Intent(this, ProblemSolveScreen.class));
     }
 
     public void goToMain(View view) {

@@ -39,7 +39,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         SubjectData item = DataList.get(position);
 
         holder.subjectName.setText(item.name);
-        holder.problemNum.setText(item.count.toString());
+        holder.problemNum.setText(String.valueOf(item.count));
     }
 
     @Override
