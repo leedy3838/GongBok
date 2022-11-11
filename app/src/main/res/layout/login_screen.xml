@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginScreen">
+    tools:context=".LogInScreen">
 
     <LinearLayout
         android:layout_weight="1"
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/loginId"
+            android:id="@+id/logInId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -40,10 +40,10 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/loginPassword"
+            android:id="@+id/logInPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/loginId"
+            android:layout_below="@+id/logInId"
             android:layout_alignParentStart="true"
             android:layout_marginStart="44dp"
             android:layout_marginTop="11dp"
@@ -53,7 +53,7 @@
             android:minHeight="48dp" />
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/logInBtn"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
@@ -61,25 +61,30 @@
             android:layout_marginStart="43dp"
             android:layout_marginTop="75dp"
             android:layout_marginEnd="28dp"
-            android:layout_toEndOf="@+id/loginId"
-            android:onClick="goToMain"
+            android:layout_toEndOf="@+id/logInId"
             android:text="로그인" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:gravity="center">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleLoginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="구글 계정으로 로그인하기"/>
-        <Button
-            android:layout_width="match_parent"
+            android:layout_below="@id/googleLoginBtn"
+            android:layout_alignLeft="@id/googleLoginBtn"
+            android:layout_alignRight="@id/googleLoginBtn"
+            android:id="@+id/signupBtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입"
-            android:onClick="goToRegister"/>
+            android:onClick="goToRegister" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

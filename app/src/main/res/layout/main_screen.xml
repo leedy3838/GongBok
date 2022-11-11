@@ -13,6 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/logOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:layout_gravity="right"
+            android:onClick="logOut"
+            />
+
         <ImageView
             android:id="@+id/logoImage"
             android:layout_width="match_parent"
