@@ -25,6 +25,8 @@ public class SubjectSelectScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subject_select_screen);
 
+        Intent intent = new Intent(this, ProblemSelectScreen.class);
+
         List<SubjectData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -47,6 +49,17 @@ public class SubjectSelectScreen extends AppCompatActivity {
                             recyclerView.setLayoutManager(new LinearLayoutManager(SubjectSelectScreen.this));
 
                             SubjectAdapter adapter = new SubjectAdapter(DataList);
+                            adapter.setOnItemClickListener(new SubjectAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View v, SubjectData data) {
+                                    String subjectName = data.name;
+
+                                    //과목을 선택하면 그에 해당하는 과목의 문제 리스트 출력
+                                    intent.putExtra("과목 이름", subjectName);
+                                    startActivity(intent);
+                                }
+                            });
+
                             recyclerView.setAdapter(adapter);
 
                             //전체 문제 수 출력

@@ -27,6 +27,9 @@ public class ProblemSolveScreen extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
+        Intent getIntent = getIntent();
+        String subjectName = getIntent.getStringExtra("과목 이름");
+
         DocumentReference docRef = db.collection("문제")
                 .document("[고등]확률과 통계")
                 .collection("[고등]확률과 통계")

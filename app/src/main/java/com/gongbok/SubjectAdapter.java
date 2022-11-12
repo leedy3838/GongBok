@@ -34,12 +34,35 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         return new SubjectViewHolder(view);
     }
 
+
+    //onClickListener 부착(SubjectSelectScreen에서 함수 정의할 것)
+    public interface OnItemClickListener{
+        void onItemClick(View v, SubjectData data);
+    }
+
+    private OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull SubjectViewHolder holder, int position) {
         SubjectData item = DataList.get(position);
 
         holder.subjectName.setText(item.name);
         holder.problemNum.setText(String.valueOf(item.count));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition() ;
+                if (pos != RecyclerView.NO_POSITION) {
+                    if(mListener != null)
+                        mListener.onItemClick(v, DataList.get(pos));
+                }
+            }
+        });
     }
 
     @Override

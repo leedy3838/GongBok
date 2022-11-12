@@ -29,9 +29,12 @@ public class ProblemSelectScreen extends AppCompatActivity {
         List<ProblemData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        Intent getIntent = getIntent();
+        String subjectName = getIntent.getStringExtra("과목 이름");
+
         db.collection("문제")
-                .document("[고등]미적분")
-                .collection("[고등]미적분")
+                .document(subjectName)
+                .collection(subjectName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
                     @Override
