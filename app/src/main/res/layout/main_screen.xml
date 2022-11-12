@@ -85,9 +85,11 @@
                 android:orientation="horizontal"
                 android:columnCount="13"
                 android:layout_marginHorizontal="13dp">
-                <Button
-                    android:text = "test"
-                    />
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/rankIcons_s1"/>
+
             </GridLayout>
             <TextView
                 android:layout_width="wrap_content"
