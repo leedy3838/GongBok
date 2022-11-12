@@ -29,11 +29,12 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         String subjectName = getIntent.getStringExtra("과목 이름");
+        String problemName = getIntent.getStringExtra("문제 이름");
 
         DocumentReference docRef = db.collection("문제")
-                .document("[고등]확률과 통계")
-                .collection("[고등]확률과 통계")
-                .document("2022년 6월 모의고사 30번");
+                .document(subjectName)
+                .collection(subjectName)
+                .document(problemName);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

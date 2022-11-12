@@ -39,6 +39,17 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         return new ProblemViewHolder(view);
     }
 
+    //onClickListener 부착(ProblemSelectScreen에서 함수 정의할 것)
+    public interface OnItemClickListener{
+        void onItemClick(View v, ProblemData data);
+    }
+
+    private ProblemAdapter.OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(ProblemAdapter.OnItemClickListener listener){
+        this.mListener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         ProblemData item = DataList.get(position);
@@ -46,6 +57,17 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         holder.problemName.setText(item.name);
         holder.likeNum.setText(String.valueOf(item.likeNum));
         //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition() ;
+                if (pos != RecyclerView.NO_POSITION) {
+                    if(mListener != null)
+                        mListener.onItemClick(v, DataList.get(pos));
+                }
+            }
+        });
     }
 
     @Override

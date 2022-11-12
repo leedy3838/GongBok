@@ -29,8 +29,12 @@ public class ProblemSelectScreen extends AppCompatActivity {
         List<ProblemData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        //정보를 이전 activity에서 받는 intent
         Intent getIntent = getIntent();
         String subjectName = getIntent.getStringExtra("과목 이름");
+
+        Intent intent = new Intent(this, ProblemSolveScreen.class);
+        intent.putExtra("과목 이름", subjectName);
 
         db.collection("문제")
                 .document(subjectName)
@@ -55,6 +59,13 @@ public class ProblemSelectScreen extends AppCompatActivity {
                             recyclerView.setLayoutManager(new LinearLayoutManager(ProblemSelectScreen.this));
 
                             ProblemAdapter adapter = new ProblemAdapter(DataList);
+                            adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View v, ProblemData data) {
+                                    intent.putExtra("문제 이름", data.name);
+                                    startActivity(intent);
+                                }
+                            });
                             recyclerView.setAdapter(adapter);
                         }
                     }
