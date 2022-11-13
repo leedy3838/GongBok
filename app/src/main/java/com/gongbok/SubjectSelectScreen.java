@@ -37,10 +37,11 @@ public class SubjectSelectScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String SubjectName = document.getId();
-                                Long ProblemNum = document.getLong("문제 수");
+                                String subjectName = document.getId();
+                                Long problemNum = document.getLong("문제 수");
+                                // 추후 이 공간에 유저가 올린 문제 수를 MyProblemNum에 넣는 코드 필요
 
-                                SubjectData data = new SubjectData(SubjectName, ProblemNum);
+                                SubjectData data = new SubjectData(subjectName, problemNum);
                                 DataList.add(data);
                             }
 

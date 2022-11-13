@@ -20,13 +20,14 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"/>
+
         <TextView
-            android:text="풀고 싶은 과목을 선택하세요!"
-            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:text="풀고 싶은 과목을 선택하세요!"
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -72,11 +73,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="center"
             android:layout_marginStart="140dp"
-            android:layout_marginEnd = "5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
             android:text="내가 업로드한 문제 수"
-            android:textSize="15dp"/>
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/myProblemNum"

@@ -36,6 +36,9 @@ public class ProblemSelectScreen extends AppCompatActivity {
         Intent intent = new Intent(this, ProblemSolveScreen.class);
         intent.putExtra("과목 이름", subjectName);
 
+        TextView subjectNameTextView = findViewById(R.id.subjectName);
+        subjectNameTextView.setText(subjectName);
+
         db.collection("문제")
                 .document(subjectName)
                 .collection(subjectName)

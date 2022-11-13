@@ -20,14 +20,16 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"/>
+
         <TextView
             android:id="@+id/subjectName"
-            android:text="과목 이름"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:text="과목 이름"
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <LinearLayout
