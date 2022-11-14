@@ -4,6 +4,8 @@
     package="com.gongbok">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -49,7 +51,10 @@
             android:name=".SignUpScreen"
             android:exported="false" />
         <activity
-            android:name=".LoginScreen"
+            android:name=".NicknameScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LogInScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,6 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
