@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[닉네임 설정]"
+        />
+
+    <EditText
+        android:id="@+id/inputGoogleNickname"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="사용할 닉네임을 입력해 주세요."
+        />
+
+    <Button
+        android:id="@+id/registerGoogleNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임 등록"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        />
+
+</LinearLayout>
