@@ -7,16 +7,28 @@
     android:orientation="vertical"
     tools:context=".SubjectSelectScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류 + 풀고 싶은 과목을 선택하세요!"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제 분류"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="풀고 싶은 과목을 선택하세요!"
+            android:textSize="15sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_weight="4"
@@ -24,7 +36,7 @@
         android:layout_height="0dp"
         android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/problemList"
+            android:id="@+id/subjectList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
@@ -34,17 +46,48 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/업로드문제"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="업로드 된 문제 수 : 2149"
-            android:gravity="center"/>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="업로드 된 문제 수"
+            android:textSize="30sp" />
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/totalProblemNum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가 업로드한 문제 : 1"
+            android:gravity="center"
+            android:layout_toEndOf="@id/업로드문제"
+            android:layout_centerVertical="true"
+            android:text="2149"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/내문제수"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="center"/>
+            android:layout_marginStart="140dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="내가 업로드한 문제 수"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/myProblemNum"
+            android:layout_width="30dp"
+            android:layout_toEndOf="@id/내문제수"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="15dp"/>
     </RelativeLayout>
 
     <RelativeLayout

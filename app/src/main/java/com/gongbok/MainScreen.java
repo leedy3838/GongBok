@@ -12,6 +12,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
+
+import java.util.HashMap;
+
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -115,7 +124,7 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, ProblemSolveScreen.class));
+        startActivity(new Intent(this, SubjectSelectScreen.class));
     }
 
     public void goToMain(View view) {
