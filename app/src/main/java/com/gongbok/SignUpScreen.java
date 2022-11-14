@@ -45,7 +45,6 @@ public class SignUpScreen extends AppCompatActivity {
         setContentView(R.layout.sign_up_screen);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         mRegisterEmailId = findViewById(R.id.registerEmailId);
@@ -110,6 +109,10 @@ public class SignUpScreen extends AppCompatActivity {
                 String pwd = mRegisterPwd.getText().toString().trim();
                 String pwdCheck = mRegisterPwdCheck.getText().toString().trim();
                 String name = mRegisterNickname.getText().toString().trim();
+                if( email.length() == 0 | pwd.length() == 0 | pwdCheck.length() == 0 | name.length() == 0){
+                    Toast.makeText(SignUpScreen.this, "모든 정보를 입력하였는지 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (pwd.equals(pwdCheck)) {
                     Log.d("TAG", "등록 버튼 " + email + ", " + pwd);
@@ -125,6 +128,7 @@ public class SignUpScreen extends AppCompatActivity {
                                         Map<String, Object> userBase = new HashMap<>();
                                         userBase.put("레이팅", 0);
                                         userBase.put("티어", 0);
+                                        userBase.put("올린 문제 수", 0);
 
                                         Map<String, Object> base = new HashMap<>();
                                         base.put("base", 0);

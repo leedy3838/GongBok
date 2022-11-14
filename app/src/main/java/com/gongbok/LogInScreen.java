@@ -9,11 +9,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -80,7 +83,15 @@ public class LogInScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email = mLoginID.getText().toString().trim();
+                if( email.length() == 0 ){
+                    Toast.makeText(LogInScreen.this, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String pwd = mLoginPassword.getText().toString().trim();
+                if( pwd.length() == 0 ){
+                    Toast.makeText(LogInScreen.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 firebaseAuth.signInWithEmailAndPassword(email, pwd)
                         .addOnCompleteListener(LogInScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -357,4 +368,12 @@ public class LogInScreen extends AppCompatActivity {
                             }
                         }
                     });
+
+    // EditText가 아닌 화면의 다른 곳을 클릭하면 소프트 키보드 내려감
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
 }
