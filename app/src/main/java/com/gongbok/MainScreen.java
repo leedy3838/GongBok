@@ -58,6 +58,8 @@ public class MainScreen extends AppCompatActivity {
     private GoogleSignInAccount gsa;
     private FirebaseAuth firebaseAuth;
 
+    String userName = "LDY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +126,10 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, SubjectSelectScreen.class));
+        Intent intent = new Intent(this, SubjectSelectScreen.class);
+
+        intent.putExtra("userName", userName);
+        startActivity(intent);
     }
 
     public void goToMain(View view) {

@@ -31,10 +31,12 @@ public class ProblemSelectScreen extends AppCompatActivity {
 
         //정보를 이전 activity에서 받는 intent
         Intent getIntent = getIntent();
-        String subjectName = getIntent.getStringExtra("과목 이름");
+        String subjectName = getIntent.getStringExtra("subjectName");
+        String userName = getIntent.getStringExtra("userName");
 
         Intent intent = new Intent(this, ProblemSolveScreen.class);
-        intent.putExtra("과목 이름", subjectName);
+        intent.putExtra("subjectName", subjectName);
+        intent.putExtra("userName", userName);
 
         TextView subjectNameTextView = findViewById(R.id.subjectName);
         subjectNameTextView.setText(subjectName);
@@ -65,7 +67,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                             adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View v, ProblemData data) {
-                                    intent.putExtra("문제 이름", data.name);
+                                    intent.putExtra("problemName", data.name);
                                     startActivity(intent);
                                 }
                             });

@@ -7,16 +7,30 @@
     android:orientation="vertical"
     tools:context=".ProblemSolveScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류+ 수학 1"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문제 분류"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/subjectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:text="과목 이름"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_weight="4"
@@ -40,32 +54,50 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/trialCount"
+            android:text="trial count : " />
+
         <TextView
             android:id="@+id/trialCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="trial count:2112"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentEnd="true"
+            android:text="2112" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="solved count : "
+            android:layout_toStartOf="@id/solvedCount"
+            android:layout_below="@id/trialCount"/>
         <TextView
             android:id="@+id/solvedCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="solved countL 1997"
-            android:layout_alignParentRight="true"
+            android:text="1997"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/trialCount"/>
+
         <EditText
             android:id="@+id/inputAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="여기에 정답을 입력하세요"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/submit"
+            android:hint="여기에 정답을 입력하세요" />
+
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제출"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/inputAnswer"/>
+            android:text="제출"
+            android:onClick="submitButtonClicked"/>
 
     </RelativeLayout>
 
@@ -79,7 +111,7 @@
             android:id="@+id/ProblemSolve"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:text="문제 풀기"/>
 
         <Button
@@ -94,7 +126,7 @@
             android:id="@+id/ProblemMake"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="문제 만들기"
             android:onClick="goToEnrollProblem"/>
 
