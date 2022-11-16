@@ -113,11 +113,13 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     //틀린 문제 리스트에 추가
                     Map<String, Object> problemBase = new HashMap<>();
                     problemBase.put("경로", path);
+                    problemBase.put("과목", subjectName);
+                    problemBase.put("문제 이름", problemName);
 
                     db.collection("유저")
                             .document(userName)
                             .collection("틀린 문제")
-                            .document(problemName)
+                            .document(subjectName+" "+problemName)
                             .set(problemBase);
 
                     trialCount += 1;
@@ -146,6 +148,31 @@ public class ProblemSolveScreen extends AppCompatActivity {
     }
 
     public void answerIsRight(){
+        //문제를 맞혔을 경우 틀린 문제 리스트에서 삭제
+        db.collection("유저")
+                .document(userName)
+                .collection("틀린 문제")
+                .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    if(document.getId().equals("base"))
+                                        continue;
+
+                                    String existProblemName = document.getString("문제 이름");
+
+                                    if(existProblemName.equals(problemName)){
+                                        db.collection("유저")
+                                                .document(userName)
+                                                .collection("틀린 문제")
+                                                .document(document.getId())
+                                                .delete();
+                                    }
+                                }
+                            }
+                        });
+
         db.collection("유저")
                 .document(userName)
                 .collection("푼 문제")
@@ -156,13 +183,16 @@ public class ProblemSolveScreen extends AppCompatActivity {
                         boolean isExist = false;
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String existProblemName = document.getId();
+                            String existProblemName = document.getString("문제 이름");
 
+                            if(document.getId().equals("base"))
+                                continue;
                             if(existProblemName.equals(problemName))
                                 isExist = true;
                         }
 
                         if(isExist){
+                            // 맞힌 문제 리스트에 이미 존재하는지 확인
                             AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
                             builder.setTitle("이미 푼 문제입니다.");
 
@@ -179,11 +209,13 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             //푼 문제 리스트에 추가
                             Map<String, Object> problemBase = new HashMap<>();
                             problemBase.put("경로", path);
+                            problemBase.put("과목", subjectName);
+                            problemBase.put("문제 이름", problemName);
 
                             db.collection("유저")
                                     .document(userName)
                                     .collection("푼 문제")
-                                    .document(problemName)
+                                    .document(subjectName+" "+problemName)
                                     .set(problemBase);
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
