@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -102,10 +104,10 @@ public class ProblemSolveScreen extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
 
-                Long solvedCount = document.getLong("정답");
+                Long answer = document.getLong("정답");
                 Long trialCount = document.getLong("시도 횟수");
 
-                if(userAnswer.equals(solvedCount))
+                if(userAnswer.equals(answer))
                     answerIsRight();
                 else{
                     //틀린 문제 리스트에 추가
@@ -137,7 +139,6 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     });
 
                     AlertDialog alertDialog = builder.create();
-
                     alertDialog.show();
                 }
             }
@@ -145,14 +146,59 @@ public class ProblemSolveScreen extends AppCompatActivity {
     }
 
     public void answerIsRight(){
-        //푼 문제 리스트에 추가
-        Map<String, Object> problemBase = new HashMap<>();
-        problemBase.put("경로", path);
-
         db.collection("유저")
                 .document(userName)
                 .collection("푼 문제")
-                .document(problemName)
-                .set(problemBase);
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        boolean isExist = false;
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String existProblemName = document.getId();
+
+                            if(existProblemName.equals(problemName))
+                                isExist = true;
+                        }
+
+                        if(isExist){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+                            builder.setTitle("이미 푼 문제입니다.");
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int pos) {
+                                    startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
+                        else{
+                            //푼 문제 리스트에 추가
+                            Map<String, Object> problemBase = new HashMap<>();
+                            problemBase.put("경로", path);
+
+                            db.collection("유저")
+                                    .document(userName)
+                                    .collection("푼 문제")
+                                    .document(problemName)
+                                    .set(problemBase);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+                            builder.setTitle("문제를 맞추셨습니다.");
+
+                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int pos) {
+                                    startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
+                    }
+                });
     }
 }
