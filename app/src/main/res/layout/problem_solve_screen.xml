@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_weight="1"
+        android:layout_weight="1.3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
@@ -60,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/trialCount"
             android:text="trial count : " />
-
         <TextView
             android:id="@+id/trialCount"
             android:layout_width="wrap_content"
@@ -80,6 +79,34 @@
             android:text="1997"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/trialCount"/>
+
+        <TextView
+            android:id="@+id/likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/solvedCount"
+            android:layout_toStartOf="@id/좋아요"
+            android:text="5123" />
+        <TextView
+            android:id="@+id/좋아요"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/solvedCount"
+            android:layout_marginStart="10dp"
+            android:text="likes" />
+        <Button
+            android:id="@+id/likeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아요"/>
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="10dp"
+            android:layout_toEndOf="@id/likeButton"/>
 
         <EditText
             android:id="@+id/inputAnswer"

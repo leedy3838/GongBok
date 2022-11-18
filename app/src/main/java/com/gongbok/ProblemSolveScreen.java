@@ -66,15 +66,18 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     path = document.getString("경로");
                     tier = document.getLong("난이도");
                     rating = document.getLong("레이팅");
+                    Long likeCount = document.getLong("좋아요 수");
                     Long trialCount = document.getLong("시도 횟수");
                     Long solvedCount = document.getLong("맞힌 횟수");
 
                     ImageView iv = findViewById(R.id.problemImage);
                     TextView trialCountTextView = findViewById(R.id.trialCount);
                     TextView solvedCountTextView = findViewById(R.id.solvedCount);
+                    TextView likeCountTextView = findViewById(R.id.likeCount);
 
                     trialCountTextView.setText(String.valueOf(trialCount));
                     solvedCountTextView.setText(String.valueOf(solvedCount));
+                    likeCountTextView.setText(String.valueOf(likeCount));
 
                     StorageReference storageRef = storage.getReference();
                     StorageReference pathReference = storageRef.child(path);
