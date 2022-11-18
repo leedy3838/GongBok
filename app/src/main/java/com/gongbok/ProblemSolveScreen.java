@@ -31,6 +31,8 @@ public class ProblemSolveScreen extends AppCompatActivity {
     String problemName;
     String userName;
     String path;
+    Long rating;
+    Long tier;
     DocumentReference docRef;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -62,6 +64,8 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
 
                     path = document.getString("경로");
+                    tier = document.getLong("난이도");
+                    rating = document.getLong("레이팅");
                     Long trialCount = document.getLong("시도 횟수");
                     Long solvedCount = document.getLong("맞힌 횟수");
 
@@ -107,41 +111,85 @@ public class ProblemSolveScreen extends AppCompatActivity {
                 Long answer = document.getLong("정답");
                 Long trialCount = document.getLong("시도 횟수");
 
+                //문제의 시도 횟수 증가
+                trialCount += 1;
+                docRef.update("시도 횟수", trialCount);
+
                 if(userAnswer.equals(answer))
                     answerIsRight();
                 else{
-                    //틀린 문제 리스트에 추가
-                    Map<String, Object> problemBase = new HashMap<>();
-                    problemBase.put("경로", path);
-                    problemBase.put("과목", subjectName);
-                    problemBase.put("문제 이름", problemName);
-
+                    // 맞힌 문제 리스트에 있는지 확인
                     db.collection("유저")
                             .document(userName)
-                            .collection("틀린 문제")
-                            .document(subjectName+" "+problemName)
-                            .set(problemBase);
+                            .collection("푼 문제")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    boolean isExistInRight = false;
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if(document.getId().equals("base"))
+                                            continue;
 
-                    trialCount += 1;
-                    docRef.update("시도 횟수", trialCount);
+                                        String existProblemName = document.getString("문제 이름");
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
-                    builder.setTitle("틀리셨습니다.");
+                                        if(existProblemName.equals(problemName))
+                                            isExistInRight = true;
+                                    }
+                                    if(isExistInRight){
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+                                        builder.setTitle("오답이지만 이미 맞히신 문제입니다.");
 
-                    builder.setPositiveButton("다시 풀어보기", new DialogInterface.OnClickListener(){
-                        public void onClick(DialogInterface dialog, int pos) {
+                                        builder.setPositiveButton("다시 풀어보기", new DialogInterface.OnClickListener(){
+                                            public void onClick(DialogInterface dialog, int pos) {
 
-                        }
-                    });
-                    builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
-                        }
-                    });
+                                            }
+                                        });
+                                        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                            }
+                                        });
 
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
+                                    else{
+                                        //틀린 문제 리스트에 추가
+                                        Map<String, Object> problemBase = new HashMap<>();
+                                        problemBase.put("경로", path);
+                                        problemBase.put("과목", subjectName);
+                                        problemBase.put("문제 이름", problemName);
+                                        problemBase.put("난이도", tier);
+                                        problemBase.put("레이팅", rating);
+
+                                        db.collection("유저")
+                                                .document(userName)
+                                                .collection("틀린 문제")
+                                                .document(subjectName+" "+problemName)
+                                                .set(problemBase);
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+                                        builder.setTitle("틀리셨습니다.");
+
+                                        builder.setPositiveButton("다시 풀어보기", new DialogInterface.OnClickListener(){
+                                            public void onClick(DialogInterface dialog, int pos) {
+
+                                            }
+                                        });
+                                        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
+                                }
+                            });
                 }
             }
         });
@@ -211,12 +259,31 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             problemBase.put("경로", path);
                             problemBase.put("과목", subjectName);
                             problemBase.put("문제 이름", problemName);
+                            problemBase.put("난이도", tier);
+                            problemBase.put("레이팅", rating);
 
                             db.collection("유저")
                                     .document(userName)
                                     .collection("푼 문제")
                                     .document(subjectName+" "+problemName)
                                     .set(problemBase);
+
+                            //문제를 처음 풀었을 때만 보상 포인트 제공
+                            db.collection("유저")
+                                    .document(userName)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot document = task.getResult();
+
+                                            Long point = document.getLong("레이팅");
+
+                                            db.collection("유저")
+                                                    .document(userName)
+                                                    .update("레이팅", point + rating);
+                                        }
+                                    });
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
                             builder.setTitle("문제를 맞추셨습니다.");
