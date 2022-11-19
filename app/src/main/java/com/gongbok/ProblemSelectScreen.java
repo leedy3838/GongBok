@@ -108,7 +108,6 @@ public class ProblemSelectScreen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String ProblemName = document.getId();
                                 String subject = document.getString("과목");
                                 String problemNameOfLike = document.getString("문제 이름");
 
@@ -126,7 +125,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                 if (wrongList.contains(new DataCompare(subject, problemNameOfLike)))
                                     isWrong = true;
 
-                                ProblemData data = new ProblemData(ProblemName, path, likeNum, tier, isSolved, isWrong);
+                                ProblemData data = new ProblemData(problemNameOfLike, subject, path, likeNum, tier, isSolved, isWrong, true);
                                 DataList.add(data);
                             }
 
@@ -174,7 +173,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                     if (wrongList.contains(new DataCompare(subjectName, ProblemName)))
                                         isWrong = true;
 
-                                    ProblemData data = new ProblemData(ProblemName, path, likeNum, tier, isSolved, isWrong);
+                                    ProblemData data = new ProblemData(ProblemName, subjectName, path, likeNum, tier, isSolved, isWrong, false);
                                     DataList.add(data);
                                 }
 

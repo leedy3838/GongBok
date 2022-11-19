@@ -14,19 +14,24 @@ import java.util.List;
 
 class ProblemData{
     String name;
+    String subjectName;
     String link;
     long likeNum;
     long tier;
     Boolean isSolved = false;
     Boolean isWrong = false;
+    //좋아요 한 문제들을 출력할 때 isLikeProblem이 true
+    Boolean isLikeProblem = false;
 
-    ProblemData(String name, String link, long likeNum, long tier, Boolean isSolved, Boolean isWrong){
+    ProblemData(String name, String subjectName, String link, long likeNum, long tier, Boolean isSolved, Boolean isWrong, Boolean isLikeProblem){
         this.name = name;
         this.link = link;
+        this.subjectName = subjectName;
         this.likeNum = likeNum;
         this.tier = tier;
         this.isSolved = isSolved;
         this.isWrong = isWrong;
+        this.isLikeProblem = isLikeProblem;
     }
 }
 
@@ -65,7 +70,10 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         ProblemData item = DataList.get(position);
 
-        holder.problemName.setText(item.name);
+        if(!item.isLikeProblem)
+            holder.problemName.setText(item.name);
+        else
+            holder.problemName.setText(item.subjectName + " " + item.name);
         holder.likeNum.setText(String.valueOf(item.likeNum));
         //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
 
