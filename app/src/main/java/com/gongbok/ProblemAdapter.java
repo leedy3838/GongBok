@@ -1,5 +1,6 @@
 package com.gongbok;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,16 @@ class ProblemData{
     String link;
     long likeNum;
     long tier;
+    Boolean isSolved = false;
+    Boolean isWrong = false;
 
-    ProblemData(String name, String link, long likeNum, long tier){
+    ProblemData(String name, String link, long likeNum, long tier, Boolean isSolved, Boolean isWrong){
         this.name = name;
         this.link = link;
         this.likeNum = likeNum;
         this.tier = tier;
+        this.isSolved = isSolved;
+        this.isWrong = isWrong;
     }
 }
 
@@ -50,6 +55,12 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         this.mListener = listener;
     }
 
+    //리사이클러 뷰에서 뷰홀더를 재사용할 때 글자 색이 이상하게 되는 거 해결
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         ProblemData item = DataList.get(position);
@@ -57,6 +68,11 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         holder.problemName.setText(item.name);
         holder.likeNum.setText(String.valueOf(item.likeNum));
         //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
+
+        if(item.isSolved)
+            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
+        if(item.isWrong)
+            holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
