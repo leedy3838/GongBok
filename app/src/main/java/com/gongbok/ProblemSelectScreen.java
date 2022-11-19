@@ -41,7 +41,6 @@ public class ProblemSelectScreen extends AppCompatActivity {
         String subjectName = getIntent.getStringExtra("subjectName");
         String userName = getIntent.getStringExtra("userName");
 
-
         TextView subjectNameTextView = findViewById(R.id.subjectName);
         subjectNameTextView.setText(subjectName);
 
@@ -95,61 +94,59 @@ public class ProblemSelectScreen extends AppCompatActivity {
         String subjectName = getIntent.getStringExtra("subjectName");
         String userName = getIntent.getStringExtra("userName");
 
-        Intent intent = new Intent(this, ProblemSolveScreen.class);
-        intent.putExtra("subjectName", subjectName);
-        intent.putExtra("userName", userName);
+        //MyLikeProblemScreen에서 왔을 때
+        if(subjectName.equals("내가 좋아요 한 문제")){
 
-        db.collection("문제")
-                .document(subjectName)
-                .collection(subjectName)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d(TAG, "wrongList");
-                        for(DataCompare i : wrongList){
-                            Log.d(TAG, i.subjectName +" " + i.problemName);
-                        }
-                        Log.d(TAG, "solvedList");
-                        for(DataCompare i : solvedList){
-                            Log.d(TAG, i.subjectName +" " + i.problemName);
-                        }
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "main");
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String ProblemName = document.getId();
-                                String path = document.getString("경로");
-                                Long likeNum = document.getLong("좋아요 수");
-                                Long tier = document.getLong("난이도");
+        }
 
-                                boolean isSolved = false;
-                                boolean isWrong = false;
-                                if(solvedList.contains(new DataCompare(subjectName, ProblemName)))
-                                    isSolved = true;
-                                if(wrongList.contains(new DataCompare(subjectName, ProblemName)))
-                                    isWrong = true;
+        //과목 선택을 통해서 왔을 때
+        else {
+            Intent intent = new Intent(this, ProblemSolveScreen.class);
+            intent.putExtra("subjectName", subjectName);
+            intent.putExtra("userName", userName);
 
-                                Log.d(TAG, isSolved +" " + isWrong + " " + subjectName + " " +ProblemName);
-                                ProblemData data = new ProblemData(ProblemName, path, likeNum, tier, isSolved, isWrong);
-                                DataList.add(data);
-                            }
+            db.collection("문제")
+                    .document(subjectName)
+                    .collection(subjectName)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String ProblemName = document.getId();
+                                    String path = document.getString("경로");
+                                    Long likeNum = document.getLong("좋아요 수");
+                                    Long tier = document.getLong("난이도");
 
-                            //RecyclerView에 목록 출력
-                            RecyclerView recyclerView = findViewById(R.id.problemList) ;
-                            recyclerView.setLayoutManager(new LinearLayoutManager(ProblemSelectScreen.this));
+                                    boolean isSolved = false;
+                                    boolean isWrong = false;
+                                    if (solvedList.contains(new DataCompare(subjectName, ProblemName)))
+                                        isSolved = true;
+                                    if (wrongList.contains(new DataCompare(subjectName, ProblemName)))
+                                        isWrong = true;
 
-                            ProblemAdapter adapter = new ProblemAdapter(DataList);
-                            adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(View v, ProblemData data) {
-                                    intent.putExtra("problemName", data.name);
-                                    startActivity(intent);
+                                    ProblemData data = new ProblemData(ProblemName, path, likeNum, tier, isSolved, isWrong);
+                                    DataList.add(data);
                                 }
-                            });
-                            recyclerView.setAdapter(adapter);
+
+                                //RecyclerView에 목록 출력
+                                RecyclerView recyclerView = findViewById(R.id.problemList);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(ProblemSelectScreen.this));
+
+                                ProblemAdapter adapter = new ProblemAdapter(DataList);
+                                adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(View v, ProblemData data) {
+                                        intent.putExtra("problemName", data.name);
+                                        startActivity(intent);
+                                    }
+                                });
+                                recyclerView.setAdapter(adapter);
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     public void goToMain(View view) {

@@ -336,6 +336,17 @@ public class ProblemSolveScreen extends AppCompatActivity {
         //이미 좋아요 한 문제라면 하트의 모양을 바꾸고 firestore의 좋아요 한 문제 리스트에서 제거
         if(isLike){
             isLike = false;
+            //좋아요 수 감소
+            problemNameDocRef.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot document = task.getResult();
+
+                            Long like = document.getLong("좋아요 수");
+                            problemNameDocRef.update("좋아요 수", like-1);
+                        }
+                    });
 
             ImageView likeImage = findViewById(R.id.heart);
             likeImage.setImageDrawable(getResources().getDrawable(R.drawable.empty_heart));
@@ -349,6 +360,17 @@ public class ProblemSolveScreen extends AppCompatActivity {
         //좋아요 했던 문제가 아니라면 하트의 모양을 바꾸고 좋아요 한 문제 리스트에 추가
         else{
             isLike = true;
+            //좋아요 수 추가
+            problemNameDocRef.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot document = task.getResult();
+
+                            Long like = document.getLong("좋아요 수");
+                            problemNameDocRef.update("좋아요 수", like+1);
+                        }
+                    });
 
             ImageView likeImage = findViewById(R.id.heart);
             likeImage.setImageDrawable(getResources().getDrawable(R.drawable.full_heart));
