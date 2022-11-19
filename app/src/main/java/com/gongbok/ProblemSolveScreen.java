@@ -1,5 +1,7 @@
 package com.gongbok;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +36,8 @@ public class ProblemSolveScreen extends AppCompatActivity {
     String path;
     Long rating;
     Long tier;
-    DocumentReference docRef;
+    Boolean isLike = false;
+    DocumentReference problemNameDocRef;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -51,13 +55,38 @@ public class ProblemSolveScreen extends AppCompatActivity {
         TextView subjectNameTextView = findViewById(R.id.subjectName);
         subjectNameTextView.setText(subjectName);
 
-        docRef = db.collection("문제")
+        //이미 좋아요 한 문제인지 아닌지 확인
+        db.collection("유저")
+                .document(userName)
+                .collection("좋아요 한 문제")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot document : task.getResult()) {
+                            String likedProblemName = document.getId();
+
+                            if(likedProblemName.equals(subjectName+" "+problemName)) {
+                                isLike = true;
+                                break;
+                            }
+                        }
+
+                        //이미 좋아요 한 문제라면 빈 하트를 찬 하트로 변경
+                        if(isLike){
+                            ImageView likeImage = findViewById(R.id.heart);
+                            likeImage.setImageDrawable(getResources().getDrawable(R.drawable.full_heart));
+                        }
+                    }
+                });
+
+        problemNameDocRef = db.collection("문제")
                 .document(subjectName)
                 .collection(subjectName)
                 .document(problemName);
 
         //처음 액티비티 생성 시 화면 구성
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        problemNameDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -106,7 +135,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
         EditText inputAnswer = findViewById(R.id.inputAnswer);
         Long userAnswer = Long.parseLong(inputAnswer.getText().toString().trim());
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        problemNameDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
@@ -116,7 +145,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
                 //문제의 시도 횟수 증가
                 trialCount += 1;
-                docRef.update("시도 횟수", trialCount);
+                problemNameDocRef.update("시도 횟수", trialCount);
 
                 if(userAnswer.equals(answer))
                     answerIsRight();
@@ -302,5 +331,37 @@ public class ProblemSolveScreen extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    public void likeButtonClicked(View v){
+        //이미 좋아요 한 문제라면 하트의 모양을 바꾸고 firestore의 좋아요 한 문제 리스트에서 제거
+        if(isLike){
+            isLike = false;
+
+            ImageView likeImage = findViewById(R.id.heart);
+            likeImage.setImageDrawable(getResources().getDrawable(R.drawable.empty_heart));
+
+            db.collection("유저")
+                    .document(userName)
+                    .collection("좋아요 한 문제")
+                    .document(subjectName+" "+problemName)
+                    .delete();
+        }
+        //좋아요 했던 문제가 아니라면 하트의 모양을 바꾸고 좋아요 한 문제 리스트에 추가
+        else{
+            isLike = true;
+
+            ImageView likeImage = findViewById(R.id.heart);
+            likeImage.setImageDrawable(getResources().getDrawable(R.drawable.full_heart));
+
+            Map<String, Object> problemBase = new HashMap<>();
+            problemBase.put("과목", subjectName);
+            problemBase.put("문제 이름", problemName);
+
+            db.collection("유저")
+                    .document(userName)
+                    .collection("좋아요 한 문제")
+                    .document(subjectName+" "+problemName)
+                    .set(problemBase);
+        }
     }
 }

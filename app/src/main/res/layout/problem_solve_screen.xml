@@ -95,18 +95,24 @@
             android:layout_below="@+id/solvedCount"
             android:layout_marginStart="10dp"
             android:text="likes" />
+
         <Button
             android:id="@+id/likeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="좋아요"/>
+            android:text="좋아요"
+            android:onClick="likeButtonClicked"/>
+
         <ImageView
             android:id="@+id/heart"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_margin="10dp"
-            android:layout_toEndOf="@id/likeButton"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/likeButton"
+            android:src="@drawable/empty_heart" />
 
         <EditText
             android:id="@+id/inputAnswer"
