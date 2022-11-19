@@ -95,8 +95,56 @@ public class ProblemSelectScreen extends AppCompatActivity {
         String userName = getIntent.getStringExtra("userName");
 
         //MyLikeProblemScreen에서 왔을 때
+        //이 부분은 추후 테스트가 필요 함.
         if(subjectName.equals("내가 좋아요 한 문제")){
+            Intent intent = new Intent(this, ProblemSolveScreen.class);
+            intent.putExtra("userName", userName);
 
+            db.collection("유저")
+                    .document(userName)
+                    .collection("좋아요 한 문제")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String ProblemName = document.getId();
+                                String subject = document.getString("과목");
+                                String problemNameOfLike = document.getString("문제 이름");
+
+                                String path = document.getString("경로");
+                                Long likeNum = document.getLong("좋아요 수");
+                                Long tier = document.getLong("난이도");
+
+                                //내가 좋아요 한 문제로 오면 subject를 document에서 받아서 intent로 보내주어야 한다.
+                                intent.putExtra("subjectName", subject);
+
+                                boolean isSolved = false;
+                                boolean isWrong = false;
+                                if (solvedList.contains(new DataCompare(subject, problemNameOfLike)))
+                                    isSolved = true;
+                                if (wrongList.contains(new DataCompare(subject, problemNameOfLike)))
+                                    isWrong = true;
+
+                                ProblemData data = new ProblemData(ProblemName, path, likeNum, tier, isSolved, isWrong);
+                                DataList.add(data);
+                            }
+
+                            //RecyclerView에 목록 출력
+                            RecyclerView recyclerView = findViewById(R.id.problemList);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(ProblemSelectScreen.this));
+
+                            ProblemAdapter adapter = new ProblemAdapter(DataList);
+                            adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View v, ProblemData data) {
+                                    intent.putExtra("problemName", data.name);
+                                    startActivity(intent);
+                                }
+                            });
+                            recyclerView.setAdapter(adapter);
+                        }
+                    });
         }
 
         //과목 선택을 통해서 왔을 때

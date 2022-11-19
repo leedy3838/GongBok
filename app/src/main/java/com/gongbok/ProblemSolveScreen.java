@@ -36,6 +36,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
     String path;
     Long rating;
     Long tier;
+    Long likeNum;
     Boolean isLike = false;
     DocumentReference problemNameDocRef;
 
@@ -95,7 +96,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     path = document.getString("경로");
                     tier = document.getLong("난이도");
                     rating = document.getLong("레이팅");
-                    Long likeCount = document.getLong("좋아요 수");
+                    likeNum = document.getLong("좋아요 수");
                     Long trialCount = document.getLong("시도 횟수");
                     Long solvedCount = document.getLong("맞힌 횟수");
 
@@ -106,7 +107,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
                     trialCountTextView.setText(String.valueOf(trialCount));
                     solvedCountTextView.setText(String.valueOf(solvedCount));
-                    likeCountTextView.setText(String.valueOf(likeCount));
+                    likeCountTextView.setText(String.valueOf(likeNum));
 
                     StorageReference storageRef = storage.getReference();
                     StorageReference pathReference = storageRef.child(path);
@@ -376,8 +377,11 @@ public class ProblemSolveScreen extends AppCompatActivity {
             likeImage.setImageDrawable(getResources().getDrawable(R.drawable.full_heart));
 
             Map<String, Object> problemBase = new HashMap<>();
+            problemBase.put("경로", path);
             problemBase.put("과목", subjectName);
             problemBase.put("문제 이름", problemName);
+            problemBase.put("난이도", tier);
+            problemBase.put("좋아요 수", likeNum);
 
             db.collection("유저")
                     .document(userName)
