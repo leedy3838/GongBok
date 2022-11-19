@@ -2,10 +2,13 @@ package com.gongbok;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.SortedListAdapterCallback;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -47,6 +50,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,8 +72,8 @@ public class MainScreen extends AppCompatActivity {
         //Firebase 세팅
         db = FirebaseFirestore.getInstance();
 
-        //임시 userID
-        String userID = "test";
+        //임시 userID Intent 들어오면 수정
+        String userID = "root712";
         db.collection("유저")
                 .document(userID)
                 .get()
@@ -97,11 +101,16 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-                            List<DocumentSnapshot> fieldValues = task.getResult().getDocuments();
-                            long problemRates[] = new long[fieldValues.size()];
-                            for (int i=0;i<fieldValues.size();i++){
-
+                            List<RatingData> ratings = new LinkedList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                Long tier = document.getLong("레이팅");
+                                ratings.add(new RatingData("title", tier));
                             }
+                            RecyclerView recyclerView = findViewById(R.id.mainRatingScreen);
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(MainScreen.this, 13);
+                            recyclerView.setLayoutManager(gridLayoutManager);
+                            MainScreenAdapter mainScreenAdapter = new MainScreenAdapter(ratings);
+                            recyclerView.setAdapter(mainScreenAdapter);
                         }
                     }
                 });

@@ -80,6 +80,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/main_square" />
             <GridLayout
+                android:id="@+id/mainRatingShow"
                 android:layout_below="@id/topRateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,13 +88,10 @@
                 android:columnCount="13"
                 android:layout_marginHorizontal="13dp"
                 android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/writeTest"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/rank_icons_s1"
-                    android:background="@color/white"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mainRatingScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </GridLayout>
             <TextView
