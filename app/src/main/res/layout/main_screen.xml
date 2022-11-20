@@ -212,11 +212,11 @@
                 android:layout_below="@id/restOfRating"
                 android:layout_alignLeft="@id/restOfRating"
                 android:layout_marginLeft="5dp"
-                android:onClick="goToTotalRanking"
                 android:background="@drawable/btn_mint"
+                android:onClick="goToTotalRanking"
                 android:padding="6dp"
-                android:textStyle="bold"
-                android:text="   전체 랭킹   " />
+                android:text="   전체 랭킹   "
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

@@ -36,9 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_toStartOf="@id/tierImage"
         android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@id/tierImage"
+        android:gravity="center"
         android:text="likes"
         android:textSize="15sp" />
 

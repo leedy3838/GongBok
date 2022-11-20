@@ -1,5 +1,7 @@
 package com.gongbok;
 
+import static android.view.View.GONE;
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,8 +74,11 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
 
         if(!item.isLikeProblem)
             holder.problemName.setText(item.name);
-        else
+        else {
             holder.problemName.setText(item.subjectName + " " + item.name);
+            holder.likeNum.setVisibility(GONE);
+            holder.likeText.setVisibility(GONE);
+        }
         holder.likeNum.setText(String.valueOf(item.likeNum));
         //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
 
@@ -103,6 +108,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         TextView problemName;
         TextView likeNum;
         ImageView tier;
+        TextView likeText;
 
         public ProblemViewHolder(@NonNull View view) {
             super(view);
@@ -110,6 +116,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
             problemName = view.findViewById(R.id.problemName);
             likeNum = view.findViewById(R.id.likeNum);
             tier = view.findViewById(R.id.tierImage);
+            likeText = view.findViewById(R.id.좋아요);
         }
     }
 }

@@ -95,10 +95,8 @@ public class ProblemSelectScreen extends AppCompatActivity {
         String userName = getIntent.getStringExtra("userName");
 
         //MyLikeProblemScreen에서 왔을 때
-        //이 부분은 추후 테스트가 필요 함.
         if(subjectName.equals("내가 좋아요 한 문제")){
             Intent intent = new Intent(this, ProblemSolveScreen.class);
-            intent.putExtra("userName", userName);
 
             db.collection("유저")
                     .document(userName)
@@ -108,15 +106,17 @@ public class ProblemSelectScreen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getId().equals("base"))
+                                    continue;
+
                                 String subject = document.getString("과목");
                                 String problemNameOfLike = document.getString("문제 이름");
+
+                                Log.d(TAG, subject +" " + problemNameOfLike);
 
                                 String path = document.getString("경로");
                                 Long likeNum = document.getLong("좋아요 수");
                                 Long tier = document.getLong("난이도");
-
-                                //내가 좋아요 한 문제로 오면 subject를 document에서 받아서 intent로 보내주어야 한다.
-                                intent.putExtra("subjectName", subject);
 
                                 boolean isSolved = false;
                                 boolean isWrong = false;
@@ -137,7 +137,9 @@ public class ProblemSelectScreen extends AppCompatActivity {
                             adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View v, ProblemData data) {
+                                    intent.putExtra("userName", userName);
                                     intent.putExtra("problemName", data.name);
+                                    intent.putExtra("subjectName", data.subjectName);
                                     startActivity(intent);
                                 }
                             });
@@ -149,8 +151,6 @@ public class ProblemSelectScreen extends AppCompatActivity {
         //과목 선택을 통해서 왔을 때
         else {
             Intent intent = new Intent(this, ProblemSolveScreen.class);
-            intent.putExtra("subjectName", subjectName);
-            intent.putExtra("userName", userName);
 
             db.collection("문제")
                     .document(subjectName)
@@ -185,7 +185,9 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                 adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(View v, ProblemData data) {
+                                        intent.putExtra("userName", userName);
                                         intent.putExtra("problemName", data.name);
+                                        intent.putExtra("subjectName", data.subjectName);
                                         startActivity(intent);
                                     }
                                 });
