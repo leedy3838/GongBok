@@ -95,22 +95,25 @@
 
             </GridLayout>
             <TextView
+                android:id="@+id/ACpTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="290dp"
                 android:layout_marginLeft="17dp"
                 android:text="test"/>
+
             <ImageView
                 android:id="@+id/spl1"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="320dp"
                 android:layout_marginHorizontal="3dp"
+                android:layout_marginTop="320dp"
                 android:alpha=".15"
+                android:layout="@id/SPratingImage"
+                android:scaleType="fitXY"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="330dp"
@@ -126,6 +129,7 @@
                 android:alpha=".15"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="370dp"
@@ -141,21 +145,24 @@
                 android:alpha=".15"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="410dp"
                 android:layout_marginLeft="17dp"
                 android:text="test"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="440dp"
                 android:layout_marginHorizontal="3dp"
+                android:layout_marginTop="440dp"
                 android:alpha=".15"
+                android:layout="@id/SPratingImage"
+                android:scaleType="fitXY"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="448dp"
@@ -210,11 +217,11 @@
                 android:layout_below="@id/restOfRating"
                 android:layout_alignLeft="@id/restOfRating"
                 android:layout_marginLeft="5dp"
-                android:onClick="goToTotalRanking"
                 android:background="@drawable/btn_mint"
+                android:onClick="goToTotalRanking"
                 android:padding="6dp"
-                android:textStyle="bold"
-                android:text="   전체 랭킹   " />
+                android:text="   전체 랭킹   "
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
