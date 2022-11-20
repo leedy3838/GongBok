@@ -49,7 +49,6 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
     public ProblemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.problem_list, parent, false);
         return new ProblemViewHolder(view);
-
     }
 
     //onClickListener 부착(ProblemSelectScreen에서 함수 정의할 것)
