@@ -51,6 +51,7 @@ public class NicknameScreen extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         if (document.getId().equals(name)) {
+                                            // 중복되는 닉네임 있으므로 EditText 값 비우고 다시 입력 요청
                                             mGoogleNicknameInputEt.setText(null);
                                             Toast.makeText(NicknameScreen.this, "이미 존재하는 닉네임입니다.\n다시 입력해 주세요.", Toast.LENGTH_SHORT).show();
                                             flag = true;
@@ -61,9 +62,8 @@ public class NicknameScreen extends AppCompatActivity {
                                     if (!flag) {
                                         Log.d("Google","실행5");
 
-                                        String googleNickname = mGoogleNicknameInputEt.getText().toString();
                                         Intent intent = new Intent(NicknameScreen.this, LogInScreen.class);
-                                        intent.putExtra("nickname", googleNickname);
+                                        intent.putExtra("nickname", name);
                                         setResult(RESULT_OK, intent);
                                         // Activity.RESULT_OK 로 하면 오류 발생
                                         finish();

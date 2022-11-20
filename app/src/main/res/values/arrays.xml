@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "subject">
+        <item>[고1]공통수학</item>
+        <item>[고2]수학1</item>
+        <item>[고2]수학2</item>
+        <item>[고등]기하</item>
+        <item>[고등]미적분</item>
+        <item>[고등]확률과 통계</item>
+        <item>[자유]기하학</item>
+    </string-array>
+
+    <string-array name = "level_choice1">
+        <item>브론즈</item>
+        <item>실버</item>
+        <item>골드</item>
+        <item>플래티넘</item>
+        <item>다이아몬드</item>
+        <item>민트</item>
+    </string-array>
+
+    <string-array name = "level_choice2">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>X (민트)</item>
+    </string-array>
+
+</resources>

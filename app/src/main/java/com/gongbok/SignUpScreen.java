@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class SignUpScreen extends AppCompatActivity {
 
+    private final String TAG = "SignUpScreen";
     EditText mRegisterEmailId;
     EditText mRegisterPwd;
     EditText mRegisterPwdCheck;
@@ -38,6 +39,8 @@ public class SignUpScreen extends AppCompatActivity {
     Button mNicknameDupCheckBtn;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class SignUpScreen extends AppCompatActivity {
         setContentView(R.layout.sign_up_screen);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+         db = FirebaseFirestore.getInstance();
 
         mRegisterEmailId = findViewById(R.id.registerEmailId);
         mRegisterPwd = findViewById(R.id.registerPwd);
@@ -115,7 +118,7 @@ public class SignUpScreen extends AppCompatActivity {
                 }
 
                 if (pwd.equals(pwdCheck)) {
-                    Log.d("TAG", "등록 버튼 " + email + ", " + pwd);
+                    Log.d(TAG, "등록 버튼 " + email + ", " + pwd);
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                             .addOnCompleteListener(SignUpScreen.this,
@@ -124,6 +127,7 @@ public class SignUpScreen extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
 
+                                        user = firebaseAuth.getCurrentUser();
                                         // 최초로 생성된 닉네임이므로 firestore의 user 컬렉션에 document 추가
                                         Map<String, Object> userBase = new HashMap<>();
                                         userBase.put("레이팅", 0);
@@ -174,11 +178,10 @@ public class SignUpScreen extends AppCompatActivity {
                                                 .set(base);
 
                                         // 가입 성공하였으므로 MainScreen으로 이동
-                                        Intent intent = new Intent(SignUpScreen.this, MainScreen.class);
-                                        startActivity(intent);
+                                        loginAfterSignUp(email, pwd, name);
+                                        Toast.makeText(SignUpScreen.this, "회원가입 및 로그인 성공.", Toast.LENGTH_SHORT).show();
                                         finish();
-                                        Toast.makeText(SignUpScreen.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                                    }
+                                                                            }
                                     else{
                                         // 이메일 아이디 중복으로 가입 실패하였으므로 지우고 다시 입력 받음
                                         mRegisterEmailId.setText(null);
@@ -211,4 +214,26 @@ public class SignUpScreen extends AppCompatActivity {
     public void goToLogin(View view) {
         startActivity(new Intent(this, LogInScreen.class));
     }
+
+    // 회원가입 성공하였으므로 로그인하며 해당 유저의 UID를 "유저UID" collection에 추가하고 필드 값으로 닉네임 추가하고
+    // MainScreen으로 이동
+    public void loginAfterSignUp (String email, String pwd, String name){
+        firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            // 해당 유저의 UID를 "유저UID" collection에 추가하고 필드 값으로 닉네임 추가
+                            user = firebaseAuth.getCurrentUser();
+                            Map<String, Object> UidNickname = new HashMap<>();
+                            UidNickname.put("닉네임", name);
+                            db.collection("유저UID").document(user.getUid()).set(UidNickname);
+
+                            // MainScreen으로 이동
+                            startActivity(new Intent(SignUpScreen.this, MainScreen.class));
+                        }
+                    }
+                });
+    }
 }
+
