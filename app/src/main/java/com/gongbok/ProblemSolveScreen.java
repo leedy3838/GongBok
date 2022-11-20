@@ -124,14 +124,6 @@ public class ProblemSolveScreen extends AppCompatActivity {
         startActivity(new Intent(this, MainScreen.class));
     }
 
-    public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, SubjectSelectScreen.class));
-    }
-
-    public void goToEnrollProblem(View view) {
-        startActivity(new Intent(this, EnrollProblemScreen.class));
-    }
-
     public void submitButtonClicked(View view){
         EditText inputAnswer = findViewById(R.id.inputAnswer);
         Long userAnswer = Long.parseLong(inputAnswer.getText().toString().trim());

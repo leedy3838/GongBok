@@ -17,10 +17,4 @@ public class ContributeToDifficulty extends AppCompatActivity {
     public void goToMain(View view) {
         startActivity(new Intent(this, MainScreen.class));
     }
-    public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, ProblemSolveScreen.class));
-    }
-    public void goToEnrollProblem(View view) {
-        startActivity(new Intent(this, EnrollProblemScreen.class));
-    }
 }
