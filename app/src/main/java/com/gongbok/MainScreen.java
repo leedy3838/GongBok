@@ -78,8 +78,11 @@ public class MainScreen extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private String userID;
+    private String userUid;
 
     String userName = "LDY";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +95,11 @@ public class MainScreen extends AppCompatActivity {
 
         //Firebase 세팅
         db = FirebaseFirestore.getInstance();
-        Log.d(TAG, "로그인한 유저의 uid : " + user.getUid());
+
+        if(user != null){
+            userUid = user.getUid();
+            Log.d(TAG, userUid);
+        }
 
         //임시 userID
         DocumentReference docRef = db.collection("유저UID")
@@ -111,8 +118,6 @@ public class MainScreen extends AppCompatActivity {
                 }
             }
         });
-
-
     }
     
     public void logOut(View v) {

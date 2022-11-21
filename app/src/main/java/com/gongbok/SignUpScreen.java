@@ -144,8 +144,44 @@ public class SignUpScreen extends AppCompatActivity {
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
-                                                .document("base")
+                                                .document("[고1]공통수학")
                                                 .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고2]수학1")
+                                                .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고2]수학2")
+                                                .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]기하")
+                                                .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]미적분")
+                                                .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]확률과 통계")
+                                                .set(base);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[자유]기하학")
+                                               .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
