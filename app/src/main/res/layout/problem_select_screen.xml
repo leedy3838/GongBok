@@ -12,14 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+
+            android:text="홈"
+            android:onClick="goToMain"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="문제 분류"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subjectName"
@@ -42,74 +51,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/toLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/chapter"
-            android:layout_centerVertical="true"
-            android:text="좌"/>
-        <Button
-            android:id="@+id/chapter"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="1"/>
-        <Button
-            android:id="@+id/roRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/chapter"
-            android:layout_centerVertical="true"
-            android:text="우"/>
-
-        <TextView
-            android:id="@+id/pageNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/85 pages"
-            android:layout_margin="5dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/ProblemSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:text="문제 풀기"
-            android:onClick="goToProblemSolve"/>
-
-        <Button
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="홈"
-            android:onClick="goToMain"/>
-
-        <Button
-            android:id="@+id/ProblemMake"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:text="문제 만들기" />
-
-    </RelativeLayout>
-
 </LinearLayout>

@@ -7,19 +7,42 @@
     android:orientation="vertical"
     tools:context=".ProblemSolveScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="홈"
+            android:onClick="goToMain"/>
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류+ 수학 1"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="문제 분류"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subjectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:text="과목 이름"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
@@ -36,68 +59,89 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_weight="1"
+        android:layout_weight="1.3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/trialCount"
+            android:text="trial count : " />
         <TextView
             android:id="@+id/trialCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="trial count:2112"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentEnd="true"
+            android:text="2112" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="solved count : "
+            android:layout_toStartOf="@id/solvedCount"
+            android:layout_below="@id/trialCount"/>
         <TextView
             android:id="@+id/solvedCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="solved countL 1997"
-            android:layout_alignParentRight="true"
+            android:text="1997"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/trialCount"/>
+
+        <TextView
+            android:id="@+id/likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/solvedCount"
+            android:layout_toStartOf="@id/좋아요"
+            android:text="5123" />
+        <TextView
+            android:id="@+id/좋아요"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/solvedCount"
+            android:layout_marginStart="10dp"
+            android:text="likes" />
+
+        <Button
+            android:id="@+id/likeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아요"
+            android:onClick="likeButtonClicked"/>
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/likeButton"
+            android:src="@drawable/empty_heart" />
+
         <EditText
             android:id="@+id/inputAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="여기에 정답을 입력하세요"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/submit"
+            android:hint="여기에 정답을 입력하세요" />
+
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제출"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/inputAnswer"/>
+            android:text="제출"
+            android:onClick="submitButtonClicked"/>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/ProblemSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:text="문제 풀기"/>
-
-        <Button
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="홈"
-            android:onClick="goToMain"/>
-
-        <Button
-            android:id="@+id/ProblemMake"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:text="문제 만들기"
-            android:onClick="goToEnrollProblem"/>
-
-    </RelativeLayout>
 
 </LinearLayout>

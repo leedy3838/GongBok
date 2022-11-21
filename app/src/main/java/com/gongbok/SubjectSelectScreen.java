@@ -27,6 +27,9 @@ public class SubjectSelectScreen extends AppCompatActivity {
 
         Intent intent = new Intent(this, ProblemSelectScreen.class);
 
+        Intent getIntent = getIntent();
+        String userName = getIntent.getStringExtra("userName");
+
         List<SubjectData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -56,7 +59,8 @@ public class SubjectSelectScreen extends AppCompatActivity {
                                     String subjectName = data.name;
 
                                     //과목을 선택하면 그에 해당하는 과목의 문제 리스트 출력
-                                    intent.putExtra("과목 이름", subjectName);
+                                    intent.putExtra("subjectName", subjectName);
+                                    intent.putExtra("userName", userName);
                                     startActivity(intent);
                                 }
                             });
@@ -77,13 +81,5 @@ public class SubjectSelectScreen extends AppCompatActivity {
 
     public void goToMain(View view) {
         startActivity(new Intent(this, MainScreen.class));
-    }
-
-    public void goToProblemSolve(View view) {
-        startActivity(new Intent(this, ProblemSolveScreen.class));
-    }
-
-    public void goToEnrollProblem(View view) {
-        startActivity(new Intent(this, EnrollProblemScreen.class));
     }
 }

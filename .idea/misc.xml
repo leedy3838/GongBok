@@ -3,12 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.225" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable/btn_mint.xml" value="0.225" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable/ic_launcher_background.xml" value="0.225" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/contribute_to_difficulty.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_explanation_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/listlayout.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/login_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/main_screen.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_like_problem_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_problem.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/nickname_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_list.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_select_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_solve_screen.xml" value="0.27395833333333336" />
