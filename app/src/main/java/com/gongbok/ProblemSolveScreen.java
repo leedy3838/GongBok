@@ -274,6 +274,18 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
                                 }
                             });
+                            builder.setNegativeButton("난이도 평가 & 풀이 등록", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToEnrollExplanation = new Intent(ProblemSolveScreen.this, EnrollExplanationScreen.class);
+
+                                    intentToEnrollExplanation.putExtra("userName", userName);
+                                    intentToEnrollExplanation.putExtra("problemName", problemName);
+                                    intentToEnrollExplanation.putExtra("subjectName", subjectName);
+
+                                    startActivity(intentToEnrollExplanation);
+                                }
+                            });
 
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
@@ -316,6 +328,18 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                                 public void onClick(DialogInterface dialog, int pos) {
                                     startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                }
+                            });
+                            builder.setNegativeButton("난이도 평가 & 풀이 등록", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToEnrollExplanation = new Intent(ProblemSolveScreen.this, EnrollExplanationScreen.class);
+
+                                    intentToEnrollExplanation.putExtra("userName", userName);
+                                    intentToEnrollExplanation.putExtra("problemName", problemName);
+                                    intentToEnrollExplanation.putExtra("subjectName", subjectName);
+
+                                    startActivity(intentToEnrollExplanation);
                                 }
                             });
 
