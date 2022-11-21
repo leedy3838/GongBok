@@ -2,12 +2,16 @@ package com.gongbok;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.SortedListAdapterCallback;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +23,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.widget.Button;
@@ -47,11 +52,21 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class MainScreen extends AppCompatActivity {
 
+    class ACProblem{
+        String titleName;
+        Long ACount;
+        ACProblem(String titleName, Long ACount){
+            this.titleName = titleName;
+            this.ACount = ACount;
+        }
+
+    }
     //Firebase
     private FirebaseFirestore db;
     
@@ -68,8 +83,8 @@ public class MainScreen extends AppCompatActivity {
         //Firebase 세팅
         db = FirebaseFirestore.getInstance();
 
-        //임시 userID
-        String userID = "test";
+        //임시 userID Intent 들어오면 수정
+        String userID = "root712";
         db.collection("유저")
                 .document(userID)
                 .get()
@@ -97,14 +112,63 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-                            List<DocumentSnapshot> fieldValues = task.getResult().getDocuments();
-                            long problemRates[] = new long[fieldValues.size()];
-                            for (int i=0;i<fieldValues.size();i++){
-
+                            List<RatingData> ratings = new LinkedList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                Long tier = document.getLong("레이팅");
+                                ratings.add(new RatingData("title", tier));
                             }
+                            RecyclerView recyclerView = findViewById(R.id.mainRatingScreen);
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(MainScreen.this, 13);
+                            recyclerView.setLayoutManager(gridLayoutManager);
+                            MainScreenAdapter mainScreenAdapter = new MainScreenAdapter(ratings);
+                            recyclerView.setAdapter(mainScreenAdapter);
                         }
                     }
                 });
+
+        //푼 문제 선택 타이틀 수정
+        /*db.collection("유저")
+                .document(userID)
+                .collection("괴목 별 푼 문제")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    private static final String TAG = "PASS";
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            List<ACProblem> pstitles = new LinkedList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                String problemName = document.getString("과목");
+                                Long ACount = document.getLong("문제 수");
+                                pstitles.add(new ACProblem(problemName, ACount));
+                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                questionTitle.sort(new Comparator<ACProblem>() {
+                                    @Override
+                                    public int compare(ACProblem problems1, ACProblem problems2) {
+                                        return (int) (-problems1.ACount + problems2.ACount);
+                                    } //더 큰 것이 앞으로 오도록 정렬
+                                });
+                            }
+                            else{
+                                //API 버전이 24와 같거나 낮은 경우
+                            }
+                            TextView ACPTitle1 = (TextView)findViewById(R.id.ACpTitle1);
+                            ACPTitle1.setText(pstitles.get(0).titleName);
+                            TextView ACPTitle2 = (TextView)findViewById(R.id.ACpTitle2);
+                            ACPTitle2.setText(pstitles.get(1).titleName);
+                            TextView ACPTitle3 = (TextView)findViewById(R.id.ACpTitle3);
+                            ACPTitle3.setText(pstitles.get(2).titleName);
+                            TextView ACPTitle4 = (TextView)findViewById(R.id.ACpTitle4);
+                            ACPTitle4.setText(pstitles.get(3).titleName);
+                            TextView ACPTitle5 = (TextView)findViewById(R.id.ACpTitle5);
+                            ACPTitle5.setText(pstitles.get(4).titleName);
+                            //아직 미구현
+                        }
+                    }
+                });
+        */
     }
     
     public void logOut(View v) {
