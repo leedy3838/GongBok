@@ -33,12 +33,13 @@
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
                 android:text="root712"></TextView>
+
             <ImageView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/logoImage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background"/>
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_launcher_background" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -50,10 +51,21 @@
 
     </RelativeLayout>
     <LinearLayout
+
         android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/logOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:layout_gravity="right"
+            android:onClick="logOut"
+            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="500dp"
@@ -80,6 +92,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/main_square" />
             <GridLayout
+                android:id="@+id/mainRatingShow"
                 android:layout_below="@id/topRateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,32 +100,32 @@
                 android:columnCount="13"
                 android:layout_marginHorizontal="13dp"
                 android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/writeTest"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_launcher_background"
-                    android:background="@color/white"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mainRatingScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </GridLayout>
             <TextView
+                android:id="@+id/ACpTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="290dp"
                 android:layout_marginLeft="17dp"
                 android:text="test"/>
+
             <ImageView
                 android:id="@+id/spl1"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="320dp"
                 android:layout_marginHorizontal="3dp"
+                android:layout_marginTop="320dp"
                 android:alpha=".15"
+                android:layout="@id/SPratingImage"
+                android:scaleType="fitXY"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="330dp"
@@ -128,6 +141,7 @@
                 android:alpha=".15"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="370dp"
@@ -143,21 +157,24 @@
                 android:alpha=".15"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="410dp"
                 android:layout_marginLeft="17dp"
                 android:text="test"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="440dp"
                 android:layout_marginHorizontal="3dp"
+                android:layout_marginTop="440dp"
                 android:alpha=".15"
+                android:layout="@id/SPratingImage"
+                android:scaleType="fitXY"
                 android:src="@drawable/main_line" />
             <TextView
+                android:id="@+id/ACpTitle5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="448dp"

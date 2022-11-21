@@ -9,11 +9,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,13 +52,12 @@ public class LogInScreen extends AppCompatActivity {
     private EditText mLoginPassword;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-
+    private FirebaseUser user;
 
     //구글 로그인에 사용
-    private String TAG = "GoogleLoginActivity";
+    private final String TAG = "LogInScreen";
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInAccount gsa;
-    private FirebaseUser user;
     String googleNickname;
 
     @Override
@@ -67,6 +69,12 @@ public class LogInScreen extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         // 파이어스토어 다루기 위한 객체 선언
         db = FirebaseFirestore.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            Toast.makeText(LogInScreen.this, "이미 로그인되어 있습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplication(), MainScreen.class);
+            startActivity(intent);
+        }
 
         // 이메일/패스워드로 로그인
         mLoginBtn = findViewById(R.id.logInBtn);
@@ -80,7 +88,15 @@ public class LogInScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email = mLoginID.getText().toString().trim();
+                if( email.length() == 0 ){
+                    Toast.makeText(LogInScreen.this, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String pwd = mLoginPassword.getText().toString().trim();
+                if( pwd.length() == 0 ){
+                    Toast.makeText(LogInScreen.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 firebaseAuth.signInWithEmailAndPassword(email, pwd)
                         .addOnCompleteListener(LogInScreen.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -112,14 +128,6 @@ public class LogInScreen extends AppCompatActivity {
 
         mGoogleLogInBtn = findViewById(R.id.googleLoginBtn);
         mGoogleLogInBtn.setOnClickListener(view -> {
-            // 기존에 로그인 했던 계정을 확인한다.
-            gsa = GoogleSignIn.getLastSignedInAccount(LogInScreen.this);
-
-            if (gsa != null) { // 로그인 되있는 경우
-                Toast.makeText(LogInScreen.this, "이미 로그인되어 있습니다.", Toast.LENGTH_SHORT).show();
-                startMainScreen();
-            }
-            else
                 signIn();
         });
     }
@@ -187,7 +195,7 @@ public class LogInScreen extends AppCompatActivity {
                         Log.d(TAG, "signInWithCredential:success");
                         user = firebaseAuth.getCurrentUser();
 
-                        db.collection("구글uid")
+                        db.collection("유저UID")
                                 .get()
                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
@@ -206,16 +214,9 @@ public class LogInScreen extends AppCompatActivity {
 
                                             //if(!flag)가 없으면 로그인 성공해도 startMainScreen()이 아닌 getNickname() 실행됨
                                             if(!flag) {
-                                                // 처음 가입하는 사용자
-                                                // fireStore에 유저 Uid 등록
-                                                Map<String, Object> googleUid = new HashMap<>();
-                                                googleUid.put("uid", user.getUid());
-
-                                                db.collection("구글uid").document(user.getUid()).set(googleUid);
                                                 // 닉네임 설정 화면으로 이동
                                                 getNickname();
-                                                // startMainScreen(); 은 getNickname()의 콜백함수에서 실행행
-                                           }
+                                                }
                                         }
                                     }
                                 });
@@ -257,7 +258,7 @@ public class LogInScreen extends AppCompatActivity {
         Log.d(TAG, "실행");
         Intent nicknameIntent = new Intent(LogInScreen.this, NicknameScreen.class);
         nicknameForResult.launch(nicknameIntent);
-        Log.d(TAG, "실행");
+
     }
 
     // 위 함수의 인텐트에 대한 콜백함수 정의
@@ -323,12 +324,18 @@ public class LogInScreen extends AppCompatActivity {
                                         .set(base);
 
                                 Toast.makeText(LogInScreen.this, "닉네임 등록 및 로그인 성공", Toast.LENGTH_SHORT).show();
+
+                                // 해당 Uid에 대한 Nickname을 field값으로 넣어줌
+                                Map<String, Object> UidNickname = new HashMap<>();
+                                UidNickname.put("닉네임", googleNickname);
+                                db.collection("유저UID").document(user.getUid()).set(UidNickname);
+
                                 startMainScreen();
                             }
                         }
                     });
 
-    // 로그아웃
+    // 로그아웃 시 실행되는 함수
     private void signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, task -> {
@@ -357,4 +364,12 @@ public class LogInScreen extends AppCompatActivity {
                             }
                         }
                     });
+
+    // EditText가 아닌 화면의 다른 곳을 클릭하면 소프트 키보드 내려감
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
 }
