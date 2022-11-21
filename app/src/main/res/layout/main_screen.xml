@@ -33,12 +33,13 @@
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
                 android:text="root712"></TextView>
+
             <ImageView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/logoImage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background"/>
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_launcher_background" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -50,10 +51,21 @@
 
     </RelativeLayout>
     <LinearLayout
+
         android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/logOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:layout_gravity="right"
+            android:onClick="logOut"
+            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="500dp"
@@ -88,6 +100,7 @@
                 android:columnCount="13"
                 android:layout_marginHorizontal="13dp"
                 android:layout_marginTop="10dp">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mainRatingScreen"
                     android:layout_width="wrap_content"
