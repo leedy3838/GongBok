@@ -8,48 +8,47 @@
     tools:context=".TotalRankingScreen">
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="0.35"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="전체 랭킹 + rating"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="전체 랭킹"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="210dp"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Rating"/>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:layout_weight="0.02"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/main_line"></ImageView>
+    </LinearLayout>
     <LinearLayout
         android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/problemList"
+            android:id="@+id/RankingList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -58,27 +57,31 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/ProblemSolve"
+        <ImageButton
+            android:id="@+id/goToProblemSolve"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:text="문제 풀기" />
+            android:backgroundTint="@color/white"
+            android:onClick="goToProblemSolve"
+            android:src="@drawable/ic_to_solve" />
 
-        <Button
-            android:id="@+id/home"
+        <ImageButton
+            android:id="@+id/goToMain"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:text="홈"
-            android:onClick="goToMain"/>
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_home" />
 
-        <Button
-            android:id="@+id/ProblemMake"
+        <ImageButton
+            android:id="@+id/goToEnrollProblem"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:text="문제 만들기" />
+            android:backgroundTint="@color/white"
+            android:onClick="goToEnrollProblem"
+            android:src="@drawable/ic_to_enroll_problem" />
 
     </RelativeLayout>
 
