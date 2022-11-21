@@ -315,36 +315,38 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                             DocumentSnapshot document = task.getResult();
 
                                             Long point = document.getLong("레이팅");
+                                            Long userRating = point + rating;
 
                                             db.collection("유저")
                                                     .document(userName)
-                                                    .update("레이팅", point + rating);
+                                                    .update("레이팅", userRating);
+
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+                                            builder.setTitle("문제를 맞추셨습니다.");
+                                            builder.setMessage("Rating + "+rating +" = " + userRating);
+
+                                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                                                public void onClick(DialogInterface dialog, int pos) {
+                                                    startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                                                }
+                                            });
+                                            builder.setNegativeButton("난이도 평가 & 풀이 등록", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intentToEnrollExplanation = new Intent(ProblemSolveScreen.this, EnrollExplanationScreen.class);
+
+                                                    intentToEnrollExplanation.putExtra("userName", userName);
+                                                    intentToEnrollExplanation.putExtra("problemName", problemName);
+                                                    intentToEnrollExplanation.putExtra("subjectName", subjectName);
+
+                                                    startActivity(intentToEnrollExplanation);
+                                                }
+                                            });
+
+                                            AlertDialog alertDialog = builder.create();
+                                            alertDialog.show();
                                         }
                                     });
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
-                            builder.setTitle("문제를 맞추셨습니다.");
-
-                            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                                public void onClick(DialogInterface dialog, int pos) {
-                                    startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
-                                }
-                            });
-                            builder.setNegativeButton("난이도 평가 & 풀이 등록", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intentToEnrollExplanation = new Intent(ProblemSolveScreen.this, EnrollExplanationScreen.class);
-
-                                    intentToEnrollExplanation.putExtra("userName", userName);
-                                    intentToEnrollExplanation.putExtra("problemName", problemName);
-                                    intentToEnrollExplanation.putExtra("subjectName", subjectName);
-
-                                    startActivity(intentToEnrollExplanation);
-                                }
-                            });
-
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
                         }
                     }
                 });
