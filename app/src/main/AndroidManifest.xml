@@ -56,7 +56,7 @@
             android:exported="false" />
         <activity
             android:name=".LogInScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
