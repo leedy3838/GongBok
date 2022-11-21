@@ -243,6 +243,13 @@ public class MainScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToMyLikeProblem(View v){
+        Intent intent = new Intent(this, ProblemSelectScreen.class);
+        intent.putExtra("subjectName", "내가 좋아요 한 문제");
+        intent.putExtra("userName", userName);
+        startActivity(intent);
+    }
+
     // 티어 레이팅 Map 객체 반환하는 함수
     public Map<String, Integer> getTierRating() {
 
