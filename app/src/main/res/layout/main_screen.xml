@@ -44,9 +44,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_toRightOf="@id/logoImage"
+                android:layout_weight="1"
                 android:src="@drawable/main_line" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/logoImage"
+                android:text="좋아요 한 문제"
+                android:onClick="goToMyLikeProblem"/>
         </RelativeLayout>
 
     </RelativeLayout>
