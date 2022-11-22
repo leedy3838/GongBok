@@ -291,42 +291,56 @@ public class LogInScreen extends AppCompatActivity {
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고1]공통수학")
+                                        .collection("[고1]공통수학")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고2]수학1")
+                                        .collection("[고2]수학1")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고2]수학2")
+                                        .collection("[고2]수학2")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고등]기하")
+                                        .collection("[고등]기하")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고등]미적분")
+                                        .collection("[고등]미적분")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[고등]확률과 통계")
+                                        .collection("[고등]확률과 통계")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")
                                         .document(name)
                                         .collection("과목 별 푼 문제")
                                         .document("[자유]기하학")
+                                        .collection("[자유]기하학")
+                                        .document("base")
                                         .set(base);
 
                                 db.collection("유저")

@@ -132,7 +132,6 @@ public class MainScreen extends AppCompatActivity {
     public void settingUser(){
         Log.d(TAG, "로그인한 유저의 닉네임2 : " + userID);
         //임시 userID Intent 들어오면 수정
-        String userID = "root712";
         db.collection("유저")
                 .document(userID)
                 .get()
