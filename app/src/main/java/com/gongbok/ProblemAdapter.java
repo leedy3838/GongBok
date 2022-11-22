@@ -80,7 +80,59 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
             holder.likeText.setVisibility(GONE);
         }
         holder.likeNum.setText(String.valueOf(item.likeNum));
-        //추후 tierImage가 추가되면 이에 대해서 이미지 바꿔주기
+
+        if(item.tier == 1)
+            holder.tier.setImageResource(R.drawable.rank_icons_s1);
+        else if(item.tier == 2)
+            holder.tier.setImageResource(R.drawable.rank_icons_s2);
+        else if(item.tier == 3)
+            holder.tier.setImageResource(R.drawable.rank_icons_s3);
+        else if(item.tier == 4)
+            holder.tier.setImageResource(R.drawable.rank_icons_s4);
+        else if(item.tier == 5)
+            holder.tier.setImageResource(R.drawable.rank_icons_s5);
+        else if(item.tier == 6)
+            holder.tier.setImageResource(R.drawable.rank_icons_s6);
+        else if(item.tier == 7)
+            holder.tier.setImageResource(R.drawable.rank_icons_s7);
+        else if(item.tier == 8)
+            holder.tier.setImageResource(R.drawable.rank_icons_s8);
+        else if(item.tier == 9)
+            holder.tier.setImageResource(R.drawable.rank_icons_s9);
+        else if(item.tier == 10)
+            holder.tier.setImageResource(R.drawable.rank_icons_s10);
+        else if(item.tier == 11)
+            holder.tier.setImageResource(R.drawable.rank_icons_s11);
+        else if(item.tier == 12)
+            holder.tier.setImageResource(R.drawable.rank_icons_s12);
+        else if(item.tier == 13)
+            holder.tier.setImageResource(R.drawable.rank_icons_s13);
+        else if(item.tier == 14)
+            holder.tier.setImageResource(R.drawable.rank_icons_s14);
+        else if(item.tier == 15)
+            holder.tier.setImageResource(R.drawable.rank_icons_s15);
+        else if(item.tier == 16)
+            holder.tier.setImageResource(R.drawable.rank_icons_s16);
+        else if(item.tier == 17)
+            holder.tier.setImageResource(R.drawable.rank_icons_s17);
+        else if(item.tier == 18)
+            holder.tier.setImageResource(R.drawable.rank_icons_s18);
+        else if(item.tier == 19)
+            holder.tier.setImageResource(R.drawable.rank_icons_s19);
+        else if(item.tier == 20)
+            holder.tier.setImageResource(R.drawable.rank_icons_s20);
+        else if(item.tier == 21)
+            holder.tier.setImageResource(R.drawable.rank_icons_s21);
+        else if(item.tier == 22)
+            holder.tier.setImageResource(R.drawable.rank_icons_s22);
+        else if(item.tier == 23)
+            holder.tier.setImageResource(R.drawable.rank_icons_s23);
+        else if(item.tier == 24)
+            holder.tier.setImageResource(R.drawable.rank_icons_s24);
+        else if(item.tier == 25)
+            holder.tier.setImageResource(R.drawable.rank_icons_s25);
+        else if(item.tier == 26)
+            holder.tier.setImageResource(R.drawable.rank_icons_s26);
 
         if(item.isSolved)
             holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
