@@ -305,6 +305,14 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     .document(subjectName+" "+problemName)
                                     .set(problemBase);
 
+                            db.collection("유저")
+                                    .document(userName)
+                                    .collection("과목 별 푼 문제")
+                                    .document(subjectName)
+                                    .collection(subjectName)
+                                    .document(subjectName+" "+problemName)
+                                    .set(problemBase);
+
                             //문제를 처음 풀었을 때만 보상 포인트 제공
                             db.collection("유저")
                                     .document(userName)
