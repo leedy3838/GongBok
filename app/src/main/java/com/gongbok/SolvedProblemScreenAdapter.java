@@ -31,10 +31,32 @@ public class SolvedProblemScreenAdapter extends RecyclerView.Adapter<SolvedProbl
         return new SolvedProblemScreenHolder(view);
     }
 
+    public interface SolvedOnItemClickListener{
+        void onItemClick(View v, SolvedProblemData solvedProblemData);
+    }
+
+    private SolvedOnItemClickListener solveListener = null;
+
+    public void setOnItemClickListener(SolvedOnItemClickListener listener){
+        this.solveListener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull SolvedProblemScreenHolder holder, int position) {
         SolvedProblemData solvedProblemItem = SolvedDataValues.get(position);
         holder.problemName.setText(solvedProblemItem.problemName);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION){
+                    if (solveListener != null){
+                        solveListener.onItemClick(view, SolvedDataValues.get(position));
+                    }
+                }
+            }
+        });
     }
 
     @Override

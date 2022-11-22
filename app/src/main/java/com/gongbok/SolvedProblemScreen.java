@@ -3,6 +3,7 @@ package com.gongbok;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,6 +79,18 @@ public class SolvedProblemScreen extends AppCompatActivity {
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SolvedProblemScreen.this);
                             recyclerView.setLayoutManager(linearLayoutManager);
                             SolvedProblemScreenAdapter solvedProblemScreenAdapter = new SolvedProblemScreenAdapter(acProblems);
+
+                            solvedProblemScreenAdapter.setOnItemClickListener(new SolvedProblemScreenAdapter.SolvedOnItemClickListener() {
+                                @Override
+                                public void onItemClick(View v, SolvedProblemData solvedProblemData) {
+                                    String problemName = solvedProblemData.problemName;
+
+                                    //이 부분 문제 화면으로 이동하게 수정해야 함
+                                    Intent intent = new Intent(SolvedProblemScreen.this, MainScreen.class);
+                                    intent.putExtra("problemName", problemName);
+                                    startActivity(intent);
+                                }
+                            });
                             recyclerView.setAdapter(solvedProblemScreenAdapter);
                         }
                     }
