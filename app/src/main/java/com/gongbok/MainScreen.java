@@ -80,15 +80,13 @@ public class MainScreen extends AppCompatActivity {
     private String userID;
     private String userUid;
 
-    String userName = "LDY";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
+        Intent solvedDataIntent = new Intent(this, SolvedProblemScreen.class);
         // 해당 유저에 관한 firebase 정보 다루기 위한 변수들
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -132,7 +130,6 @@ public class MainScreen extends AppCompatActivity {
     public void settingUser(){
         Log.d(TAG, "로그인한 유저의 닉네임2 : " + userID);
         //임시 userID Intent 들어오면 수정
-        String userID = "root712";
         db.collection("유저")
                 .document(userID)
                 .get()
@@ -175,10 +172,9 @@ public class MainScreen extends AppCompatActivity {
                     }
                 });
 
-        //푼 문제 선택 타이틀 수정
-        /*db.collection("유저")
+        db.collection("유저")
                 .document(userID)
-                .collection("괴목 별 푼 문제")
+                .collection("과목 별 푼 문제")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     private static final String TAG = "PASS";
@@ -186,14 +182,14 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-                            List<ACProblem> pstitles = new LinkedList<>();
+                            List<ACProblem> selectTitle = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                String problemName = document.getString("과목");
+                                String problemName = document.getId();
                                 Long ACount = document.getLong("문제 수");
-                                pstitles.add(new ACProblem(problemName, ACount));
+                                selectTitle.add(new ACProblem(problemName, ACount));
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                questionTitle.sort(new Comparator<ACProblem>() {
+                                selectTitle.sort(new Comparator<ACProblem>() {
                                     @Override
                                     public int compare(ACProblem problems1, ACProblem problems2) {
                                         return (int) (-problems1.ACount + problems2.ACount);
@@ -204,20 +200,65 @@ public class MainScreen extends AppCompatActivity {
                                 //API 버전이 24와 같거나 낮은 경우
                             }
                             TextView ACPTitle1 = (TextView)findViewById(R.id.ACpTitle1);
-                            ACPTitle1.setText(pstitles.get(0).titleName);
+                            ACPTitle1.setText(selectTitle.get(0).titleName);
+                            ACPTitle1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", selectTitle.get(0).titleName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(selectTitle.get(0).ACount-0));
+                                    startActivity(intent);
+                                }
+                            });
                             TextView ACPTitle2 = (TextView)findViewById(R.id.ACpTitle2);
-                            ACPTitle2.setText(pstitles.get(1).titleName);
+                            ACPTitle2.setText(selectTitle.get(1).titleName);
+                            ACPTitle2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", selectTitle.get(1).titleName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(selectTitle.get(1).ACount-0));
+                                    startActivity(intent);
+                                }
+                            });
                             TextView ACPTitle3 = (TextView)findViewById(R.id.ACpTitle3);
-                            ACPTitle3.setText(pstitles.get(2).titleName);
+                            ACPTitle3.setText(selectTitle.get(2).titleName);
+                            ACPTitle3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", selectTitle.get(2).titleName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(selectTitle.get(2).ACount-0));
+                                    startActivity(intent);
+                                }
+                            });
                             TextView ACPTitle4 = (TextView)findViewById(R.id.ACpTitle4);
-                            ACPTitle4.setText(pstitles.get(3).titleName);
+                            ACPTitle4.setText(selectTitle.get(3).titleName);
+                            ACPTitle4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", selectTitle.get(3).titleName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(selectTitle.get(3).ACount-0));
+                                    startActivity(intent);
+                                }
+                            });
                             TextView ACPTitle5 = (TextView)findViewById(R.id.ACpTitle5);
-                            ACPTitle5.setText(pstitles.get(4).titleName);
-                            //아직 미구현
+                            //etc.는 아직 미구현
+                            ACPTitle5.setText("etc.");
+                            ACPTitle5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
                         }
                     }
                 });
-        */
     }
 
     public void goToMyProblem(View view) {
@@ -231,7 +272,7 @@ public class MainScreen extends AppCompatActivity {
     public void goToProblemSolve(View view) {
         Intent intent = new Intent(this, SubjectSelectScreen.class);
 
-        intent.putExtra("userName", userName);
+        intent.putExtra("userName", userID);
         startActivity(intent);
     }
 
@@ -251,7 +292,7 @@ public class MainScreen extends AppCompatActivity {
     public void goToMyLikeProblem(View v){
         Intent intent = new Intent(this, ProblemSelectScreen.class);
         intent.putExtra("subjectName", "내가 좋아요 한 문제");
-        intent.putExtra("userName", userName);
+        intent.putExtra("userName", userID);
         startActivity(intent);
     }
 

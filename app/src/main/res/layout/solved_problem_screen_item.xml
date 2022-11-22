@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/solvedProblemName"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:text="문제 이름">
+        </TextView>
+
+        <TextView
+            android:id="@+id/likesCount"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignRight="@id/RakingLine"
+            android:text="0 likes">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/RakingLine"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:src="@drawable/main_line"
+            android:layout_below="@id/solvedProblemName"
+            android:scaleType="centerCrop">
+        </ImageView>
+    </RelativeLayout>
+</LinearLayout>

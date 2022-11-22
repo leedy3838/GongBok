@@ -38,7 +38,7 @@ public class MainScreenAdapter extends RecyclerView.Adapter<MainScreenAdapter.Ma
     public void onBindViewHolder(@NonNull MainScreenHolder holder, int position) {
         RatingData ratingItem = RatingDataValues.get(position);
         //나중에 티어 별로 이미지 다르게 할것.
-        //holder.tier.setImageResource(R.drawable.rank_icons_s2);
+        holder.tier.setImageResource(R.drawable.rank_icons_s2);
     }
 
     @Override

@@ -55,6 +55,9 @@
             android:name=".NicknameScreen"
             android:exported="false" />
         <activity
+            android:name=".SolvedProblemScreen"
+            android:exported="false"/>
+        <activity
             android:name=".LogInScreen"
             android:exported="true">
             <intent-filter>
