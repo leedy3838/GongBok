@@ -3,6 +3,7 @@ package com.gongbok;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.SortedListAdapterCallback;
@@ -146,6 +147,14 @@ public class MainScreen extends AppCompatActivity {
                             //화면에 닉네임 반영
                             TextView nickName = (TextView) findViewById(R.id.nickName);
                             nickName.setText(userID);
+
+                            TextView restOfRating = findViewById(R.id.restOfRating);
+                            if (rate < 5) restOfRating.setText("Next " + Integer.toString((int) (5-rate)));
+                            else if (rate < 25) restOfRating.setText("Next " + Integer.toString((int) (25-rate)));
+                            else if (rate < 40) restOfRating.setText("Next " + Integer.toString((int) (40-rate)));
+                            else if (rate < 60) restOfRating.setText("Next " + Integer.toString((int) (60-rate)));
+                            else if (rate < 120) restOfRating.setText("Next " + Integer.toString((int) (120-rate)));
+                            else if (rate < 200) restOfRating.setText("Next " + Integer.toString((int) (200-rate)));
                         }
                     }
                 });
@@ -182,16 +191,16 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-                            List<ACProblem> selectTitle = new LinkedList<>();
+                            List<MainSubjectData> selectTitle = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String problemName = document.getId();
                                 Long ACount = document.getLong("문제 수");
-                                selectTitle.add(new ACProblem(problemName, ACount));
+                                selectTitle.add(new MainSubjectData(problemName, ACount));
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                selectTitle.sort(new Comparator<ACProblem>() {
+                                selectTitle.sort(new Comparator<MainSubjectData>() {
                                     @Override
-                                    public int compare(ACProblem problems1, ACProblem problems2) {
+                                    public int compare(MainSubjectData problems1, MainSubjectData problems2) {
                                         return (int) (-problems1.ACount + problems2.ACount);
                                     } //더 큰 것이 앞으로 오도록 정렬
                                 });
@@ -199,63 +208,24 @@ public class MainScreen extends AppCompatActivity {
                             else{
                                 //API 버전이 24와 같거나 낮은 경우
                             }
-                            TextView ACPTitle1 = (TextView)findViewById(R.id.ACpTitle1);
-                            ACPTitle1.setText(selectTitle.get(0).titleName);
-                            ACPTitle1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
-                                    intent.putExtra("subjectName", selectTitle.get(0).titleName);
-                                    intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(selectTitle.get(0).ACount-0));
-                                    startActivity(intent);
-                                }
-                            });
-                            TextView ACPTitle2 = (TextView)findViewById(R.id.ACpTitle2);
-                            ACPTitle2.setText(selectTitle.get(1).titleName);
-                            ACPTitle2.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
-                                    intent.putExtra("subjectName", selectTitle.get(1).titleName);
-                                    intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(selectTitle.get(1).ACount-0));
-                                    startActivity(intent);
-                                }
-                            });
-                            TextView ACPTitle3 = (TextView)findViewById(R.id.ACpTitle3);
-                            ACPTitle3.setText(selectTitle.get(2).titleName);
-                            ACPTitle3.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
-                                    intent.putExtra("subjectName", selectTitle.get(2).titleName);
-                                    intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(selectTitle.get(2).ACount-0));
-                                    startActivity(intent);
-                                }
-                            });
-                            TextView ACPTitle4 = (TextView)findViewById(R.id.ACpTitle4);
-                            ACPTitle4.setText(selectTitle.get(3).titleName);
-                            ACPTitle4.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
-                                    intent.putExtra("subjectName", selectTitle.get(3).titleName);
-                                    intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(selectTitle.get(3).ACount-0));
-                                    startActivity(intent);
-                                }
-                            });
-                            TextView ACPTitle5 = (TextView)findViewById(R.id.ACpTitle5);
-                            //etc.는 아직 미구현
-                            ACPTitle5.setText("etc.");
-                            ACPTitle5.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
+                            RecyclerView recyclerView = findViewById(R.id.mainSubjectTitle);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainScreen.this);
+                            recyclerView.setLayoutManager(linearLayoutManager);
+                            MainSubjectSelectAdapter mainSubjectSelectAdapter = new MainSubjectSelectAdapter(selectTitle);
 
+                            mainSubjectSelectAdapter.setOnItemClickListener(new MainSubjectSelectAdapter.MainSubjectClickListener() {
+                                @Override
+                                public void onItemClick(View v, MainSubjectData mainSubjectData) {
+                                    String subjectName = mainSubjectData.subjectName;
+
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", mainSubjectData.subjectName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-0));
+                                    startActivity(intent);
                                 }
                             });
+                            recyclerView.setAdapter(mainSubjectSelectAdapter);
                         }
                     }
                 });
