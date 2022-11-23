@@ -305,6 +305,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     .document(subjectName+" "+problemName)
                                     .set(problemBase);
 
+                            //유저 별 푼 문제에 문제 추가
                             db.collection("유저")
                                     .document(userName)
                                     .collection("과목 별 푼 문제")
@@ -312,6 +313,27 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     .collection(subjectName)
                                     .document(subjectName+" "+problemName)
                                     .set(problemBase);
+
+                            //유저 별 푼 문제에 푼 문제 수 추가
+                            db.collection("유저")
+                                    .document(userName)
+                                    .collection("과목 별 푼 문제")
+                                    .document(subjectName)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot document = task.getResult();
+
+                                            Long problemCount = document.getLong("푼 문제 수");
+                                            db.collection("유저")
+                                                    .document(userName)
+                                                    .collection("과목 별 푼 문제")
+                                                    .document(subjectName)
+                                                    .update("푼 문제 수", problemCount+1);
+                                        }
+                                    });
+
 
                             //문제를 처음 풀었을 때만 보상 포인트 제공
                             db.collection("유저")

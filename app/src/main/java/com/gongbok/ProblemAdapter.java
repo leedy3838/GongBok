@@ -81,6 +81,11 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         }
         holder.likeNum.setText(String.valueOf(item.likeNum));
 
+        if(item.isSolved)
+            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
+        if(item.isWrong)
+            holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
+
         if(item.tier == 1)
             holder.tier.setImageResource(R.drawable.rank_icons_s1);
         else if(item.tier == 2)
@@ -133,11 +138,6 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
             holder.tier.setImageResource(R.drawable.rank_icons_s25);
         else if(item.tier == 26)
             holder.tier.setImageResource(R.drawable.rank_icons_s26);
-
-        if(item.isSolved)
-            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
-        if(item.isWrong)
-            holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
