@@ -137,6 +137,9 @@ public class SignUpScreen extends AppCompatActivity {
                                         Map<String, Object> base = new HashMap<>();
                                         base.put("base", 0);
 
+                                        Map<String, Object> solveNum = new HashMap<>();
+                                        solveNum.put("푼 문제 수", 0);
+
                                         db.collection("유저")
                                                 .document(name)
                                                 .set(userBase);
@@ -145,43 +148,100 @@ public class SignUpScreen extends AppCompatActivity {
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고1]공통수학")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고1]공통수학")
+                                                .collection("[고1]공통수학")
+                                                .document("base")
                                                 .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고2]수학1")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고2]수학1")
+                                                .collection("[고2]수학1")
+                                                .document("base")
                                                 .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고2]수학2")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고2]수학2")
+                                                .collection("[고2]수학2")
+                                                .document("base")
                                                 .set(base);
+
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고등]기하")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]기하")
+                                                .collection("[고등]기하")
+                                                .document("base")
                                                 .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고등]미적분")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]미적분")
+                                                .collection("[고등]미적분")
+                                                .document("base")
                                                 .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[고등]확률과 통계")
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[고등]확률과 통계")
+                                                .collection("[고등]확률과 통계")
+                                                .document("base")
                                                 .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
                                                 .collection("과목 별 푼 문제")
                                                 .document("[자유]기하학")
-                                               .set(base);
+                                                .set(solveNum);
+
+                                        db.collection("유저")
+                                                .document(name)
+                                                .collection("과목 별 푼 문제")
+                                                .document("[자유]기하학")
+                                                .collection("[자유]기하학")
+                                                .document("base")
+                                                .set(base);
 
                                         db.collection("유저")
                                                 .document(name)
