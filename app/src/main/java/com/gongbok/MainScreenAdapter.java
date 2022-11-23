@@ -37,8 +37,33 @@ public class MainScreenAdapter extends RecyclerView.Adapter<MainScreenAdapter.Ma
     @Override
     public void onBindViewHolder(@NonNull MainScreenHolder holder, int position) {
         RatingData ratingItem = RatingDataValues.get(position);
-        //나중에 티어 별로 이미지 다르게 할것.
-        //holder.tier.setImageResource(R.drawable.rank_icons_s2);
+
+        if (ratingItem.tier < 2) holder.tierB.setImageResource(R.drawable.rank_icons_s1);
+        else if (ratingItem.tier < 3) holder.tierB.setImageResource(R.drawable.rank_icons_s2);
+        else if (ratingItem.tier < 4) holder.tierB.setImageResource(R.drawable.rank_icons_s3);
+        else if (ratingItem.tier < 5) holder.tierB.setImageResource(R.drawable.rank_icons_s4);
+        else if (ratingItem.tier < 12) holder.tierB.setImageResource(R.drawable.rank_icons_s5);
+        else if (ratingItem.tier < 14) holder.tierB.setImageResource(R.drawable.rank_icons_s6);
+        else if (ratingItem.tier < 16) holder.tierB.setImageResource(R.drawable.rank_icons_s7);
+        else if (ratingItem.tier < 18) holder.tierB.setImageResource(R.drawable.rank_icons_s8);
+        else if (ratingItem.tier < 20) holder.tierB.setImageResource(R.drawable.rank_icons_s9);
+        else if (ratingItem.tier < 50) holder.tierB.setImageResource(R.drawable.rank_icons_s10);
+        else if (ratingItem.tier < 55) holder.tierB.setImageResource(R.drawable.rank_icons_s11);
+        else if (ratingItem.tier < 60) holder.tierB.setImageResource(R.drawable.rank_icons_s12);
+        else if (ratingItem.tier < 65) holder.tierB.setImageResource(R.drawable.rank_icons_s13);
+        else if (ratingItem.tier < 70) holder.tierB.setImageResource(R.drawable.rank_icons_s14);
+        else if (ratingItem.tier < 200) holder.tierB.setImageResource(R.drawable.rank_icons_s15);
+        else if (ratingItem.tier < 210) holder.tierB.setImageResource(R.drawable.rank_icons_s16);
+        else if (ratingItem.tier < 220) holder.tierB.setImageResource(R.drawable.rank_icons_s17);
+        else if (ratingItem.tier < 230) holder.tierB.setImageResource(R.drawable.rank_icons_s18);
+        else if (ratingItem.tier < 240) holder.tierB.setImageResource(R.drawable.rank_icons_s19);
+        else if (ratingItem.tier < 520) holder.tierB.setImageResource(R.drawable.rank_icons_s20);
+        else if (ratingItem.tier < 540) holder.tierB.setImageResource(R.drawable.rank_icons_s21);
+        else if (ratingItem.tier < 560) holder.tierB.setImageResource(R.drawable.rank_icons_s22);
+        else if (ratingItem.tier < 580) holder.tierB.setImageResource(R.drawable.rank_icons_s23);
+        else if (ratingItem.tier < 600) holder.tierB.setImageResource(R.drawable.rank_icons_s24);
+        else if (ratingItem.tier < 1000) holder.tierB.setImageResource(R.drawable.rank_icons_s25);
+        else holder.tierB.setImageResource(R.drawable.rank_icons_s30);
     }
 
     @Override
@@ -47,12 +72,12 @@ public class MainScreenAdapter extends RecyclerView.Adapter<MainScreenAdapter.Ma
     }
 
     static class MainScreenHolder extends RecyclerView.ViewHolder{
-        ImageButton tier;
+        ImageButton tierB;
 
         public MainScreenHolder(@NonNull View itemView) {
             super(itemView);
 
-            tier = itemView.findViewById(R.id.mainItem);
+            tierB = itemView.findViewById(R.id.mainItem);
         }
     }
 }
