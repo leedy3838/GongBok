@@ -86,58 +86,87 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         if(item.isWrong)
             holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 
-        if(item.tier == 1)
-            holder.tier.setImageResource(R.drawable.rank_icons_s1);
-        else if(item.tier == 2)
-            holder.tier.setImageResource(R.drawable.rank_icons_s2);
-        else if(item.tier == 3)
-            holder.tier.setImageResource(R.drawable.rank_icons_s3);
-        else if(item.tier == 4)
-            holder.tier.setImageResource(R.drawable.rank_icons_s4);
-        else if(item.tier == 5)
-            holder.tier.setImageResource(R.drawable.rank_icons_s5);
-        else if(item.tier == 6)
-            holder.tier.setImageResource(R.drawable.rank_icons_s6);
-        else if(item.tier == 7)
-            holder.tier.setImageResource(R.drawable.rank_icons_s7);
-        else if(item.tier == 8)
-            holder.tier.setImageResource(R.drawable.rank_icons_s8);
-        else if(item.tier == 9)
-            holder.tier.setImageResource(R.drawable.rank_icons_s9);
-        else if(item.tier == 10)
-            holder.tier.setImageResource(R.drawable.rank_icons_s10);
-        else if(item.tier == 11)
-            holder.tier.setImageResource(R.drawable.rank_icons_s11);
-        else if(item.tier == 12)
-            holder.tier.setImageResource(R.drawable.rank_icons_s12);
-        else if(item.tier == 13)
-            holder.tier.setImageResource(R.drawable.rank_icons_s13);
-        else if(item.tier == 14)
-            holder.tier.setImageResource(R.drawable.rank_icons_s14);
-        else if(item.tier == 15)
-            holder.tier.setImageResource(R.drawable.rank_icons_s15);
-        else if(item.tier == 16)
-            holder.tier.setImageResource(R.drawable.rank_icons_s16);
-        else if(item.tier == 17)
-            holder.tier.setImageResource(R.drawable.rank_icons_s17);
-        else if(item.tier == 18)
-            holder.tier.setImageResource(R.drawable.rank_icons_s18);
-        else if(item.tier == 19)
-            holder.tier.setImageResource(R.drawable.rank_icons_s19);
-        else if(item.tier == 20)
-            holder.tier.setImageResource(R.drawable.rank_icons_s20);
-        else if(item.tier == 21)
-            holder.tier.setImageResource(R.drawable.rank_icons_s21);
-        else if(item.tier == 22)
-            holder.tier.setImageResource(R.drawable.rank_icons_s22);
-        else if(item.tier == 23)
-            holder.tier.setImageResource(R.drawable.rank_icons_s23);
-        else if(item.tier == 24)
-            holder.tier.setImageResource(R.drawable.rank_icons_s24);
-        else if(item.tier == 25)
-            holder.tier.setImageResource(R.drawable.rank_icons_s25);
-        else if(item.tier == 26)
-            holder.tier.setImageResource(R.drawable.rank_icons_s26);
+        int tier = (int)item.tier;
+        switch (tier){
+            case 1:
+                holder.tier.setImageResource(R.drawable.rank_icons_s1);
+                break;
+            case 2:
+                holder.tier.setImageResource(R.drawable.rank_icons_s2);
+                break;
+            case 3:
+                holder.tier.setImageResource(R.drawable.rank_icons_s3);
+                break;
+            case 4:
+                holder.tier.setImageResource(R.drawable.rank_icons_s4);
+                break;
+            case 5:
+                holder.tier.setImageResource(R.drawable.rank_icons_s5);
+                break;
+            case 6:
+                holder.tier.setImageResource(R.drawable.rank_icons_s6);
+                break;
+            case 7:
+                holder.tier.setImageResource(R.drawable.rank_icons_s7);
+                break;
+            case 8:
+                holder.tier.setImageResource(R.drawable.rank_icons_s8);
+                break;
+            case 9:
+                holder.tier.setImageResource(R.drawable.rank_icons_s9);
+                break;
+            case 10:
+                holder.tier.setImageResource(R.drawable.rank_icons_s10);
+                break;
+            case 11:
+                holder.tier.setImageResource(R.drawable.rank_icons_s11);
+                break;
+            case 12:
+                holder.tier.setImageResource(R.drawable.rank_icons_s12);
+                break;
+            case 13:
+                holder.tier.setImageResource(R.drawable.rank_icons_s13);
+                break;
+            case 14:
+                holder.tier.setImageResource(R.drawable.rank_icons_s14);
+                break;
+            case 15:
+                holder.tier.setImageResource(R.drawable.rank_icons_s15);
+                break;
+            case 16:
+                holder.tier.setImageResource(R.drawable.rank_icons_s16);
+                break;
+            case 17:
+                holder.tier.setImageResource(R.drawable.rank_icons_s17);
+                break;
+            case 18:
+                holder.tier.setImageResource(R.drawable.rank_icons_s18);
+                break;
+            case 19:
+                holder.tier.setImageResource(R.drawable.rank_icons_s19);
+                break;
+            case 20:
+                holder.tier.setImageResource(R.drawable.rank_icons_s20);
+                break;
+            case 21:
+                holder.tier.setImageResource(R.drawable.rank_icons_s21);
+                break;
+            case 22:
+                holder.tier.setImageResource(R.drawable.rank_icons_s22);
+                break;
+            case 23:
+                holder.tier.setImageResource(R.drawable.rank_icons_s23);
+                break;
+            case 24:
+                holder.tier.setImageResource(R.drawable.rank_icons_s24);
+                break;
+            case 25:
+                holder.tier.setImageResource(R.drawable.rank_icons_s25);
+                break;
+            case 26:
+                holder.tier.setImageResource(R.drawable.rank_icons_s26);
+                break;
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override

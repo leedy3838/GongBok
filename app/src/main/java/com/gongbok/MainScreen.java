@@ -191,7 +191,7 @@ public class MainScreen extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 if (document.getId().equals("base")) continue;
                                 Long tier = document.getLong("레이팅");
-                                // ratings.add(new RatingData("title", tier));
+                                ratings.add(new RatingData("title", tier));
                             }
                             RecyclerView recyclerView = findViewById(R.id.mainRatingScreen);
                             GridLayoutManager gridLayoutManager = new GridLayoutManager(MainScreen.this, 13);
@@ -219,7 +219,7 @@ public class MainScreen extends AppCompatActivity {
                                 Long ACount = document.getLong("푼 문제 수");
                                 selectTitle.add(new MainSubjectData(problemName, ACount));
                             }
-                            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 selectTitle.sort(new Comparator<MainSubjectData>() {
                                     @Override
                                     public int compare(MainSubjectData problems1, MainSubjectData problems2) {
@@ -229,7 +229,7 @@ public class MainScreen extends AppCompatActivity {
                             }
                             else{
                                 //API 버전이 24와 같거나 낮은 경우
-                            }*/
+                            }
                             RecyclerView recyclerView = findViewById(R.id.mainSubjectTitle);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainScreen.this);
                             recyclerView.setLayoutManager(linearLayoutManager);
