@@ -3,45 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.225" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable/btn_mint.xml" value="0.225" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/drawable/ic_launcher_background.xml" value="0.225" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/contribute_to_difficulty.xml" value="0.27395833333333336" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_explanation_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.26974358974358975" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/listlayout.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/login_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/main_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_like_problem_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_problem.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/nickname_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_list.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_select_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_solve_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_next_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/sign_up_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/subject_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/subject_select_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/total_ranking_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe111121/GongBok/app/src/main/res/layout/main_screen.xml" value="0.35260416666666666" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/login_screen.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/main_screen.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/my_problem.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/nickname_screen.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221030/GongBok/app/src/main/res/layout/sign_up_screen.xml" value="0.240625" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/drawable/ic_add_photo.xml" value="0.177" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/enroll_explanation_screen.xml" value="0.35260416666666666" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.25" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/login_screen.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/main_screen.xml" value="0.33" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/my_problem.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/nickname_screen.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/problem_list.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/problem_select_screen.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/problem_solve_screen.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/kyowon1/Desktop/sainfe221114/GongBok/app/src/main/res/layout/sign_up_screen.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/drawable/btn_mint.xml" value="0.1645" />
+        <entry key="app/src/main/res/layout/login_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/main_screen.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/main_screen_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/main_subject_select_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/my_problem.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/problem_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/problem_select_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/problem_solve_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ranking_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/show_explanation_next_screen.xml" value="0.11096014492753623" />
+        <entry key="app/src/main/res/layout/solved_problem_screen.xml" value="0.29916897506925205" />
+        <entry key="app/src/main/res/layout/solved_problem_screen_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/subject_list.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/total_ranking_screen.xml" value="0.25235849056603776" />
       </map>
     </option>
   </component>

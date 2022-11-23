@@ -3,6 +3,7 @@ package com.gongbok;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.SortedListAdapterCallback;
@@ -80,15 +81,13 @@ public class MainScreen extends AppCompatActivity {
     private String userID;
     private String userUid;
 
-    String userName = "LDY";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
+        Intent solvedDataIntent = new Intent(this, SolvedProblemScreen.class);
         // 해당 유저에 관한 firebase 정보 다루기 위한 변수들
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -132,7 +131,6 @@ public class MainScreen extends AppCompatActivity {
     public void settingUser(){
         Log.d(TAG, "로그인한 유저의 닉네임2 : " + userID);
         //임시 userID Intent 들어오면 수정
-        String userID = "root712";
         db.collection("유저")
                 .document(userID)
                 .get()
@@ -149,6 +147,34 @@ public class MainScreen extends AppCompatActivity {
                             //화면에 닉네임 반영
                             TextView nickName = (TextView) findViewById(R.id.nickName);
                             nickName.setText(userID);
+
+                            TextView restOfRating = findViewById(R.id.restOfRating);
+                            if (rate < 5) restOfRating.setText("Next " + ((int) (5-rate)));
+                            else if (rate < 25) restOfRating.setText("Next " + ((int) (25-rate)));
+                            else if (rate < 40) restOfRating.setText("Next " + ((int) (40-rate)));
+                            else if (rate < 60) restOfRating.setText("Next " + ((int) (60-rate)));
+                            else if (rate < 120) restOfRating.setText("Next " + ((int) (120-rate)));
+                            else if (rate < 200) restOfRating.setText("Next " + ((int) (200-rate)));
+                            else if (rate < 300) restOfRating.setText("Next " + ((int) (300-rate)));
+                            else if (rate < 400) restOfRating.setText("Next " + ((int) (400-rate)));
+                            else if (rate < 500) restOfRating.setText("Next " + ((int) (500-rate)));
+                            else if (rate < 600) restOfRating.setText("Next " + ((int) (600-rate)));
+                            else if (rate < 1000) restOfRating.setText("Next " + ((int) (1000-rate)));
+                            else if (rate < 1400) restOfRating.setText("Next " + ((int) (1400-rate)));
+                            else if (rate < 1800) restOfRating.setText("Next " + ((int) (1800-rate)));
+                            else if (rate < 2200) restOfRating.setText("Next " + ((int) (2200-rate)));
+                            else if (rate < 3000) restOfRating.setText("Next " + ((int) (3000-rate)));
+                            else if (rate < 4000) restOfRating.setText("Next " + ((int) (4000-rate)));
+                            else if (rate < 5000) restOfRating.setText("Next " + ((int) (5000-rate)));
+                            else if (rate < 6000) restOfRating.setText("Next " + ((int) (6000-rate)));
+                            else if (rate < 7000) restOfRating.setText("Next " + ((int) (7000-rate)));
+                            else if (rate < 10000) restOfRating.setText("Next " + ((int) (10000-rate)));
+                            else if (rate < 13000) restOfRating.setText("Next " + ((int) (13000-rate)));
+                            else if (rate < 16000) restOfRating.setText("Next " + ((int) (16000-rate)));
+                            else if (rate < 19000) restOfRating.setText("Next " + ((int) (19000-rate)));
+                            else if (rate < 22000) restOfRating.setText("Next " + ((int) (22000-rate)));
+                            else if (rate < 30000) restOfRating.setText("Next " + ((int) (30000-rate)));
+                            else restOfRating.setText("Next 0");
                         }
                     }
                 });
@@ -175,10 +201,9 @@ public class MainScreen extends AppCompatActivity {
                     }
                 });
 
-        //푼 문제 선택 타이틀 수정
-        /*db.collection("유저")
+        db.collection("유저")
                 .document(userID)
-                .collection("괴목 별 푼 문제")
+                .collection("과목 별 푼 문제")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     private static final String TAG = "PASS";
@@ -186,16 +211,16 @@ public class MainScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-                            List<ACProblem> pstitles = new LinkedList<>();
+                            List<MainSubjectData> selectTitle = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                String problemName = document.getString("과목");
+                                String problemName = document.getId();
                                 Long ACount = document.getLong("문제 수");
-                                pstitles.add(new ACProblem(problemName, ACount));
+                                selectTitle.add(new MainSubjectData(problemName, ACount));
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                questionTitle.sort(new Comparator<ACProblem>() {
+                                selectTitle.sort(new Comparator<MainSubjectData>() {
                                     @Override
-                                    public int compare(ACProblem problems1, ACProblem problems2) {
+                                    public int compare(MainSubjectData problems1, MainSubjectData problems2) {
                                         return (int) (-problems1.ACount + problems2.ACount);
                                     } //더 큰 것이 앞으로 오도록 정렬
                                 });
@@ -203,21 +228,27 @@ public class MainScreen extends AppCompatActivity {
                             else{
                                 //API 버전이 24와 같거나 낮은 경우
                             }
-                            TextView ACPTitle1 = (TextView)findViewById(R.id.ACpTitle1);
-                            ACPTitle1.setText(pstitles.get(0).titleName);
-                            TextView ACPTitle2 = (TextView)findViewById(R.id.ACpTitle2);
-                            ACPTitle2.setText(pstitles.get(1).titleName);
-                            TextView ACPTitle3 = (TextView)findViewById(R.id.ACpTitle3);
-                            ACPTitle3.setText(pstitles.get(2).titleName);
-                            TextView ACPTitle4 = (TextView)findViewById(R.id.ACpTitle4);
-                            ACPTitle4.setText(pstitles.get(3).titleName);
-                            TextView ACPTitle5 = (TextView)findViewById(R.id.ACpTitle5);
-                            ACPTitle5.setText(pstitles.get(4).titleName);
-                            //아직 미구현
+                            RecyclerView recyclerView = findViewById(R.id.mainSubjectTitle);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainScreen.this);
+                            recyclerView.setLayoutManager(linearLayoutManager);
+                            MainSubjectSelectAdapter mainSubjectSelectAdapter = new MainSubjectSelectAdapter(selectTitle);
+
+                            mainSubjectSelectAdapter.setOnItemClickListener(new MainSubjectSelectAdapter.MainSubjectClickListener() {
+                                @Override
+                                public void onItemClick(View v, MainSubjectData mainSubjectData) {
+                                    String subjectName = mainSubjectData.subjectName;
+
+                                    Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
+                                    intent.putExtra("subjectName", mainSubjectData.subjectName);
+                                    intent.putExtra("userName", userID);
+                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-0));
+                                    startActivity(intent);
+                                }
+                            });
+                            recyclerView.setAdapter(mainSubjectSelectAdapter);
                         }
                     }
                 });
-        */
     }
 
     public void goToMyProblem(View view) {
@@ -231,7 +262,7 @@ public class MainScreen extends AppCompatActivity {
     public void goToProblemSolve(View view) {
         Intent intent = new Intent(this, SubjectSelectScreen.class);
 
-        intent.putExtra("userName", userName);
+        intent.putExtra("userName", userID);
         startActivity(intent);
     }
 
@@ -251,7 +282,7 @@ public class MainScreen extends AppCompatActivity {
     public void goToMyLikeProblem(View v){
         Intent intent = new Intent(this, ProblemSelectScreen.class);
         intent.putExtra("subjectName", "내가 좋아요 한 문제");
-        intent.putExtra("userName", userName);
+        intent.putExtra("userName", userID);
         startActivity(intent);
     }
 

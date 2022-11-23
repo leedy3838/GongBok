@@ -32,14 +32,16 @@
                 android:layout_toLeftOf="@id/logoImage"
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
-                android:text="root712"></TextView>
+                android:text="Unknown"></TextView>
 
             <ImageView
                 android:id="@+id/logoImage"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_launcher_background" />
+                android:scaleType="centerCrop"
+                android:padding="20dp"
+                android:src="@drawable/main_logo" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -48,35 +50,31 @@
                 android:layout_weight="1"
                 android:src="@drawable/main_line" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/logoImage"
-                android:text="좋아요 한 문제"
-                android:onClick="goToMyLikeProblem"/>
+                android:onClick="goToMyLikeProblem"
+                android:background="@drawable/btn_mint"
+                android:padding="6dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:text="좋아요 한 문제" />
         </RelativeLayout>
 
     </RelativeLayout>
     <LinearLayout
 
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/logOutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:layout_gravity="right"
-            android:onClick="logOut"
-            />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <ImageView
@@ -114,80 +112,6 @@
                     android:layout_height="wrap_content"/>
 
             </GridLayout>
-            <TextView
-                android:id="@+id/ACpTitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="290dp"
-                android:layout_marginLeft="17dp"
-                android:text="test"/>
-
-            <ImageView
-                android:id="@+id/spl1"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="3dp"
-                android:layout_marginTop="320dp"
-                android:alpha=".15"
-                android:layout="@id/SPratingImage"
-                android:scaleType="fitXY"
-                android:src="@drawable/main_line" />
-            <TextView
-                android:id="@+id/ACpTitle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="330dp"
-                android:layout_marginLeft="17dp"
-                android:text="test"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="360dp"
-                android:layout_marginHorizontal="3dp"
-                android:alpha=".15"
-                android:src="@drawable/main_line" />
-            <TextView
-                android:id="@+id/ACpTitle3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="370dp"
-                android:layout_marginLeft="17dp"
-                android:text="test"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:scaleType="fitXY"
-                android:layout="@id/SPratingImage"
-                android:layout_marginTop="400dp"
-                android:layout_marginHorizontal="3dp"
-                android:alpha=".15"
-                android:src="@drawable/main_line" />
-            <TextView
-                android:id="@+id/ACpTitle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="410dp"
-                android:layout_marginLeft="17dp"
-                android:text="test"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="3dp"
-                android:layout_marginTop="440dp"
-                android:alpha=".15"
-                android:layout="@id/SPratingImage"
-                android:scaleType="fitXY"
-                android:src="@drawable/main_line" />
-            <TextView
-                android:id="@+id/ACpTitle5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="448dp"
-                android:layout_marginLeft="17dp"
-                android:text="test"/>
 
             <TextView
                 android:id="@+id/ratingValue"
@@ -201,14 +125,14 @@
 
             <TextView
                 android:id="@+id/restOfRating"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:paddingTop="5dp"
                 android:paddingRight="20dp"
-                android:textStyle="bold"
-                android:text="  Next 189"
-                android:textSize="20dp" />
+                android:text="Next ???"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/topRateValue"
@@ -243,11 +167,34 @@
                 android:text="   전체 랭킹   "
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/logOutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/totalRank"
+                android:layout_below="@id/restOfRating"
+                android:background="@drawable/btn_mint"
+                android:onClick="logOut"
+
+                android:textStyle="bold"
+                android:padding="6dp"
+                android:text="   로그아웃   " />
+
         </RelativeLayout>
 
 
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="13dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainSubjectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
