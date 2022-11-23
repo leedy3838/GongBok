@@ -275,8 +275,7 @@ public class SignUpScreen extends AppCompatActivity {
 
                                         // 가입 성공하였으므로 MainScreen으로 이동
                                         loginAfterSignUp(email, pwd, name);
-                                        Toast.makeText(SignUpScreen.this, "회원가입 및 로그인 성공.", Toast.LENGTH_SHORT).show();
-                                        finish();
+
                                                                             }
                                     else{
                                         // 이메일 아이디 중복으로 가입 실패하였으므로 지우고 다시 입력 받음
@@ -319,14 +318,15 @@ public class SignUpScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
                             // 해당 유저의 UID를 "유저UID" collection에 추가하고 필드 값으로 닉네임 추가
                             user = firebaseAuth.getCurrentUser();
                             Map<String, Object> UidNickname = new HashMap<>();
                             UidNickname.put("닉네임", name);
                             db.collection("유저UID").document(user.getUid()).set(UidNickname);
 
-                            // MainScreen으로 이동
-                            startActivity(new Intent(SignUpScreen.this, MainScreen.class));
+                            Toast.makeText(SignUpScreen.this, "회원가입 및 로그인 성공.", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
                 });
