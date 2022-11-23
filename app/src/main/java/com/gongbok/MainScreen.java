@@ -149,12 +149,32 @@ public class MainScreen extends AppCompatActivity {
                             nickName.setText(userID);
 
                             TextView restOfRating = findViewById(R.id.restOfRating);
-                            if (rate < 5) restOfRating.setText("Next " + Integer.toString((int) (5-rate)));
-                            else if (rate < 25) restOfRating.setText("Next " + Integer.toString((int) (25-rate)));
-                            else if (rate < 40) restOfRating.setText("Next " + Integer.toString((int) (40-rate)));
-                            else if (rate < 60) restOfRating.setText("Next " + Integer.toString((int) (60-rate)));
-                            else if (rate < 120) restOfRating.setText("Next " + Integer.toString((int) (120-rate)));
-                            else if (rate < 200) restOfRating.setText("Next " + Integer.toString((int) (200-rate)));
+                            if (rate < 5) restOfRating.setText("Next " + ((int) (5-rate)));
+                            else if (rate < 25) restOfRating.setText("Next " + ((int) (25-rate)));
+                            else if (rate < 40) restOfRating.setText("Next " + ((int) (40-rate)));
+                            else if (rate < 60) restOfRating.setText("Next " + ((int) (60-rate)));
+                            else if (rate < 120) restOfRating.setText("Next " + ((int) (120-rate)));
+                            else if (rate < 200) restOfRating.setText("Next " + ((int) (200-rate)));
+                            else if (rate < 300) restOfRating.setText("Next " + ((int) (300-rate)));
+                            else if (rate < 400) restOfRating.setText("Next " + ((int) (400-rate)));
+                            else if (rate < 500) restOfRating.setText("Next " + ((int) (500-rate)));
+                            else if (rate < 600) restOfRating.setText("Next " + ((int) (600-rate)));
+                            else if (rate < 1000) restOfRating.setText("Next " + ((int) (1000-rate)));
+                            else if (rate < 1400) restOfRating.setText("Next " + ((int) (1400-rate)));
+                            else if (rate < 1800) restOfRating.setText("Next " + ((int) (1800-rate)));
+                            else if (rate < 2200) restOfRating.setText("Next " + ((int) (2200-rate)));
+                            else if (rate < 3000) restOfRating.setText("Next " + ((int) (3000-rate)));
+                            else if (rate < 4000) restOfRating.setText("Next " + ((int) (4000-rate)));
+                            else if (rate < 5000) restOfRating.setText("Next " + ((int) (5000-rate)));
+                            else if (rate < 6000) restOfRating.setText("Next " + ((int) (6000-rate)));
+                            else if (rate < 7000) restOfRating.setText("Next " + ((int) (7000-rate)));
+                            else if (rate < 10000) restOfRating.setText("Next " + ((int) (10000-rate)));
+                            else if (rate < 13000) restOfRating.setText("Next " + ((int) (13000-rate)));
+                            else if (rate < 16000) restOfRating.setText("Next " + ((int) (16000-rate)));
+                            else if (rate < 19000) restOfRating.setText("Next " + ((int) (19000-rate)));
+                            else if (rate < 22000) restOfRating.setText("Next " + ((int) (22000-rate)));
+                            else if (rate < 30000) restOfRating.setText("Next " + ((int) (30000-rate)));
+                            else restOfRating.setText("Next 0");
                         }
                     }
                 });

@@ -36,10 +36,12 @@
 
             <ImageView
                 android:id="@+id/logoImage"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_launcher_background" />
+                android:scaleType="centerCrop"
+                android:padding="20dp"
+                android:src="@drawable/main_logo" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -123,12 +125,12 @@
 
             <TextView
                 android:id="@+id/restOfRating"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:paddingTop="5dp"
                 android:paddingRight="20dp"
-                android:text="  Next 189"
+                android:text="Next ???"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
