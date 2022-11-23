@@ -189,6 +189,7 @@ public class MainScreen extends AppCompatActivity {
                         if (task.isSuccessful()){
                             List<RatingData> ratings = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
+                                if (document.getId().equals("base")) continue;
                                 Long tier = document.getLong("레이팅");
                                 ratings.add(new RatingData("title", tier));
                             }
@@ -241,7 +242,7 @@ public class MainScreen extends AppCompatActivity {
                                     Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
                                     intent.putExtra("subjectName", mainSubjectData.subjectName);
                                     intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-0));
+                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-1));
                                     startActivity(intent);
                                 }
                             });

@@ -68,6 +68,7 @@ public class SolvedProblemScreen extends AppCompatActivity {
                             solvedCount = findViewById(R.id.solvedCounts);
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String problemName = document.getId();
+                                if (document.getId().equals("base")) continue;
                                 acProblems.add(new SolvedProblemData(problemName));
                             }
                             solvedCount.setText(Integer.toString(problemCount));
