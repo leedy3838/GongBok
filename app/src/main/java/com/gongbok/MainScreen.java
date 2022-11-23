@@ -214,8 +214,9 @@ public class MainScreen extends AppCompatActivity {
                         if (task.isSuccessful()){
                             List<MainSubjectData> selectTitle = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
+                                if (document.getId().equals("base")) continue;
                                 String problemName = document.getId();
-                                Long ACount = document.getLong("문제 수");
+                                Long ACount = document.getLong("푼 문제 수");
                                 selectTitle.add(new MainSubjectData(problemName, ACount));
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -242,7 +243,7 @@ public class MainScreen extends AppCompatActivity {
                                     Intent intent = new Intent(MainScreen.this, SolvedProblemScreen.class);
                                     intent.putExtra("subjectName", mainSubjectData.subjectName);
                                     intent.putExtra("userName", userID);
-                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-1));
+                                    intent.putExtra("problemCount", (int)(mainSubjectData.ACount-0));
                                     startActivity(intent);
                                 }
                             });
