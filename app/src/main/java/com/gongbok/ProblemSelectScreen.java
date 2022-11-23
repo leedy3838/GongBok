@@ -96,6 +96,10 @@ public class ProblemSelectScreen extends AppCompatActivity {
 
         //MyLikeProblemScreen에서 왔을 때
         if(subjectName.equals("내가 좋아요 한 문제")){
+            //문제 분류 안보이게 하기
+            TextView disable = findViewById(R.id.문제분류);
+            disable.setVisibility(View.GONE);
+
             Intent intent = new Intent(this, ProblemSolveScreen.class);
 
             db.collection("유저")

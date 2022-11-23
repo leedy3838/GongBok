@@ -305,6 +305,36 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     .document(subjectName+" "+problemName)
                                     .set(problemBase);
 
+                            //유저 별 푼 문제에 문제 추가
+                            db.collection("유저")
+                                    .document(userName)
+                                    .collection("과목 별 푼 문제")
+                                    .document(subjectName)
+                                    .collection(subjectName)
+                                    .document(subjectName+" "+problemName)
+                                    .set(problemBase);
+
+                            //유저 별 푼 문제에 푼 문제 수 추가
+                            db.collection("유저")
+                                    .document(userName)
+                                    .collection("과목 별 푼 문제")
+                                    .document(subjectName)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot document = task.getResult();
+
+                                            Long problemCount = document.getLong("푼 문제 수");
+                                            db.collection("유저")
+                                                    .document(userName)
+                                                    .collection("과목 별 푼 문제")
+                                                    .document(subjectName)
+                                                    .update("푼 문제 수", problemCount+1);
+                                        }
+                                    });
+
+
                             //문제를 처음 풀었을 때만 보상 포인트 제공
                             db.collection("유저")
                                     .document(userName)
@@ -320,6 +350,9 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                             db.collection("유저")
                                                     .document(userName)
                                                     .update("레이팅", userRating);
+
+                                            //레이팅이 올라서 티어가 변했는지 확인
+                                            tierCheck();
 
                                             AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
                                             builder.setTitle("문제를 맞추셨습니다.");
@@ -407,5 +440,118 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     .document(subjectName+" "+problemName)
                     .set(problemBase);
         }
+    }
+    public void tierCheck(){
+        db.collection("유저")
+                .document(userName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+
+                        Long rating = document.getLong("레이팅");
+                        if(rating < 5)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 1);
+                        else if(rating < 25)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 2);
+                        else if(rating < 40)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 3);
+                        else if(rating < 60)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 4);
+                        else if(rating < 120)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 5);
+                        else if(rating < 200)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 6);
+                        else if(rating < 300)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 7);
+                        else if(rating < 400)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 8);
+                        else if(rating < 500)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 10);
+                        else if(rating < 1000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 11);
+                        else if(rating < 1400)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 12);
+                        else if(rating < 1800)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 13);
+                        else if(rating < 2200)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 14);
+                        else if(rating < 3000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 15);
+                        else if(rating < 4000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 16);
+                        else if(rating < 5000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 17);
+                        else if(rating < 6000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 18);
+                        else if(rating < 7000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 19);
+                        else if(rating < 10000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 20);
+                        else if(rating < 13000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 21);
+                        else if(rating < 16000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 22);
+                        else if(rating < 19000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 23);
+                        else if(rating < 22000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 24);
+                        else if(rating < 30000)
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 25);
+                        else
+                            db.collection("유저")
+                                    .document(userName)
+                                    .update("티어", 26);
+                    }
+                });
     }
 }
