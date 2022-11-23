@@ -189,6 +189,7 @@ public class MainScreen extends AppCompatActivity {
                         if (task.isSuccessful()){
                             List<RatingData> ratings = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
+                                if (document.getId().equals("base")) continue;
                                 Long tier = document.getLong("레이팅");
                                 // ratings.add(new RatingData("title", tier));
                             }
@@ -213,8 +214,9 @@ public class MainScreen extends AppCompatActivity {
                         if (task.isSuccessful()){
                             List<MainSubjectData> selectTitle = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()){
+                                if (document.getId().equals("base")) continue;
                                 String problemName = document.getId();
-                                Long ACount = document.getLong("문제 수");
+                                Long ACount = document.getLong("푼 문제 수");
                                 selectTitle.add(new MainSubjectData(problemName, ACount));
                             }
                             /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
