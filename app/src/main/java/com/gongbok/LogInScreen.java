@@ -250,17 +250,10 @@ public class LogInScreen extends AppCompatActivity {
 
 
     public void goToRegister(View view) {
-
-        Intent nicknameIntent = new Intent(LogInScreen.this, MainScreen.class);
-        signUpForResult.launch(nicknameIntent);
+        Intent signUpIntent = new Intent(this, SignUpScreen.class);
+        signUpForResult.launch(signUpIntent);
     }
 
-    // 구글 유저들의 닉네임 설정을 위한 함수
-    private void getNickname(){
-        Log.d(TAG, "실행");
-        Intent nicknameIntent = new Intent(LogInScreen.this, NicknameScreen.class);
-        nicknameForResult.launch(nicknameIntent);
-    }
 
     private final ActivityResultLauncher<Intent> signUpForResult =
             registerForActivityResult(
@@ -273,6 +266,14 @@ public class LogInScreen extends AppCompatActivity {
                             }
                         }
                     });
+
+    // 구글 유저들의 닉네임 설정을 위한 함수
+    private void getNickname(){
+        Log.d(TAG, "실행");
+        Intent nicknameIntent = new Intent(LogInScreen.this, NicknameScreen.class);
+        nicknameForResult.launch(nicknameIntent);
+
+    }
 
     // 위 함수의 인텐트에 대한 콜백함수 정의
     private final ActivityResultLauncher<Intent> nicknameForResult =

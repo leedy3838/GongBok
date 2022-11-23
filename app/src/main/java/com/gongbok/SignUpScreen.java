@@ -275,12 +275,11 @@ public class SignUpScreen extends AppCompatActivity {
 
                                         // 가입 성공하였으므로 MainScreen으로 이동
                                         loginAfterSignUp(email, pwd, name);
-
-                                                                            }
+                                        Toast.makeText(SignUpScreen.this, "회원가입 및 로그인 성공.", Toast.LENGTH_SHORT).show();
+                                    }
                                     else{
                                         // 이메일 아이디 중복으로 가입 실패하였으므로 지우고 다시 입력 받음
                                         mRegisterEmailId.setText(null);
-                                        Toast.makeText(SignUpScreen.this, "이미 존재하는 이메일 아이디 입니다.\n다시 입력해 주세요.", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                 }
@@ -318,14 +317,15 @@ public class SignUpScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
                             // 해당 유저의 UID를 "유저UID" collection에 추가하고 필드 값으로 닉네임 추가
                             user = firebaseAuth.getCurrentUser();
                             Map<String, Object> UidNickname = new HashMap<>();
                             UidNickname.put("닉네임", name);
                             db.collection("유저UID").document(user.getUid()).set(UidNickname);
 
-                            Toast.makeText(SignUpScreen.this, "회원가입 및 로그인 성공.", Toast.LENGTH_SHORT).show();
+                            // MainScreen으로 이동
+                            Toast.makeText(SignUpScreen.this, "이미 존재하는 이메일 아이디 입니다.\n다시 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                            setResult(RESULT_OK);
                             finish();
                         }
                     }
