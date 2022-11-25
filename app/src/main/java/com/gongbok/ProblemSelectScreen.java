@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,21 +34,12 @@ public class ProblemSelectScreen extends AppCompatActivity {
     List<DataCompare> wrongList = new LinkedList<>();
     List<DataCompare> solvedList = new LinkedList<>();
 
+    int sortMode = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.problem_select_screen);
-
-        //spinner 설정
-        Spinner sortSpinner = findViewById(R.id.sortSpinner);
-        String[] sortItems = getResources().getStringArray(R.array.sort);
-
-        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, sortItems);
-
-        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        sortSpinner.setAdapter(sortAdapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -100,6 +93,31 @@ public class ProblemSelectScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        //spinner 설정
+        Spinner sortSpinner = findViewById(R.id.sortSpinner);
+        String[] sortItems = getResources().getStringArray(R.array.sort);
+
+        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, sortItems);
+
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        sortSpinner.setAdapter(sortAdapter);
+
+
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sortMode = position;
+                notifySpinnerIsChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -162,6 +180,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
+
                             recyclerView.setAdapter(adapter);
                         }
                     });
@@ -211,6 +230,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
+
                                 recyclerView.setAdapter(adapter);
                             }
                         }
@@ -224,6 +244,45 @@ public class ProblemSelectScreen extends AppCompatActivity {
 
     public void goToProblemSolve(View view) {
         startActivity(new Intent(this, ProblemSolveScreen.class));
+    }
+
+    //spinner가 바꼈을 때 RecyclerView를 갱신
+    public void notifySpinnerIsChanged(){
+        Intent getIntent = getIntent();
+        String userName = getIntent.getStringExtra("userName");
+        //RecyclerView에 목록 출력
+        RecyclerView recyclerView = findViewById(R.id.problemList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ProblemSelectScreen.this));
+
+        //DataList를 정렬 모드에 따라서 정렬
+        Collections.sort(DataList, new Comparator<ProblemData>() {
+            @Override
+            public int compare(ProblemData data1, ProblemData data2) {
+                if(sortMode == 0)
+                    return data1.name.compareTo(data2.name);
+                else if(sortMode == 1)
+                    return (int)(data2.likeNum - data1.likeNum);
+                else if(sortMode == 2)
+                    return (int)(data2.tryNum - data1.tryNum);
+                else
+                    return (int)(data2.tier - data1.tier);
+            }
+        });
+
+        ProblemAdapter adapter = new ProblemAdapter(DataList);
+        adapter.setOnItemClickListener(new ProblemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, ProblemData data) {
+
+                Intent intent = new Intent(ProblemSelectScreen.this, ProblemSolveScreen.class);
+                intent.putExtra("userName", userName);
+                intent.putExtra("problemName", data.name);
+                intent.putExtra("subjectName", data.subjectName);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
     }
 }
 class DataCompare{

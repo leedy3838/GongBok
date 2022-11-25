@@ -35,6 +35,7 @@ class ProblemData{
         this.isSolved = isSolved;
         this.isWrong = isWrong;
         this.isLikeProblem = isLikeProblem;
+        this.tryNum = tryNum;
     }
 }
 
