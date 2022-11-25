@@ -13,19 +13,25 @@
         android:layout_height="0dp"
         android:orientation="vertical">
 
-        <Button
+        <TextView
             android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
+            android:background="@drawable/btn_mint"
+            android:gravity="center"
+            android:onClick="goToMain"
             android:text="홈"
-            android:onClick="goToMain"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/home"
             android:text="문제 분류"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -45,7 +51,10 @@
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/btn_mint"
+        android:layout_margin="5dp"
+        android:padding="5dp">
         <ScrollView
             android:id="@+id/problemList"
             android:layout_width="match_parent"
@@ -105,12 +114,6 @@
             android:layout_marginStart="10dp"
             android:text="likes" />
 
-        <Button
-            android:id="@+id/likeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="좋아요"
-            android:onClick="likeButtonClicked"/>
 
         <ImageView
             android:id="@+id/heart"
@@ -120,7 +123,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@id/likeButton"
+            android:onClick="likeButtonClicked"
             android:src="@drawable/empty_heart" />
 
         <EditText
@@ -132,14 +135,19 @@
             android:layout_toStartOf="@id/submit"
             android:hint="여기에 정답을 입력하세요" />
 
-        <Button
+        <TextView
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_mint"
+            android:onClick="submitButtonClicked"
             android:text="제출"
-            android:onClick="submitButtonClicked"/>
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 

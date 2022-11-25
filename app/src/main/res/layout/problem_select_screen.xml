@@ -12,21 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
-        <Button
+
+        <TextView
             android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-
+            android:background="@drawable/btn_mint"
+            android:gravity="center"
+            android:onClick="goToMain"
             android:text="홈"
-            android:onClick="goToMain"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/문제분류"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/home"
             android:text="문제 분류"
             android:textSize="30sp"
             android:textStyle="bold" />
