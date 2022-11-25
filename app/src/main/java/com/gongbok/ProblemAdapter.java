@@ -20,12 +20,13 @@ class ProblemData{
     String link;
     long likeNum;
     long tier;
+    long tryNum;
     Boolean isSolved = false;
     Boolean isWrong = false;
     //좋아요 한 문제들을 출력할 때 isLikeProblem이 true
     Boolean isLikeProblem = false;
 
-    ProblemData(String name, String subjectName, String link, long likeNum, long tier, Boolean isSolved, Boolean isWrong, Boolean isLikeProblem){
+    ProblemData(String name, String subjectName, String link, long likeNum, long tier, long tryNum, Boolean isSolved, Boolean isWrong, Boolean isLikeProblem){
         this.name = name;
         this.link = link;
         this.subjectName = subjectName;

@@ -37,6 +37,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
     Long rating;
     Long tier;
     Long likeNum;
+    Long tryNum;
     Boolean isLike = false;
     DocumentReference problemNameDocRef;
 
@@ -97,6 +98,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     tier = document.getLong("난이도");
                     rating = document.getLong("레이팅");
                     likeNum = document.getLong("좋아요 수");
+                    tryNum = document.getLong("시도 횟수");
                     Long trialCount = document.getLong("시도 횟수");
                     Long solvedCount = document.getLong("맞힌 횟수");
 
@@ -188,6 +190,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                         problemBase.put("문제 이름", problemName);
                                         problemBase.put("난이도", tier);
                                         problemBase.put("레이팅", rating);
+                                        problemBase.put("시도 횟수", tryNum);
 
                                         db.collection("유저")
                                                 .document(userName)
@@ -298,6 +301,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             problemBase.put("문제 이름", problemName);
                             problemBase.put("난이도", tier);
                             problemBase.put("레이팅", rating);
+                            problemBase.put("시도 횟수", tryNum);
 
                             db.collection("유저")
                                     .document(userName)
@@ -433,6 +437,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
             problemBase.put("문제 이름", problemName);
             problemBase.put("난이도", tier);
             problemBase.put("좋아요 수", likeNum);
+            problemBase.put("시도 횟수", tryNum);
 
             db.collection("유저")
                     .document(userName)

@@ -12,6 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +36,17 @@ public class ProblemSelectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.problem_select_screen);
+
+        //spinner 설정
+        Spinner sortSpinner = findViewById(R.id.sortSpinner);
+        String[] sortItems = getResources().getStringArray(R.array.sort);
+
+        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, sortItems);
+
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        sortSpinner.setAdapter(sortAdapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -121,6 +135,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                 String path = document.getString("경로");
                                 Long likeNum = document.getLong("좋아요 수");
                                 Long tier = document.getLong("난이도");
+                                Long tryNum = document.getLong("시도 횟수");
 
                                 boolean isSolved = false;
                                 boolean isWrong = false;
@@ -129,7 +144,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                 if (wrongList.contains(new DataCompare(subject, problemNameOfLike)))
                                     isWrong = true;
 
-                                ProblemData data = new ProblemData(problemNameOfLike, subject, path, likeNum, tier, isSolved, isWrong, true);
+                                ProblemData data = new ProblemData(problemNameOfLike, subject, path, likeNum, tier, tryNum, isSolved, isWrong, true);
                                 DataList.add(data);
                             }
 
@@ -169,6 +184,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                     String path = document.getString("경로");
                                     Long likeNum = document.getLong("좋아요 수");
                                     Long tier = document.getLong("난이도");
+                                    Long tryNum = document.getLong("시도 횟수");
 
                                     boolean isSolved = false;
                                     boolean isWrong = false;
@@ -177,7 +193,7 @@ public class ProblemSelectScreen extends AppCompatActivity {
                                     if (wrongList.contains(new DataCompare(subjectName, ProblemName)))
                                         isWrong = true;
 
-                                    ProblemData data = new ProblemData(ProblemName, subjectName, path, likeNum, tier, isSolved, isWrong, false);
+                                    ProblemData data = new ProblemData(ProblemName, subjectName, path, likeNum, tier, tryNum, isSolved, isWrong, false);
                                     DataList.add(data);
                                 }
 
