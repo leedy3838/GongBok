@@ -123,7 +123,23 @@ public class ProblemSolveScreen extends AppCompatActivity {
     }
 
     public void goToMain(View view) {
-        startActivity(new Intent(this, MainScreen.class));
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+        builder.setTitle("문제를 그만푸시겠습니까?");
+
+        builder.setPositiveButton("계속 풀기", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int pos) {
+
+            }
+        });
+        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void submitButtonClicked(View view){
@@ -558,5 +574,26 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                     .update("티어", 26);
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+        builder.setTitle("문제를 그만푸시겠습니까?");
+
+        builder.setPositiveButton("계속 풀기", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int pos) {
+
+            }
+        });
+        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

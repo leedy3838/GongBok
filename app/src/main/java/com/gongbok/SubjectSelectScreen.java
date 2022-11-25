@@ -82,4 +82,9 @@ public class SubjectSelectScreen extends AppCompatActivity {
     public void goToMain(View view) {
         startActivity(new Intent(this, MainScreen.class));
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainScreen.class));
+    }
 }

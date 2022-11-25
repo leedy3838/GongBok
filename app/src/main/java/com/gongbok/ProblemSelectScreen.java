@@ -284,6 +284,11 @@ public class ProblemSelectScreen extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainScreen.class));
+    }
 }
 class DataCompare{
     String subjectName;
