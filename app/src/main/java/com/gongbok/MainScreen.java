@@ -60,6 +60,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -127,7 +128,7 @@ public class MainScreen extends AppCompatActivity {
         finish();
     }
 
-    // firebase에서 유저UID 컬렉션에서 얻어온 닉네임으로 메인 화면 세팅
+    // firebase UUID 컬렉션에서 얻어온 닉네임으로 메인 화면 세팅
     public void settingUser(){
         Log.d(TAG, "로그인한 유저의 닉네임2 : " + userID);
         //임시 userID Intent 들어오면 수정
@@ -199,6 +200,34 @@ public class MainScreen extends AppCompatActivity {
                             MainScreenAdapter mainScreenAdapter = new MainScreenAdapter(ratings);
                             recyclerView.setAdapter(mainScreenAdapter);
                         }
+                    }
+                });
+        db.collection("유저")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Long> onlyRating = new LinkedList<>();
+                        Long curUserRating = 1L;
+                        for (QueryDocumentSnapshot document : task.getResult()){
+                            String user = document.getId();
+                            Long eachRating = document.getLong("레이팅");
+                            if (user.equals(userID))  curUserRating = eachRating;
+                            onlyRating.add(eachRating);
+                        }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            onlyRating.sort(new Comparator<Long>() {
+                                @Override
+                                public int compare(Long aLong, Long t1) {
+                                    return (int) (-aLong+t1);
+                                }
+                            });
+                        }
+                        double rateByRank = (double)100*(onlyRating.indexOf(curUserRating)+1)/onlyRating.size();
+                        TextView topRateValue = findViewById(R.id.topRateValue);
+                        topRateValue.setText("상위 " + String.format("%.2f", rateByRank) + "%");
+                        TextView userPlace = findViewById(R.id.userPlace);
+                        userPlace.setText(""+(onlyRating.indexOf(curUserRating)+1)+" place");
                     }
                 });
 

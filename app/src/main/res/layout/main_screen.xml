@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="Rating 1011"
+                android:text="Rating ????"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -141,17 +141,18 @@
                 android:layout_below="@id/ratingValue"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="상위 12.11%"
+                android:text="상위 ??.??%"
                 android:textSize="13dp" />
 
             <TextView
+                android:id="@+id/userPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ratingValue"
                 android:layout_toRightOf="@id/topRateValue"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="2111 place"
+                android:text="0 place"
                 android:textSize="13dp" />
 
             <TextView
