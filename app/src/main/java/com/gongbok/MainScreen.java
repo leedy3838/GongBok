@@ -82,7 +82,6 @@ public class MainScreen extends AppCompatActivity {
     private String userID;
     private String userUid;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -246,7 +245,9 @@ public class MainScreen extends AppCompatActivity {
                                 if (document.getId().equals("base")) continue;
                                 String problemName = document.getId();
                                 Long ACount = document.getLong("푼 문제 수");
-                                selectTitle.add(new MainSubjectData(problemName, ACount));
+                                // 이후 필드값 수정 필요
+                                Long subjectRating = 0L;
+                                selectTitle.add(new MainSubjectData(problemName, ACount, subjectRating));
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 selectTitle.sort(new Comparator<MainSubjectData>() {

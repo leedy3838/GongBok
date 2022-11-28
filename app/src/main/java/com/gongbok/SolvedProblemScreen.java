@@ -1,5 +1,6 @@
 package com.gongbok;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,12 +86,36 @@ public class SolvedProblemScreen extends AppCompatActivity {
                             solvedProblemScreenAdapter.setOnItemClickListener(new SolvedProblemScreenAdapter.SolvedOnItemClickListener() {
                                 @Override
                                 public void onItemClick(View v, SolvedProblemData solvedProblemData) {
-                                    String problemName = solvedProblemData.problemName;
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SolvedProblemScreen.this);
+                                    builder.setTitle("이동할 화면을 선택하세요");
 
-                                    //이 부분 문제 화면으로 이동하게 수정해야 함
-                                    Intent intent = new Intent(SolvedProblemScreen.this, MainScreen.class);
-                                    intent.putExtra("problemName", problemName);
-                                    startActivity(intent);
+                                    builder.setPositiveButton("문제 보기", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            String problemName = solvedProblemData.problemName;
+
+                                            Intent intent = new Intent(SolvedProblemScreen.this, SolvedProblemCheckScreen.class);
+                                            intent.putExtra("problemName", problemName);
+                                            intent.putExtra("subjectName", solvedTitle);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                    builder.setNegativeButton("풀이 보기", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            String problemName = solvedProblemData.problemName;
+                                            //problemName 이 [고등]미적분 2021년 9월 모의고사 23번 같은 형식으로 되어있음
+                                            problemName = problemName.replace(solvedTitle+" ", "");
+                                            //MainScreen.class 부분만 다른 것으로 대체 후 사용
+                                            Intent intent = new Intent(SolvedProblemScreen.this, MainScreen.class);
+                                            intent.putExtra("problemName", problemName);
+                                            intent.putExtra("subjectName", solvedTitle);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    AlertDialog alertDialog = builder.create();
+                                    alertDialog.show();
                                 }
                             });
                             recyclerView.setAdapter(solvedProblemScreenAdapter);
