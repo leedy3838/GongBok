@@ -84,7 +84,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         holder.likeNum.setText(String.valueOf(item.likeNum));
 
         if(item.isSolved)
-            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
+            holder.problemName.setTextColor(Color.rgb(0x06,0xED,0xC9));
         if(item.isWrong)
             holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 

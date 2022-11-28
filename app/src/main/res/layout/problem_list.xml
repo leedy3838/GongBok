@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:strokeWidth="1dp"
-        app:strokeColor="#00ffff"
+        app:strokeColor="#06EDC9"
 
         android:layout_margin="5dp">
         <RelativeLayout
