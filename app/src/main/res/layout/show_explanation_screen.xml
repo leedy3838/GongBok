@@ -5,87 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ShowExplanationScreen">
-    <LinearLayout
+    tools:context=".ProblemSolveScreen">
+
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/btn_mint_3"
+        >
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 분류 + 수학 1"/>
-    </LinearLayout>
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/btn_mint_4"
+            android:onClick="goToMain"
+            android:paddingHorizontal="20dp"
+            android:text="홈"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/showEx_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="문제 이름"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/problemList"
+        <ScrollView
+            android:id="@+id/explanationList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="풀이 등록"
-            android:layout_gravity="bottom|right"/>
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/showEx_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_photo"/>
+        </ScrollView>
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
 
-        <Button
-            android:id="@+id/ProblemSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:text="문제 풀기"
-            android:onClick="goToProblemSolve"/>
 
-        <Button
-            android:id="@+id/home"
+        <TextView
+            android:id="@+id/showEx_enroller_tv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="홈"
-            android:onClick="goToMain"/>
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/showEx_tier_iv"
+            android:layout_alignBottom="@id/showEx_tier_iv"
+            android:layout_toLeftOf="@id/showEx_name_tv"
+            android:gravity="center"
+            android:text="등록자 : "
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/ProblemMake"
+        <TextView
+            android:id="@+id/showEx_name_tv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/showEx_tier_iv"
+            android:layout_alignBottom="@id/showEx_tier_iv"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/showEx_tier_iv"
+            android:gravity="center"
+            android:text="lkw"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/showEx_tier_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:text="문제 만들기"
-            android:onClick="goToEnrollProblem"/>
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/rank_icons_s1"
+            android:text="1997"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/좋아요"
+            android:layout_alignBottom="@id/좋아요"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/좋아요"
+            android:text="5123"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/좋아요"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/showEx_enroller_tv"
+            android:layout_alignParentRight="true"
+            android:textSize="20sp"
+            android:text="likes"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/likeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/heart"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/btn_mint_3"
+            android:gravity="center"
+            android:onClick="likeButtonClicked"
+            android:padding="10sp"
+            android:text="좋아요"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_toEndOf="@id/likeButton"
+            android:src="@drawable/empty_heart" />
 
     </RelativeLayout>
+
 
 </LinearLayout>

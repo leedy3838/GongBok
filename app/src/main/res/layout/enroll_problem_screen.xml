@@ -7,79 +7,104 @@
     android:orientation="vertical"
     tools:context=".EnrollProblemScreen">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/enroll_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="문제 등록"
-            android:textSize="30sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@drawable/btn_mint_3">
+            <TextView
+                android:id="@+id/enroll_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="문제 등록"
+                android:textSize="30sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/subject_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/enroll_id"
-            android:layout_marginLeft="8dp"
-            android:text="과목 선택"
-            android:textSize="15sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_vertical">
 
-        <Spinner
-            android:id="@+id/subject_spinner"
+            <TextView
+                android:id="@+id/subject_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="과목 선택"
+
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/subject_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/subject_tv"
+                android:layout_alignBottom="@id/subject_tv"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/subject_tv" />
+
+        </RelativeLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/enroll_id"
-            android:layout_alignTop="@id/subject_tv"
-            android:layout_alignBottom="@id/subject_tv"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/subject_tv" />
+            android:layout_weight="0.5">
+            <EditText
+                android:id="@+id/problem_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="여기에 제목을 입력하세요"
+                android:singleLine="true"/>
 
-        <EditText
-            android:id="@+id/problem_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/subject_spinner"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
-            android:hint="여기에 제목을 입력하세요"
-            android:singleLine="true"/>
-    </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image_view"
+        <ScrollView
+            android:id="@+id/enrollList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:src="@drawable/ic_add_photo" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/enroll_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_photo" />
+        </ScrollView>
 
         <TextView
             android:id="@+id/enroll_tv"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_alignBottom="@id/enrollList"
             android:layout_weight="1"
             android:gravity="center"
             android:text="문제 사진 등록하려면 사진 아이콘 클릭"
+            android:textColor="@color/black"
             android:textSize="20dp"
-            android:visibility="visible"
-            android:layout_alignBottom="@id/image_view"/>
+            android:visibility="visible" />
 
         <ProgressBar
             android:id="@+id/progress_View"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/enroll_tv"/>
+            android:layout_above="@id/enroll_tv" />
     </RelativeLayout>
 
     <LinearLayout
@@ -96,6 +121,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:text="난이도 설정"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:gravity="center"
             android:layout_marginLeft="8dp"/>
@@ -135,7 +161,7 @@
             android:layout_marginLeft="8dp"
             android:singleLine="true"/>
 
-        <Button
+        <TextView
             android:id="@+id/upload_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,6 +169,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:text="업로드"
+            android:background="@drawable/btn_mint_3"
+            android:gravity="center"
+            android:padding="5sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
             />
     </LinearLayout>
 

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@id/logoImage"
                 android:layout_weight="1"
-                android:src="@drawable/main_line"></ImageView>
+                android:src="@drawable/main_line"/>
 
             <TextView
                 android:id="@+id/nickName"
@@ -32,15 +32,15 @@
                 android:layout_toLeftOf="@id/logoImage"
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
-                android:text="Unknown"></TextView>
+                android:text="Unknown"/>
 
             <ImageView
                 android:id="@+id/logoImage"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
                 android:padding="20dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/main_logo" />
 
             <ImageView
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="Rating 1011"
+                android:text="Rating ????"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -141,17 +141,18 @@
                 android:layout_below="@id/ratingValue"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="상위 12.11%"
+                android:text="상위 ??.??%"
                 android:textSize="13dp" />
 
             <TextView
+                android:id="@+id/userPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ratingValue"
                 android:layout_toRightOf="@id/topRateValue"
                 android:paddingLeft="18dp"
                 android:paddingTop="5dp"
-                android:text="2111 place"
+                android:text="0 place"
                 android:textSize="13dp" />
 
             <TextView
@@ -175,11 +176,9 @@
                 android:layout_toLeftOf="@id/totalRank"
                 android:background="@drawable/btn_mint"
                 android:onClick="logOut"
-
                 android:padding="6dp"
                 android:text="   로그아웃   "
                 android:textStyle="bold" />
-
         </RelativeLayout>
 
 

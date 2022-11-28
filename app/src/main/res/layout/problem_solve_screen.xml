@@ -62,8 +62,8 @@
             <ImageView
                 android:id="@+id/problemImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"/>
+               android:layout_height="wrap_content"
+                 android:scaleType="fitCenter"/>
         </ScrollView>
     </LinearLayout>
 

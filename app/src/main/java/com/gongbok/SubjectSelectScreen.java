@@ -80,7 +80,9 @@ public class SubjectSelectScreen extends AppCompatActivity {
     }
 
     public void goToMain(View view) {
-        startActivity(new Intent(this, MainScreen.class));
+        Intent homeIntent = new Intent(this, MainScreen.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
     }
 
     @Override

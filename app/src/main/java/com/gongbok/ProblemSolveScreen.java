@@ -2,12 +2,17 @@ package com.gongbok;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +64,8 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
         TextView subjectNameTextView = findViewById(R.id.subjectName);
         subjectNameTextView.setText(subjectName);
+
+
 
         //이미 좋아요 한 문제인지 아닌지 확인
         db.collection("유저")
@@ -137,7 +144,9 @@ public class ProblemSolveScreen extends AppCompatActivity {
         builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+                Intent homeIntent = new Intent(ProblemSolveScreen.this, MainScreen.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
             }
         });
 
@@ -389,6 +398,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                             builder.setNegativeButton("난이도 평가 & 풀이 등록", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
+
                                                     Intent intentToEnrollExplanation = new Intent(ProblemSolveScreen.this, EnrollExplanationScreen.class);
 
                                                     intentToEnrollExplanation.putExtra("userName", userName);
@@ -578,7 +588,6 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     }
                 });
     }
-
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
