@@ -108,7 +108,8 @@ public class SolvedProblemScreen extends AppCompatActivity {
                                             //problemName 이 [고등]미적분 2021년 9월 모의고사 23번 같은 형식으로 되어있음
                                             problemName = problemName.replace(solvedTitle+" ", "");
                                             //MainScreen.class 부분만 다른 것으로 대체 후 사용
-                                            Intent intent = new Intent(SolvedProblemScreen.this, MainScreen.class);
+                                            Intent intent = new Intent(SolvedProblemScreen.this, ExplanationSelectScreen.class);
+                                            intent.putExtra("userID", userID);
                                             intent.putExtra("problemName", problemName);
                                             intent.putExtra("subjectName", solvedTitle);
                                             startActivity(intent);

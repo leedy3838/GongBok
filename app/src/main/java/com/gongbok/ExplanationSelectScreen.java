@@ -31,6 +31,7 @@ public class ExplanationSelectScreen extends AppCompatActivity {
     String explanationName;
     String explanationPicPath;
     Long explanationLikes;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class ExplanationSelectScreen extends AppCompatActivity {
         Intent showIntent = new Intent(this, ShowExplanationScreen.class);
 
         Intent intent = getIntent();
+        userID = intent.getStringExtra("userID");
         subjectName = intent.getStringExtra("subjectName");
         problemName = intent.getStringExtra("problemName");
 
@@ -84,6 +86,7 @@ public class ExplanationSelectScreen extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(View v, ExplanationData data) {
 
+                                    showIntent.putExtra("userID", userID);
                                     showIntent.putExtra("subjectName", subjectName);
                                     showIntent.putExtra("problemName", problemName);
                                     showIntent.putExtra("userName", data.userName);

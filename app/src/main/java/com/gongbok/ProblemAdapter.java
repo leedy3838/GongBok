@@ -74,19 +74,20 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         ProblemData item = DataList.get(position);
 
+        if(item.isSolved)
+            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
+        else if(item.isWrong)
+            holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
+
         if(!item.isLikeProblem)
             holder.problemName.setText(item.name);
         else {
             holder.problemName.setText(item.subjectName + " " + item.name);
             holder.likeNum.setVisibility(GONE);
             holder.likeText.setVisibility(GONE);
+            holder.tier.setVisibility(GONE);
         }
         holder.likeNum.setText(String.valueOf(item.likeNum));
-
-        if(item.isSolved)
-            holder.problemName.setTextColor(Color.rgb(0x06,0xED,0xC9));
-        if(item.isWrong)
-            holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 
         int tier = (int)item.tier;
         switch (tier){
