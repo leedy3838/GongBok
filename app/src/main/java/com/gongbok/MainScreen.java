@@ -282,10 +282,7 @@ public class MainScreen extends AppCompatActivity {
                     }
                 });
     }
-
-    public void goToMyProblem(View view) {
-        startActivity(new Intent(this, MyProblem.class));
-    }
+    
 
     public void goToTotalRanking(View view) {
         startActivity(new Intent(this, TotalRankingScreen.class));
