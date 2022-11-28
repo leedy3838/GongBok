@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:card_view ="http://schemas.android.com/apk/res-auto"
-        card_view:cardBackgroundColor="@color/cardview_shadow_end_color"
+        app:strokeWidth="1dp"
+        app:strokeColor="#06EDC9"
+
         android:layout_margin="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,5 +63,5 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

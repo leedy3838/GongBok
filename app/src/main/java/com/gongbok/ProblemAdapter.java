@@ -20,12 +20,13 @@ class ProblemData{
     String link;
     long likeNum;
     long tier;
+    long tryNum;
     Boolean isSolved = false;
     Boolean isWrong = false;
     //좋아요 한 문제들을 출력할 때 isLikeProblem이 true
     Boolean isLikeProblem = false;
 
-    ProblemData(String name, String subjectName, String link, long likeNum, long tier, Boolean isSolved, Boolean isWrong, Boolean isLikeProblem){
+    ProblemData(String name, String subjectName, String link, long likeNum, long tier, long tryNum, Boolean isSolved, Boolean isWrong, Boolean isLikeProblem){
         this.name = name;
         this.link = link;
         this.subjectName = subjectName;
@@ -34,6 +35,7 @@ class ProblemData{
         this.isSolved = isSolved;
         this.isWrong = isWrong;
         this.isLikeProblem = isLikeProblem;
+        this.tryNum = tryNum;
     }
 }
 
@@ -82,7 +84,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         holder.likeNum.setText(String.valueOf(item.likeNum));
 
         if(item.isSolved)
-            holder.problemName.setTextColor(Color.rgb(0x03,0xDA,0xC5));
+            holder.problemName.setTextColor(Color.rgb(0x06,0xED,0xC9));
         if(item.isWrong)
             holder.problemName.setTextColor(Color.rgb(0xff,0x00,0x00));
 

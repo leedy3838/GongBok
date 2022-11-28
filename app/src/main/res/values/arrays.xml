@@ -28,4 +28,10 @@
         <item>X (민트)</item>
     </string-array>
 
+    <string-array name="sort">
+        <item>이름 순</item>
+        <item>좋아요 순</item>
+        <item>시도 순</item>
+        <item>난이도 순</item>
+    </string-array>
 </resources>

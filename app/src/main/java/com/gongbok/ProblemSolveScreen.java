@@ -43,6 +43,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
     Long rating;
     Long tier;
     Long likeNum;
+    Long tryNum;
     Boolean isLike = false;
     DocumentReference problemNameDocRef;
 
@@ -107,6 +108,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     tier = document.getLong("난이도");
                     rating = document.getLong("레이팅");
                     likeNum = document.getLong("좋아요 수");
+                    tryNum = document.getLong("시도 횟수");
                     Long trialCount = document.getLong("시도 횟수");
                     Long solvedCount = document.getLong("맞힌 횟수");
 
@@ -131,9 +133,25 @@ public class ProblemSolveScreen extends AppCompatActivity {
     }
 
     public void goToMain(View view) {
-        Intent homeIntent = new Intent(this, MainScreen.class);
-        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(homeIntent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+        builder.setTitle("문제를 그만푸시겠습니까?");
+
+        builder.setPositiveButton("계속 풀기", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int pos) {
+
+            }
+        });
+        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent homeIntent = new Intent(ProblemSolveScreen.this, MainScreen.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void submitButtonClicked(View view){
@@ -200,6 +218,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                                         problemBase.put("문제 이름", problemName);
                                         problemBase.put("난이도", tier);
                                         problemBase.put("레이팅", rating);
+                                        problemBase.put("시도 횟수", tryNum);
 
                                         db.collection("유저")
                                                 .document(userName)
@@ -310,6 +329,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             problemBase.put("문제 이름", problemName);
                             problemBase.put("난이도", tier);
                             problemBase.put("레이팅", rating);
+                            problemBase.put("시도 횟수", tryNum);
 
                             db.collection("유저")
                                     .document(userName)
@@ -446,6 +466,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
             problemBase.put("문제 이름", problemName);
             problemBase.put("난이도", tier);
             problemBase.put("좋아요 수", likeNum);
+            problemBase.put("시도 횟수", tryNum);
 
             db.collection("유저")
                     .document(userName)
@@ -567,6 +588,24 @@ public class ProblemSolveScreen extends AppCompatActivity {
                     }
                 });
     }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProblemSolveScreen.this);
+        builder.setTitle("문제를 그만푸시겠습니까?");
 
+        builder.setPositiveButton("계속 풀기", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int pos) {
 
+            }
+        });
+        builder.setNegativeButton("그만 풀기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(ProblemSolveScreen.this, MainScreen.class));
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }

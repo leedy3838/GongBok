@@ -84,4 +84,9 @@ public class SubjectSelectScreen extends AppCompatActivity {
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainScreen.class));
+    }
 }

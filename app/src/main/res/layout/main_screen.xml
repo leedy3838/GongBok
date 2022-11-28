@@ -179,7 +179,6 @@
                 android:padding="6dp"
                 android:text="   로그아웃   "
                 android:textStyle="bold" />
-
         </RelativeLayout>
 
 

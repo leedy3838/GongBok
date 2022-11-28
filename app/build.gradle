@@ -58,6 +58,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     //google authentication
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
+
+    //CardView 테두리 색
+    implementation 'com.google.android.material:material:1.7.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
