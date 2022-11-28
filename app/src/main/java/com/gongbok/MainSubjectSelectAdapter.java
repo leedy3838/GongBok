@@ -13,10 +13,12 @@ import java.util.List;
 class MainSubjectData{
     String subjectName;
     Long ACount;
+    Long subjectRating;
 
-    MainSubjectData(String subjectName, Long ACount){
+    MainSubjectData(String subjectName, Long ACount, Long subjectRating){
         this.subjectName = subjectName;
         this.ACount = ACount;
+        this.subjectRating = subjectRating;
     }
 }
 
@@ -47,6 +49,7 @@ public class MainSubjectSelectAdapter extends RecyclerView.Adapter<MainSubjectSe
     public void onBindViewHolder(@NonNull SubjectHolder holder, int position) {
         MainSubjectData mainSubjectData = SubjectDataValues.get(position);
         holder.subjectTitleName.setText(mainSubjectData.subjectName);
+        holder.subjectRating.setText("" + mainSubjectData.ACount);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +71,10 @@ public class MainSubjectSelectAdapter extends RecyclerView.Adapter<MainSubjectSe
 
     public class SubjectHolder extends RecyclerView.ViewHolder {
         TextView subjectTitleName;
+        TextView subjectRating;
         public SubjectHolder(@NonNull View itemView) {
             super(itemView);
-
+            subjectRating = itemView.findViewById(R.id.mainSubjectSelectItemRating);
             subjectTitleName = itemView.findViewById(R.id.mainSubjectSelectItem);
         }
     }
