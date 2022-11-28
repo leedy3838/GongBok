@@ -11,86 +11,180 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
-        <TextView
+        android:orientation="vertical"
+        android:background="@drawable/btn_mint_3">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="문제 풀이 등록"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:textSize="30sp"
+                android:text="문제 풀이 등록"
+                android:padding="10sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            >
+
+            <TextView
+                android:layout_weight="6"
+                android:id="@+id/answer_problemTitle_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:text="해당 문제 제목"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/answer_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="작성자"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/answer_user_tier"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toRightOf="@id/answer_user_name"
+                    android:src="@drawable/btn_mint" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
         <ScrollView
-            android:id="@+id/problemList"
+            android:id="@+id/answerList"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background"/>
-        </ScrollView>
-    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_weight="1"
+            <ImageView
+                android:id="@+id/answer_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_photo" />
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/answer_info_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/answerList"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="풀이 등록하지 않고\n 난이도만 등록 하는 것도 가능합니다"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/answer_progress_View"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/answer_tv"
+            android:layout_marginBottom="40dp" />
+
+        <TextView
+            android:id="@+id/answer_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/answerList"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:text="풀이 사진 등록하려면 사진 아이콘 클릭"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_weight="0.7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="난이도 배정" />
-        <Button
-            android:id="@+id/level"
-            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:text="난이도 설정"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginLeft="8dp"/>
+
+        <Spinner
+            android:id="@+id/tier_1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="4"
-            android:layout_centerInParent="true"/>
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            />
+        <Spinner
+            android:id="@+id/tier_2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="제출"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/answer_upload_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="업로드"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/btn_mint_3"
+            android:gravity="center"
+            android:padding="5sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/ProblemSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:text="문제 풀기"
-            android:onClick="goToProblemSolve"/>
-
-        <Button
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="홈"
-            android:onClick="goToMain"/>
-
-        <Button
-            android:id="@+id/ProblemMake"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:text="문제 만들기"
-            android:onClick="goToEnrollProblem"/>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

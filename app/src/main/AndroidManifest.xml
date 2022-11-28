@@ -27,13 +27,14 @@
             android:name=".EnrollExplanationScreen"
             android:exported="false" />
         <activity
-            android:name=".ShowExplanationNextScreen"
-            android:exported="false" />
+            android:name=".ExplanationSelectScreen"
+            android:exported="false"/>
         <activity
             android:name=".ShowExplanationScreen"
             android:exported="false" />
         <activity
             android:name=".ProblemSolveScreen"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".ProblemSelectScreen"
@@ -66,6 +67,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
     </application>
 
 </manifest>

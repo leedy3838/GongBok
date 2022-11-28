@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@id/logoImage"
                 android:layout_weight="1"
-                android:src="@drawable/main_line"></ImageView>
+                android:src="@drawable/main_line"/>
 
             <TextView
                 android:id="@+id/nickName"
@@ -32,15 +32,15 @@
                 android:layout_toLeftOf="@id/logoImage"
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
-                android:text="Unknown"></TextView>
+                android:text="Unknown"/>
 
             <ImageView
                 android:id="@+id/logoImage"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
                 android:padding="20dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/main_logo" />
 
             <ImageView
@@ -53,14 +53,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/logoImage"
-                android:onClick="goToMyLikeProblem"
-                android:background="@drawable/btn_mint"
-                android:padding="6dp"
-                android:layout_marginTop="70dp"
                 android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:text="좋아요 한 문제" />
+                android:layout_marginTop="70dp"
+                android:layout_toRightOf="@id/logoImage"
+                android:background="@drawable/btn_mint"
+                android:onClick="goToMyLikeProblem"
+                android:padding="6dp"
+                android:text="좋아요 한 문제"
+                android:textStyle="bold" />
+
         </RelativeLayout>
 
     </RelativeLayout>
@@ -171,14 +172,13 @@
                 android:id="@+id/logOutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/totalRank"
                 android:layout_below="@id/restOfRating"
+                android:layout_toLeftOf="@id/totalRank"
                 android:background="@drawable/btn_mint"
                 android:onClick="logOut"
-
-                android:textStyle="bold"
                 android:padding="6dp"
-                android:text="   로그아웃   " />
+                android:text="   로그아웃   "
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

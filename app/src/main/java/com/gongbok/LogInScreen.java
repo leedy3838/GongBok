@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
@@ -45,9 +46,9 @@ import java.util.Map;
 
 public class LogInScreen extends AppCompatActivity {
     //일반 로그인에 사용
-    Button mLoginBtn;
-    SignInButton mGoogleLogInBtn;
-    Button mSignupBtn;
+    private TextView mLoginBtn;
+    private SignInButton mGoogleLogInBtn;
+    private TextView mSignupBtn;
     private EditText mLoginID;
     private EditText mLoginPassword;
     private FirebaseAuth firebaseAuth;
