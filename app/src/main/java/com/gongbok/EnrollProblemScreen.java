@@ -98,14 +98,14 @@ public class EnrollProblemScreen extends AppCompatActivity{
         problemNameEt = findViewById(R.id.problem_name);
 
         progressBar = findViewById(R.id.progress_View);
-        imageView = findViewById(R.id.image_view);
+        imageView = findViewById(R.id.enroll_image);
         enrollTv = findViewById(R.id.enroll_tv);
 
         Spinner level1Spinner = findViewById(R.id.level_1);
         Spinner level2Spinner = findViewById(R.id.level_2);
         problemAnswerEt = findViewById(R.id.problem_answer);
 
-        Button uploadBtn = findViewById(R.id.upload_btn);
+        TextView uploadBtn = findViewById(R.id.upload_btn);
 
         //스피너 어댑터 설정
         String[] subjectItems = getResources().getStringArray(R.array.subject);
@@ -132,7 +132,6 @@ public class EnrollProblemScreen extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 subject = subjectItems[position];
-                Toast.makeText(EnrollProblemScreen.this, "과목 선택 : " + subject, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -147,7 +146,6 @@ public class EnrollProblemScreen extends AppCompatActivity{
                 if(level1Items[position].equals("민트")){
                     level1 = level1Items[position];
                     level1Num = 26;
-                    Toast.makeText(EnrollProblemScreen.this, "난이도 : "+level1, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     level1 = level1Items[position];
@@ -164,7 +162,6 @@ public class EnrollProblemScreen extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if(position != 5 && level1Num < 26) {
                     level2 = level2Items[position];
-                    Toast.makeText(EnrollProblemScreen.this, "난이도 : "+level1+" "+level2, Toast.LENGTH_SHORT).show();
                     level2Num = position + 1;
                 }
                 // 민트인데 level2에서 X(민트)를 고르지 않은 경우
@@ -179,7 +176,6 @@ public class EnrollProblemScreen extends AppCompatActivity{
                 else{
                     level2 = "";
                     level2Num = 0;
-                    Toast.makeText(EnrollProblemScreen.this, "난이도 : "+level1, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -279,12 +275,25 @@ public class EnrollProblemScreen extends AppCompatActivity{
                 problemBase.put("시도 횟수", 0);
                 problemBase.put("정답", problemAnswer);
                 problemBase.put("좋아요 수", 0);
+                problemBase.put("풀이 수", 0);
 
                 db.collection("문제")
                         .document(subject)
                         .collection(subject)
                         .document(problemName)
                         .set(problemBase);
+
+                // 풀이 경로 미리 세팅
+                Map<String, Object> base = new HashMap<>();
+                base.put("base", 0);
+
+                db.collection("문제")
+                        .document(subject)
+                        .collection(subject)
+                        .document(problemName)
+                        .collection(problemName)
+                        .document("base")
+                        .set(base);
 
                 // 4. 유저 collection의  내가 올린 문제 document에 저장하고 필드 값 세팅
                 Map<String, Object> myProblems = new HashMap<>();

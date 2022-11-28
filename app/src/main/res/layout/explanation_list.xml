@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/explanation_tier"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/rank_icons_s1"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"/>
+
+
+        <TextView
+            android:id="@+id/explanation_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작성자 명"
+            android:textSize="15dp"
+            android:layout_alignTop="@id/explanation_tier"
+            android:layout_alignBottom="@id/explanation_tier"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@id/explanation_tier"
+            android:layout_marginRight="8dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <ImageView
+            android:id="@+id/explanation_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_add_photo" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/explanation_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="1 likes"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+</LinearLayout>

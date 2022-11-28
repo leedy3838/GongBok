@@ -8,7 +8,7 @@
     tools:context=".SignUpScreen">
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
@@ -16,11 +16,11 @@
             android:id="@+id/logoImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/main_logo"
             />
     </LinearLayout>
     <LinearLayout
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
@@ -31,54 +31,101 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="이메일 아이디 입력"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_mint_2"/>
         <EditText
             android:id="@+id/registerPwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="비밀번호 입력(6글자 이상)"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_mint_2"/>
         <EditText
             android:id="@+id/registerPwdCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="다시 비밀번호 입력 "
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_mint_2"/>
         <EditText
             android:id="@+id/registerNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="사용할 닉네임 입력"
-            android:inputType="textPersonName" />
-        <Button
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_mint_2"/>
+        <TextView
             android:id="@+id/nicknameDupCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임 중복 확인"
+            android:layout_marginRight="10dp"
             android:layout_gravity="right"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_mint_3"
+            android:textColor="@color/white"
+            android:padding="10sp"
+            android:layout_marginTop="10sp"
             />
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
-        <Button
+        android:orientation="vertical"
+        android:gravity="right">
+        <TextView
             android:id="@+id/registerBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="회원가입"/>
-        <Button
-            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:text="회원가입"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_mint_3"
+            android:textColor="@color/white"
+            android:paddingHorizontal="10sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="돌아가기"
-            android:onClick="goToLogin"/>
+            android:layout_marginRight="20dp"
+            android:onClick="goToLogin"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_mint_3"
+            android:textColor="@color/white"
+            android:paddingHorizontal="10sp"
+            android:layout_marginTop="10dp"
+            />
 
     </LinearLayout>
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,8 +36,8 @@ public class SignUpScreen extends AppCompatActivity {
     EditText mRegisterPwd;
     EditText mRegisterPwdCheck;
     EditText mRegisterNickname;
-    Button mRegisterBtn;
-    Button mNicknameDupCheckBtn;
+    TextView mRegisterBtn;
+    TextView mNicknameDupCheckBtn;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
