@@ -156,14 +156,14 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
     public void submitButtonClicked(View view){
         EditText inputAnswer = findViewById(R.id.inputAnswer);
-        Long userAnswer = Long.parseLong(inputAnswer.getText().toString().trim());
+        String userAnswer = inputAnswer.getText().toString().trim();
 
         problemNameDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
 
-                Long answer = document.getLong("정답");
+                String answer = document.getString("정답");
                 Long trialCount = document.getLong("시도 횟수");
 
                 //문제의 시도 횟수 증가

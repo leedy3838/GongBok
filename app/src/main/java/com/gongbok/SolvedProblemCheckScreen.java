@@ -33,7 +33,7 @@ public class SolvedProblemCheckScreen extends AppCompatActivity {
     Long likeNum;
     Long trialCount;
     Long solvedCount;
-    Long answer;
+    String answer;
 
     DocumentReference problemRef;
 
@@ -65,7 +65,7 @@ public class SolvedProblemCheckScreen extends AppCompatActivity {
                     tier = document.getLong("난이도");
                     rating = document.getLong("레이팅");
                     likeNum = document.getLong("좋아요 수");
-                    answer = document.getLong("정답");
+                    answer = document.getString("정답");
 
                     trialCount = document.getLong("시도 횟수");
                     solvedCount = document.getLong("맞힌 횟수");
@@ -93,7 +93,7 @@ public class SolvedProblemCheckScreen extends AppCompatActivity {
                     problemTrialCount.setText("trial count : " + trialCount);
                     problemSolvedCount.setText("solved count : " + solvedCount);
                     problemLikes.setText(Long.toString(likeNum) + " likes");
-                    problemAnswer.setText(Long.toString(answer));
+                    problemAnswer.setText(answer);
                 }
             }
         });
