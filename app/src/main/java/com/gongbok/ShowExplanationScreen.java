@@ -83,6 +83,7 @@ public class ShowExplanationScreen extends AppCompatActivity {
         heartIv = findViewById(R.id.heart);
         likeBtn = findViewById(R.id.likeButton);
 
+
         userNameTv.setText(userName);
         explanationTv.setText(explanationName);
         likeCountTv.setText(explanationLikes.toString());

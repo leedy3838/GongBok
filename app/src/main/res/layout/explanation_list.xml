@@ -5,14 +5,16 @@
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@drawable/btn_mint"
+    android:layout_margin="3dp"
     >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_margin="4dp">
         <ImageView
             android:id="@+id/explanation_tier"
             android:layout_width="20dp"
@@ -20,7 +22,7 @@
             android:src="@drawable/rank_icons_s1"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"/>
+            android:layout_marginRight="8dp" />
 
 
         <TextView
@@ -41,7 +43,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        android:layout_margin="4dp">
 
         <ImageView
             android:id="@+id/explanation_image"
@@ -54,7 +57,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_margin="4dp">
 
         <TextView
             android:id="@+id/explanation_like"

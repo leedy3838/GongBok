@@ -11,5 +11,5 @@
         android:topRightRadius="5dp"/>
     <!-- 테두리 색깔 -->
     <stroke android:width="3dp"
-        android:color="#00D0A0"/>
+        android:color="#00FFFF"/>
 </shape>
