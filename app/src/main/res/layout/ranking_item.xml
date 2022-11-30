@@ -3,41 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/userName"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="2dp"
-            android:text="유저 이름">
-        </TextView>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:strokeWidth="1dp"
+        app:strokeColor="#06EDC9"
+        android:layout_margin="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/rankingRating"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignRight="@id/RakingLine"
-            android:text="Rating ???">
-        </TextView>
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="유저 이름"
+                android:textStyle="bold"></TextView>
 
-        <ImageView
-            android:id="@+id/RakingLine"
-            android:layout_marginTop="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:src="@drawable/main_line"
-            android:layout_below="@id/userName"
-            android:scaleType="centerCrop"
-            tools:ignore="NotSibling">
-        </ImageView>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/rankingRating"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:text="Rating ???">
+            </TextView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

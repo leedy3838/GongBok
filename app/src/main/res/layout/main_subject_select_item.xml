@@ -11,7 +11,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:padding="5dp"
             android:scaleType="centerCrop"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="과목 이름" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="260dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Rating ???" />
     </RelativeLayout>
 

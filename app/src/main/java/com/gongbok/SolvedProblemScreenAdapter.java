@@ -66,12 +66,10 @@ public class SolvedProblemScreenAdapter extends RecyclerView.Adapter<SolvedProbl
 
     public class SolvedProblemScreenHolder extends RecyclerView.ViewHolder {
         TextView problemName;
-        TextView problemLikes;
         public SolvedProblemScreenHolder(@NonNull View itemView) {
 
             super(itemView);
             problemName = itemView.findViewById(R.id.solvedProblemName);
-            problemLikes = itemView.findViewById(R.id.likesCount);
         }
     }
 }

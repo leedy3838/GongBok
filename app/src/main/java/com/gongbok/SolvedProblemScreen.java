@@ -125,4 +125,8 @@ public class SolvedProblemScreen extends AppCompatActivity {
                 });
     }
 
+    public void goToBack(View view) {
+        finish();
+    }
+
 }

@@ -32,7 +32,7 @@
                 android:layout_toLeftOf="@id/logoImage"
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
-                android:text="Unknown"/>
+                android:text="Unknown" />
 
             <ImageView
                 android:id="@+id/logoImage"
@@ -80,23 +80,14 @@
             <ImageView
                 android:id="@+id/SPratingImage"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 android:paddingHorizontal="5dp"
                 android:paddingBottom="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/main_square" />
 
-            <ImageView
-                android:id="@+id/ratingImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignBottom="@id/SPratingImage"
-                android:layout_marginBottom="-1dp"
-                android:paddingHorizontal="5dp"
-                android:paddingBottom="230dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/main_square" />
+
             <GridLayout
                 android:id="@+id/mainRatingShow"
                 android:layout_below="@id/topRateValue"
@@ -186,7 +177,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="13dp">
         <androidx.recyclerview.widget.RecyclerView
@@ -197,7 +188,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
@@ -207,25 +198,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="55dp"
             android:backgroundTint="@color/white"
             android:onClick="goToProblemSolve"
             android:src="@drawable/ic_to_solve" />
-
-        <ImageButton
-            android:id="@+id/goToMain"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:alpha=".50"
-            android:backgroundTint="@color/white"
-            android:clickable="false"
-            android:src="@drawable/ic_home" />
 
         <ImageButton
             android:id="@+id/goToEnrollProblem"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp"
             android:backgroundTint="@color/white"
             android:onClick="goToEnrollProblem"
             android:src="@drawable/ic_to_enroll_problem" />

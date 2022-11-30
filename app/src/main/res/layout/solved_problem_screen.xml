@@ -15,7 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="내가 클리어한 문제"
+            android:layout_marginTop="5dp"
+            android:text="푼 문제"
             android:textSize="20dp"
             android:textStyle="bold" />
         <TextView
@@ -23,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:text="미적분"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -31,10 +33,13 @@
             android:id="@+id/solvedCounts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:text="0"
             android:textSize="20dp"
             android:textStyle="bold" />
+
+
     </LinearLayout>
     <ImageView
         android:layout_weight="0"
@@ -51,4 +56,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/ic_home"
+            android:onClick="goToBack"
+            android:padding="8dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 </LinearLayout>
