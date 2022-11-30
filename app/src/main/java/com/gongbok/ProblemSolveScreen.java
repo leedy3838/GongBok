@@ -46,6 +46,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
     Long tryNum;
     Boolean isLike = false;
     DocumentReference problemNameDocRef;
+    TextView likeCountTv;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -64,6 +65,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
 
         TextView subjectNameTextView = findViewById(R.id.subjectName);
         subjectNameTextView.setText(subjectName);
+        likeCountTv = findViewById(R.id.likeCount);
 
 
 
@@ -163,7 +165,7 @@ public class ProblemSolveScreen extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
 
-                String answer = document.getString("정답");
+                String answer = document.getString("정답").trim();
                 Long trialCount = document.getLong("시도 횟수");
 
                 //문제의 시도 횟수 증가
@@ -429,7 +431,10 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
 
                             Long like = document.getLong("좋아요 수");
-                            problemNameDocRef.update("좋아요 수", like-1);
+                            like = like - 1;
+                            problemNameDocRef.update("좋아요 수", like);
+
+                            likeCountTv.setText(like.toString());
                         }
                     });
 
@@ -453,7 +458,10 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
 
                             Long like = document.getLong("좋아요 수");
-                            problemNameDocRef.update("좋아요 수", like+1);
+                            like = like + 1;
+                            problemNameDocRef.update("좋아요 수", like);
+
+                            likeCountTv.setText(like.toString());
                         }
                     });
 
