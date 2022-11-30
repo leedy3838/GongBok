@@ -237,9 +237,9 @@ public class EnrollExplanationScreen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (tier1Items[position].equals("민트")) {
+                    Toast.makeText(EnrollExplanationScreen.this, "민트는 X(민트)를 선택해주세요", Toast.LENGTH_SHORT).show();
                     tier1 = tier1Items[position];
                     tier1Num = 26;
-                    Toast.makeText(EnrollExplanationScreen.this, "난이도 : " + tier1, Toast.LENGTH_SHORT).show();
                 } else {
                     tier1 = tier1Items[position];
                     tier1Num = 5 * position;
@@ -258,12 +258,13 @@ public class EnrollExplanationScreen extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (position != 5 && tier1Num < 26) {
                     tier2 = tier2Items[position];
-                    Toast.makeText(EnrollExplanationScreen.this, "난이도 : " + tier1 + " " + tier2, Toast.LENGTH_SHORT).show();
                     tier2Num = position + 1;
                 }
                 // 민트인데 level2에서 X(민트)를 고르지 않은 경우
                 else if (position != 5 && tier1Num == 26) {
                     Toast.makeText(EnrollExplanationScreen.this, "민트는 X(민트)를 선택해주세요", Toast.LENGTH_SHORT).show();
+                    tier2 = "";
+                    tier2Num = 0;
                 }
                 // 민트가 아닌 데 level2에서 X(민트)를 고른 경우
                 else if (tier1Num < 26) {
@@ -271,7 +272,6 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                 } else {
                     tier2 = "";
                     tier2Num = 0;
-                    Toast.makeText(EnrollExplanationScreen.this, "난이도 : " + tier1, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -389,6 +389,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
 
                 // 필드 값 1 증가시킬 때 사용
                 //.update("문제 수", FieldValue.increment(1));
+
                 // 3. 해당 문제 난이도, 풀이 수 필드 값 수정
 
                 problemRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -401,27 +402,29 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                                 long tierSum = document.getLong("난이도 평가의 합");
                                 long tierNum = document.getLong("난이도를 평가한 사람 수");
                                 long rating = document.getLong("레이팅");
+                                long solveNum = document.getLong("풀이 수");
 
                                 ++tierNum;
+                                ++solveNum;
                                 tierSum += getTotalTierNum();
                                 ;
 
                                 if (tierNum >= 10) {
                                     tier = tierSum / tierNum;
                                     rating = Problemrating.get(Long.toString(tier));
-
                                 }
 
                                 problemRef.update("난이도", tier);
                                 problemRef.update("난이도 평가의 합", tierSum);
                                 problemRef.update("난이도를 평가한 사람 수", tierNum);
                                 problemRef.update("레이팅", rating);
+                                problemRef.update("풀이 수", solveNum);
                             }
                         }
                     }
                 });
 
-                // 4. 유저 collection의  내가 올린 문제 document에 저장하고 필드 값 세팅
+                // 4. 유저 collection의  내가 올린 풀이 document에 저장하고 필드 값 세팅
                 Map<String, Object> myExplanations = new HashMap<>();
                 myExplanations.put("경로", fileName);
 
@@ -472,7 +475,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
     public void showAnswerDialog() {
         answerDialog.show();
 
-        Button yesBtn = answerDialog.findViewById(R.id.yesBtn);
+        TextView yesBtn = answerDialog.findViewById(R.id.yesBtn);
         yesBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -510,12 +513,13 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                         }
                     }
                 });
-                setResult(RESULT_OK);
-                finish();
+                Intent homeIntent = new Intent(EnrollExplanationScreen.this, MainScreen.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
             }
         });
 
-        Button noBtn = answerDialog.findViewById(R.id.noBtn);
+        TextView noBtn = answerDialog.findViewById(R.id.noBtn);
         noBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

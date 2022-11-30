@@ -36,6 +36,7 @@ public class SignUpScreen extends AppCompatActivity {
     EditText mRegisterPwd;
     EditText mRegisterPwdCheck;
     EditText mRegisterNickname;
+
     TextView mRegisterBtn;
     TextView mNicknameDupCheckBtn;
 
@@ -43,13 +44,18 @@ public class SignUpScreen extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseFirestore db;
 
+    boolean nicknameFlag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_screen);
 
         firebaseAuth = FirebaseAuth.getInstance();
-         db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        // 닉네임 중복 방지를 위한 flag
+        nicknameFlag = false;
 
         mRegisterEmailId = findViewById(R.id.registerEmailId);
         mRegisterPwd = findViewById(R.id.registerPwd);
@@ -82,7 +88,7 @@ public class SignUpScreen extends AppCompatActivity {
 
                                 if (!flag) {
                                     Toast.makeText(SignUpScreen.this, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
-                                    mRegisterBtn.setEnabled(true);
+                                    nicknameFlag = true;
                                 }
                             }
                         });
@@ -92,7 +98,7 @@ public class SignUpScreen extends AppCompatActivity {
         mRegisterNickname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mRegisterBtn.setEnabled(false);
+                nicknameFlag = false;
             }
 
             @Override
@@ -102,7 +108,6 @@ public class SignUpScreen extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
@@ -115,6 +120,11 @@ public class SignUpScreen extends AppCompatActivity {
                 String name = mRegisterNickname.getText().toString().trim();
                 if( email.length() == 0 | pwd.length() == 0 | pwdCheck.length() == 0 | name.length() == 0){
                     Toast.makeText(SignUpScreen.this, "모든 정보를 입력하였는지 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!nicknameFlag) {
+                    Toast.makeText(SignUpScreen.this, "닉네임 중복 체크해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -281,6 +291,7 @@ public class SignUpScreen extends AppCompatActivity {
                                     else{
                                         // 이메일 아이디 중복으로 가입 실패하였으므로 지우고 다시 입력 받음
                                         mRegisterEmailId.setText(null);
+                                        Toast.makeText(SignUpScreen.this, "이미 존재하는 이메일 아이디입니다.", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                 }
