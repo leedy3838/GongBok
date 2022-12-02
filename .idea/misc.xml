@@ -39,18 +39,20 @@
         <entry key="app/src/main/res/drawable/btn_mint.xml" value="0.1645" />
         <entry key="app/src/main/res/layout/activity_solved_problem_check_screen.xml" value="0.241869918699187" />
         <entry key="app/src/main/res/layout/enroll_explanation_screen.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/enroll_problem_screen.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/main_screen.xml" value="0.4262948207171315" />
+        <entry key="app/src/main/res/layout/main_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_screen_item.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/main_subject_select_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/main_subject_select_item.xml" value="0.4706744868035191" />
         <entry key="app/src/main/res/layout/my_problem.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/my_problem_item.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/problem_list.xml" value="0.45" />
         <entry key="app/src/main/res/layout/problem_select_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/problem_solve_screen.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/ranking_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ranking_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/show_explanation_next_screen.xml" value="0.11096014492753623" />
         <entry key="app/src/main/res/layout/solved_problem_check_screen.xml" value="0.14590606689453128" />
-        <entry key="app/src/main/res/layout/solved_problem_screen.xml" value="0.29916897506925205" />
+        <entry key="app/src/main/res/layout/solved_problem_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/solved_problem_screen_item.xml" value="0.40643066406250006" />
         <entry key="app/src/main/res/layout/subject_list.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/subject_select_screen.xml" value="0.12318840579710146" />

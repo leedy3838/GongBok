@@ -308,6 +308,12 @@ public class MainScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToMyProblem(View view){
+        Intent intent = new Intent(this, MyProblem.class);
+        intent.putExtra("nickname", userID);
+        startActivity(intent);
+    }
+
     public void goToMyLikeProblem(View v){
         Intent intent = new Intent(this, ProblemSelectScreen.class);
         intent.putExtra("subjectName", "내가 좋아요 한 문제");

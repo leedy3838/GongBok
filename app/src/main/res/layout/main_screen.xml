@@ -54,6 +54,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/logoImage"
+                android:background="@drawable/btn_mint"
+                android:onClick="goToMyProblem"
+                android:padding="6dp"
+                android:text="내가 올린 문제"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="70dp"
                 android:layout_toRightOf="@id/logoImage"
                 android:background="@drawable/btn_mint"
