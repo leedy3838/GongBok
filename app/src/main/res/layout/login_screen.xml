@@ -36,10 +36,10 @@
             android:layout_marginTop="74dp"
             android:background="@drawable/btn_mint_2"
             android:ems="10"
-            android:hint="  아이디"
-            android:textColorHint="@color/black"
+            android:hint="아이디"
             android:inputType="text"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:padding="5dp"/>
 
         <EditText
             android:id="@+id/logInPassword"
@@ -53,10 +53,10 @@
             android:layout_marginTop="11dp"
             android:background="@drawable/btn_mint_2"
             android:ems="10"
-            android:hint="  비밀번호"
+            android:hint="비밀번호"
             android:inputType="textPassword"
-            android:textColorHint="@color/black"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:padding="5dp"/>
 
         <TextView
             android:id="@+id/logInBtn"

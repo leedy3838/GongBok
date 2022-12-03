@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class NicknameScreen extends AppCompatActivity {
 
     EditText mGoogleNicknameInputEt;
-    Button mGoogleNicknameRegisterBtn;
+    TextView mGoogleNicknameRegisterBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class NicknameScreen extends AppCompatActivity {
                                     }
                                     if (!flag) {
                                         Log.d("Google","실행5");
-
+                                        Toast.makeText(NicknameScreen.this, "닉네임이 설정 완료되었습니다", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(NicknameScreen.this, LogInScreen.class);
                                         intent.putExtra("nickname", name);
                                         setResult(RESULT_OK, intent);

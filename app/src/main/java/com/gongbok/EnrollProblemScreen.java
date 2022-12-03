@@ -144,6 +144,7 @@ public class EnrollProblemScreen extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if(level1Items[position].equals("민트")){
+                    Toast.makeText(EnrollProblemScreen.this, "민트는 X(민트)를 선택해주세요", Toast.LENGTH_SHORT).show();
                     level1 = level1Items[position];
                     level1Num = 26;
                 }
@@ -167,6 +168,8 @@ public class EnrollProblemScreen extends AppCompatActivity{
                 // 민트인데 level2에서 X(민트)를 고르지 않은 경우
                 else if (position != 5 && level1Num == 26){
                     Toast.makeText(EnrollProblemScreen.this, "민트는 X(민트)를 선택해주세요", Toast.LENGTH_SHORT).show();
+                    level2 = "";
+                    level2Num = 0;
                 }
                 // 민트가 아닌 데 level2에서 X(민트)를 고른 경우
                 else if (level1Num < 26)

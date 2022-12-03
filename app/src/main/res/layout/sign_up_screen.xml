@@ -102,7 +102,6 @@
             android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:layout_marginRight="20dp"
             android:text="회원가입"
             android:gravity="center"
