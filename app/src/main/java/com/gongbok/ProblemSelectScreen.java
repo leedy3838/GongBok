@@ -264,8 +264,6 @@ public class ProblemSelectScreen extends AppCompatActivity {
                     return data1.name.compareTo(data2.name);
                 else if(sortMode == 1)
                     return (int)(data2.likeNum - data1.likeNum);
-                else if(sortMode == 2)
-                    return (int)(data2.tryNum - data1.tryNum);
                 else
                     return (int)(data2.tier - data1.tier);
             }

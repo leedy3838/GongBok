@@ -27,12 +27,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/문제분류"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/home"
             android:text="문제 분류"
             android:textSize="30sp"
             android:textStyle="bold" />
