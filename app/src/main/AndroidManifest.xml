@@ -18,6 +18,9 @@
         android:theme="@style/Theme.GongBok"
         tools:targetApi="31">
         <activity
+            android:name=".MyProblem"
+            android:exported="false" />
+        <activity
             android:name=".SolvedProblemCheckScreen"
             android:exported="false" />
         <activity
@@ -28,14 +31,14 @@
             android:exported="false" />
         <activity
             android:name=".ExplanationSelectScreen"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ShowExplanationScreen"
             android:exported="false" />
         <activity
             android:name=".ProblemSolveScreen"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ProblemSelectScreen"
             android:exported="false" />
@@ -47,7 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".MainScreen"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".SignUpScreen"
             android:exported="false" />
@@ -66,9 +69,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
     </application>
 
 </manifest>
