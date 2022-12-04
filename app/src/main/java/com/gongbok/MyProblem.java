@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +50,8 @@ public class MyProblem extends AppCompatActivity {
 
                                 myProblemData.add(new MyProblemData(problemName, subjectName));
                             }
+                            TextView myProblemCount = findViewById(R.id.MyProblemCounts);
+                            myProblemCount.setText(""+myProblemData.size());
 
                             RecyclerView recyclerView = findViewById(R.id.MyProblemList);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyProblem.this);
