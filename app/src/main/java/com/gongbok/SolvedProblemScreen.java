@@ -73,7 +73,7 @@ public class SolvedProblemScreen extends AppCompatActivity {
                                 if (document.getId().equals("base")) continue;
                                 acProblems.add(new SolvedProblemData(problemName));
                             }
-                            solvedCount.setText(Integer.toString(problemCount));
+                            solvedCount.setText(Integer.toString(problemCount) + " Solved");
 
                             TextView titleSubject = findViewById(R.id.solvedSubjectTitle);
                             titleSubject.setText(solvedTitle);

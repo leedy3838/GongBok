@@ -8,20 +8,12 @@
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/enroll_problem_screen.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/login_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/main_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/main_subject_select_item.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_problem.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/my_problem_item.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/nickname_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_list.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_select_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/problem_solve_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/ranking_item.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_next_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/show_explanation_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/sign_up_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/solved_problem_screen.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/solved_problem_screen_item.xml" value="0.27395833333333336" />
-        <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/subject_list.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/subject_select_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/LDY/Desktop/git_directory/GongBok/app/src/main/res/layout/total_ranking_screen.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/kyowon1/Desktop/sainfe111121/GongBok/app/src/main/res/layout/main_screen.xml" value="0.35260416666666666" />
@@ -86,7 +78,7 @@
         <entry key="app/src/main/res/layout/enroll_explanation_screen.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/enroll_problem_screen.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/main_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/main_screen.xml" value="0.100848474395409" />
         <entry key="app/src/main/res/layout/main_screen_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/main_subject_select_item.xml" value="0.4706744868035191" />
         <entry key="app/src/main/res/layout/my_problem.xml" value="0.15520833333333334" />
