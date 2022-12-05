@@ -51,7 +51,7 @@ public class MyProblem extends AppCompatActivity {
                                 myProblemData.add(new MyProblemData(problemName, subjectName));
                             }
                             TextView myProblemCount = findViewById(R.id.MyProblemCounts);
-                            myProblemCount.setText(""+myProblemData.size());
+                            myProblemCount.setText(""+myProblemData.size()+" Upload");
 
                             RecyclerView recyclerView = findViewById(R.id.MyProblemList);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyProblem.this);

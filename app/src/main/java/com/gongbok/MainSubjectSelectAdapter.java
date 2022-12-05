@@ -49,7 +49,7 @@ public class MainSubjectSelectAdapter extends RecyclerView.Adapter<MainSubjectSe
     public void onBindViewHolder(@NonNull SubjectHolder holder, int position) {
         MainSubjectData mainSubjectData = SubjectDataValues.get(position);
         holder.subjectTitleName.setText(mainSubjectData.subjectName);
-        holder.subjectRating.setText("" + mainSubjectData.ACount);
+        holder.subjectRating.setText("" + mainSubjectData.ACount + " Solved");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
