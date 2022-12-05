@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/btn_mint_3">
+        android:layout_margin="5dp">
 
         <TextView
             android:id="@+id/home"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:onClick="goToMain"
             android:paddingHorizontal="20sp"
-            android:textColor="#02A88E"
+
             android:text="홈"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -38,7 +38,6 @@
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:text="과목 이름"
-            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -53,7 +52,6 @@
             android:layout_marginTop="10dp"
             android:text="문제 이름"
             android:textStyle="bold"
-            android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
 

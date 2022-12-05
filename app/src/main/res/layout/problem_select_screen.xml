@@ -34,7 +34,8 @@
             android:layout_toEndOf="@id/home"
             android:text="문제 분류"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:id = "@+id/문제분류"/>
 
         <TextView
             android:id="@+id/subjectName"

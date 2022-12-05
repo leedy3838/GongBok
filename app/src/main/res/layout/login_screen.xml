@@ -100,6 +100,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:background="@drawable/btn_mint_3"
+            android:paddingVertical="5dp"
+            android:layout_marginTop="5dp"
             android:textColor="@color/white"/>
 
     </RelativeLayout>
