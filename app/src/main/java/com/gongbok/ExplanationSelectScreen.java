@@ -18,6 +18,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class ExplanationSelectScreen extends AppCompatActivity {
     String explanationPicPath;
     Long explanationLikes;
     String userID;
+
+    List<ExplanationData> DataList = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class ExplanationSelectScreen extends AppCompatActivity {
 
         Log.d("select", subjectName + " " + problemName);
 
-        List<ExplanationData> DataList = new LinkedList<>();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -91,6 +95,13 @@ public class ExplanationSelectScreen extends AppCompatActivity {
                             //RecyclerView에 목록 출력
                             RecyclerView recyclerView = findViewById(R.id.explanationList) ;
                             recyclerView.setLayoutManager(new GridLayoutManager(ExplanationSelectScreen.this, 2));
+
+                            Collections.sort(DataList, new Comparator<ExplanationData>() {
+                                @Override
+                                public int compare(ExplanationData data1, ExplanationData data2) {
+                                    return (int)(data2.explanationLikes - data1.explanationLikes);
+                                }
+                            });
 
                             ExplanationAdapter adapter = new ExplanationAdapter(ExplanationSelectScreen.this, DataList);
                             adapter.setOnItemClickListener(new ExplanationAdapter.OnItemClickListener() {

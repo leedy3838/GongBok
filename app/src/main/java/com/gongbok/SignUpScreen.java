@@ -308,14 +308,6 @@ public class SignUpScreen extends AppCompatActivity {
         });
     }
 
-    // EditText가 아닌 화면의 다른 곳을 클릭하면 소프트 키보드 내려감
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        return true;
-    }
-
     // 돌아가기 버튼 누르면 다시 로그인 화면으로 돌아감
     public void goToLogin(View view) {
         startActivity(new Intent(this, LogInScreen.class));
