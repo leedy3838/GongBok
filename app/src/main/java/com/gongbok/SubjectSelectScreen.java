@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,6 +33,22 @@ public class SubjectSelectScreen extends AppCompatActivity {
 
         List<SubjectData> DataList = new LinkedList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        TextView myProblemNum = findViewById(R.id.myProblemNum);
+
+        //내가 올린 문제 수 표시
+        db.collection("유저")
+                        .document(userName)
+                                .get()
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                DocumentSnapshot document = task.getResult();
+
+                                                Long problemNum = document.getLong("올린 문제 수");
+                                                myProblemNum.setText(String.valueOf(problemNum));
+                                            }
+                                        });
 
         db.collection("문제")
                 .get()
