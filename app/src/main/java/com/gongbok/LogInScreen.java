@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.LocaleData;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class LogInScreen extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
     private FirebaseUser user;
+    private static int RC_SIGN_IN = 1;
 
     //구글 로그인에 사용
     private final String TAG = "LogInScreen";
@@ -138,32 +140,28 @@ public class LogInScreen extends AppCompatActivity {
     // 구글 회원가입 or 로그인 과정의 시작
     private void signIn(){
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startForResult.launch(signInIntent);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private final ActivityResultLauncher<Intent> startForResult =
-        registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == RESULT_OK) {
-                            // The Task returned from this call is always completed, no need to attach a listener.
-                            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
-                            handleSignInResult(task);
-                        }
-                    }
-                });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
-
+        if (requestCode == RC_SIGN_IN) {
+            Log.d(TAG, "실행 확인용 1");
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
 
     // 사용자 정보 가져오기
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
+            Log.d(TAG, "실행 확인용 2");
             GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
 
             if (acct != null) {
+                Log.d(TAG, "실행 확인용 3");
                 firebaseAuthWithGoogle(acct.getIdToken());
 
                 String personName = acct.getDisplayName();
@@ -189,6 +187,7 @@ public class LogInScreen extends AppCompatActivity {
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        Log.d(TAG, "실행 확인용 4");
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
