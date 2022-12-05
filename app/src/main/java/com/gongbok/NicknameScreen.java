@@ -78,5 +78,10 @@ public class NicknameScreen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
 
+    }
 }
