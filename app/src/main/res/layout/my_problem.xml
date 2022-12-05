@@ -11,13 +11,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="4dp"
-            android:background="@drawable/ic_home"
+            android:background="@drawable/btn_mint"
+            android:text="홈"
+            android:textAlignment="center"
             android:onClick="goToBackInSPC"
             android:padding="8dp"
             android:textStyle="bold" />
@@ -26,7 +28,7 @@
             android:id="@+id/MyProblemListName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="15dp"
             android:text="내가 올린 문제"
             android:textSize="20dp"

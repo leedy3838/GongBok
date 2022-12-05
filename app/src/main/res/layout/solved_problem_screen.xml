@@ -12,7 +12,7 @@
 
         <TextView
             android:id="@+id/goToMain"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_mint"
             android:onClick="goToBack"
@@ -29,8 +29,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:text="푼 문제"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textSize="18dp"/>
         <TextView
             android:id="@+id/solvedSubjectTitle"
             android:layout_width="wrap_content"
@@ -48,7 +47,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:text="0"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textStyle="bold" />
 
 

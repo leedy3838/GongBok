@@ -15,20 +15,23 @@
 
         <TextView
             android:id="@+id/goToMain"
-            android:layout_width="50dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_mint"
             android:onClick="goToMain"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
+            android:paddingHorizontal="15dp"
+            android:textSize="18dp"
             android:text="홈"
+            android:textStyle="bold"
             android:textAlignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="105dp"
+            android:layout_marginLeft="82dp"
             android:textStyle="bold"
             android:textSize="20dp"
             android:layout_marginTop="15dp"
