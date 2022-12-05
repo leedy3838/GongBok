@@ -180,8 +180,6 @@ public class LogInScreen extends AppCompatActivity {
             }
 
         } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.e(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
@@ -192,7 +190,7 @@ public class LogInScreen extends AppCompatActivity {
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
+                        // 회원 가입 성공
                         Log.d(TAG, "signInWithCredential:success");
                         user = firebaseAuth.getCurrentUser();
 
@@ -294,6 +292,7 @@ public class LogInScreen extends AppCompatActivity {
                                 Map<String, Object> userBase = new HashMap<>();
                                 userBase.put("레이팅", 0);
                                 userBase.put("티어", 0);
+                                userBase.put("올린 문제 수", 0);
 
                                 Map<String, Object> base = new HashMap<>();
                                 base.put("base", 0);
@@ -443,6 +442,9 @@ public class LogInScreen extends AppCompatActivity {
 
                                 startMainScreen();
                             }
+                            else if (result.getResultCode() == RESULT_CANCELED) {
+                                gsa = null;
+                            }
                         }
                     });
 
@@ -454,7 +456,6 @@ public class LogInScreen extends AppCompatActivity {
                     Toast.makeText(LogInScreen.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                     // ...
                 });
-        gsa = null;
     }
 
     // 메인화면에서 로그아웃 버튼 누를 경우 signOut() 실행
