@@ -11,22 +11,27 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
-            android:background="@drawable/btn_mint_3">
+            android:background="@drawable/btn_mint_3"
+            >
             <TextView
                 android:id="@+id/enroll_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:text="문제 등록"
-                android:textSize="30sp" />
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:layout_marginHorizontal="5dp"
+                />
         </LinearLayout>
 
         <RelativeLayout

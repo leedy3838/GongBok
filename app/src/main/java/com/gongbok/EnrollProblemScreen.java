@@ -308,6 +308,11 @@ public class EnrollProblemScreen extends AppCompatActivity{
                         .document(problemName)
                         .set(myProblems);
 
+                // 5. 유저의 "올린 문제 수" 필드 값 증가
+                db.collection("유저")
+                        .document(userName)
+                        .update("올린 문제 수", FieldValue.increment(1));
+
                 // 업로드 성공 후 다시 메인화면으로 복귀
                 progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(EnrollProblemScreen.this, "업로드 성공", Toast.LENGTH_SHORT).show();

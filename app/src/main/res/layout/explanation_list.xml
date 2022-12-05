@@ -6,7 +6,7 @@
     android:layout_height="200dp"
     android:orientation="vertical"
     android:background="@drawable/btn_mint"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     >
 
 
@@ -17,8 +17,8 @@
         android:layout_margin="4dp">
         <ImageView
             android:id="@+id/explanation_tier"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/rank_icons_s1"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="8dp"
@@ -64,11 +64,22 @@
             android:id="@+id/explanation_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="15sp"
+            android:layout_toLeftOf="@id/likes"
+            />
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:text="1 likes"
-            android:textSize="15dp" />
+            android:text="likes"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 </LinearLayout>
