@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_weight="0.01"
+        android:layout_weight="0.05"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,8 +14,8 @@
             android:id="@+id/solvedProblemListName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:text="푼 문제"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:text="미적분"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:id="@+id/solvedCounts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:text="0"
             android:textSize="20dp"
