@@ -11,16 +11,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/ic_home"
+            android:id="@+id/goToMain"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_mint"
             android:onClick="goToBack"
-            android:padding="8dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:text="홈"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/solvedProblemListName"

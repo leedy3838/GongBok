@@ -14,19 +14,20 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/MyProblemName"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_centerVertical="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
+                android:text="문제 이름"
                 android:textColor="@color/black"
-                android:text="문제 이름"/>
+                android:textSize="20dp" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
