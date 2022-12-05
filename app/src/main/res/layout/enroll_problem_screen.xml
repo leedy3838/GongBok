@@ -103,14 +103,16 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/btn_mint">
 
             <ImageView
                 android:id="@+id/enroll_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_add_photo" />
+                android:src="@drawable/ic_add_photo"
+                android:layout_margin="5dp"/>
         </ScrollView>
 
         <TextView
@@ -194,10 +196,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:text="업로드"
-            android:background="@drawable/btn_mint_3"
+            android:background="@drawable/btn_mint"
             android:gravity="center"
             android:padding="5sp"
-            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             />

@@ -24,8 +24,8 @@
             <TextView
                 android:layout_weight="1"
                 android:id="@+id/home"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/btn_mint"
@@ -48,7 +48,7 @@
                 android:padding="10sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
                 />
         </LinearLayout>
 
@@ -121,15 +121,17 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/btn_mint">
 
             <ImageView
                 android:id="@+id/answer_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_margin="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_add_photo" />
+                android:src="@drawable/ic_add_photo"
+                />
         </ScrollView>
 
         <TextView
@@ -202,10 +204,9 @@
             android:text="업로드"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="8dp"
-            android:background="@drawable/btn_mint_3"
+            android:background="@drawable/btn_mint"
             android:gravity="center"
             android:padding="5sp"
-            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             />

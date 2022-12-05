@@ -61,6 +61,8 @@ public class LogInScreen extends AppCompatActivity {
     private GoogleSignInAccount gsa;
     String googleNickname;
 
+    boolean flag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,7 +202,7 @@ public class LogInScreen extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                         if (task.isSuccessful()) {
-                                            boolean flag = false;
+
                                             for (QueryDocumentSnapshot document : task.getResult()) {
                                                 // 기존 사용자
                                                 if (document.getId().equals(user.getUid())) {

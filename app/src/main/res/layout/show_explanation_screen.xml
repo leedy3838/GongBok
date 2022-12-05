@@ -12,19 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/btn_mint_3"
         >
 
         <TextView
             android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:background="@drawable/btn_mint_4"
+            android:background="@drawable/btn_mint"
             android:onClick="goToMain"
             android:paddingHorizontal="20dp"
             android:text="홈"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -34,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="문제 이름"
-            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -47,17 +47,21 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         >
+
         <ScrollView
             android:id="@+id/explanationList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp">
+            android:layout_margin="4dp"
+            android:background="@drawable/btn_mint">
+
             <ImageView
                 android:id="@+id/showEx_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_add_photo"/>
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_add_photo" />
         </ScrollView>
     </LinearLayout>
 
@@ -127,36 +131,18 @@
             android:text="likes"
             android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/likeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/heart"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10sp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10sp"
-            android:layout_marginEnd="10sp"
-            android:layout_marginBottom="10sp"
-            android:background="@drawable/btn_mint_3"
-            android:gravity="center"
-            android:onClick="likeButtonClicked"
-            android:padding="10sp"
-            android:text="좋아요"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
+
 
         <ImageView
             android:id="@+id/heart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="8dp"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginEnd="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_toEndOf="@id/likeButton"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="likeButtonClicked"
             android:src="@drawable/empty_heart" />
 
     </RelativeLayout>

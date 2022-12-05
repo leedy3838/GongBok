@@ -46,7 +46,6 @@ public class ShowExplanationScreen extends AppCompatActivity {
     private ImageView userTierIv;
     private ImageView explanationIv;
     private ImageView heartIv;
-    private TextView likeBtn;
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private FirebaseFirestore db;
@@ -81,7 +80,6 @@ public class ShowExplanationScreen extends AppCompatActivity {
         explanationTv = findViewById(R.id.showEx_title);
         explanationIv = findViewById(R.id.showEx_image);
         heartIv = findViewById(R.id.heart);
-        likeBtn = findViewById(R.id.likeButton);
 
 
         userNameTv.setText(userName);
