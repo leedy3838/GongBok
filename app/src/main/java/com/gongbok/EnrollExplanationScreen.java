@@ -541,4 +541,10 @@ public class EnrollExplanationScreen extends AppCompatActivity {
             }
     );
 
+    public void goToMain(View view) {
+        Intent homeIntent = new Intent(this, MainScreen.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
+
 }
