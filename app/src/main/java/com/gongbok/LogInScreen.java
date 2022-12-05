@@ -478,11 +478,5 @@ public class LogInScreen extends AppCompatActivity {
                         }
                     });
 
-    // EditText가 아닌 화면의 다른 곳을 클릭하면 소프트 키보드 내려감
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        return true;
-    }
+
 }
