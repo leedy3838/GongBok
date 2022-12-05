@@ -8,26 +8,32 @@
     tools:context=".TotalRankingScreen">
 
     <LinearLayout
-        android:layout_weight="0.35"
+        android:layout_weight="0.4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/goToMain"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_mint"
+            android:onClick="goToMain"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:text="홈"
+            android:textAlignment="center"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="105dp"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:layout_marginTop="15dp"
             android:text="전체 랭킹"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="210dp"
-            android:layout_gravity="bottom"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:text="Rating"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="2dp"
@@ -50,40 +56,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/goToProblemSolve"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:backgroundTint="@color/white"
-            android:onClick="goToProblemSolve"
-            android:src="@drawable/ic_to_solve" />
-
-        <ImageButton
-            android:id="@+id/goToMain"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/white"
-            android:onClick="goToMain"
-            android:src="@drawable/ic_home" />
-
-        <ImageButton
-            android:id="@+id/goToEnrollProblem"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="@color/white"
-            android:onClick="goToEnrollProblem"
-            android:src="@drawable/ic_to_enroll_problem" />
-
-    </RelativeLayout>
 
 </LinearLayout>
