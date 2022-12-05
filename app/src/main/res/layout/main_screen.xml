@@ -33,6 +33,7 @@
 
                 android:paddingTop="25dp"
                 android:paddingEnd="5dp"
+                android:textStyle="bold"
                 android:text="Unknown" />
 
             <ImageView
