@@ -279,6 +279,30 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             }
                         });
 
+        // 문제를 맞혔을 경우 문제의 "문제를 푼 유저" collection에 "유저 이름" document 추가
+        db.collection("문제")
+                .document(subjectName)
+                .collection(subjectName)
+                .document(problemName)
+                .collection("문제를 푼 유저")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        Map<String, Object> solvedUserBase = new HashMap<>();
+                        solvedUserBase.put("base", 0);
+
+                        db.collection("문제")
+                                .document(subjectName)
+                                .collection(subjectName)
+                                .document(problemName)
+                                .collection("문제를 푼 유저")
+                                .document(userName)
+                                .set(solvedUserBase);
+                    }
+                });
+
         db.collection("유저")
                 .document(userName)
                 .collection("푼 문제")

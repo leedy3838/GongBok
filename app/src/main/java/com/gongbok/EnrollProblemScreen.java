@@ -313,6 +313,18 @@ public class EnrollProblemScreen extends AppCompatActivity{
                         .document(userName)
                         .update("올린 문제 수", FieldValue.increment(1));
 
+                // 6. 문제의 "문제를 푼 유저" 컬렉션에 유저명으로 document 추가
+                Map<String, Object> solvedUsers = new HashMap<>();
+                solvedUsers.put("base", 0);
+
+                db.collection("문제")
+                        .document(subject)
+                        .collection(subject)
+                        .document(problemName)
+                        .collection("문제를 푼 유저")
+                        .document(userName)
+                        .set(base);
+
                 // 업로드 성공 후 다시 메인화면으로 복귀
                 progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(EnrollProblemScreen.this, "업로드 성공", Toast.LENGTH_SHORT).show();
