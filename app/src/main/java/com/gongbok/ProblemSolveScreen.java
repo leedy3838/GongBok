@@ -333,6 +333,27 @@ public class ProblemSolveScreen extends AppCompatActivity {
                             problemBase.put("레이팅", rating);
                             problemBase.put("시도 횟수", tryNum);
 
+                            //맞힌 횟수 증가
+                            db.collection("문제")
+                                    .document(subjectName)
+                                    .collection(subjectName)
+                                    .document(problemName)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            DocumentSnapshot document = task.getResult();
+
+                                            Long trueNum = document.getLong("맞힌 횟수");
+
+                                            db.collection("문제")
+                                                    .document(subjectName)
+                                                    .collection(subjectName)
+                                                    .document(problemName)
+                                                    .update("맞힌 횟수", trueNum+1);
+                                        }
+                                    });
+
                             db.collection("유저")
                                     .document(userName)
                                     .collection("푼 문제")
