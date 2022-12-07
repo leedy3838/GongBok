@@ -39,6 +39,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -64,6 +66,11 @@ public class EnrollExplanationScreen extends AppCompatActivity {
     private int tier1Num;
     private int tier2Num;
 
+    private long ratingGap;
+
+    DocumentReference problemRef;
+    private long solveNum;
+    boolean solveNumFlag;
     // totalTier = 난이도 이름(브론즈1), totalTierNum = 티어를 숫자로 표현(1), tierRating = 문제의 난이도별 레이팅 점수
     private int totalTierNum;
 
@@ -356,6 +363,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
         //민트
         Problemrating.put("26", 1000);
 
+
     }
 
     //-------------------------------------------------------------------------------------------------------------------
@@ -365,30 +373,49 @@ public class EnrollExplanationScreen extends AppCompatActivity {
         fileName = subject + "/" + problemName + "/" + userName + "님의 풀이." + getFileExtension(uri);
         StorageReference fileRef = reference.child(fileName);
 
+        solveNumFlag = false;
+
         // 1. 풀이 사진을 Storage의 경로(fileName)에 저장
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                // 2. 풀이 document의 필드 값 설정
-                Map<String, Object> explanationBase = new HashMap<>();
-                explanationBase.put("경로", fileName);
-                explanationBase.put("등록자명", userName);
-                explanationBase.put("등록자 티어", userTier);
-                explanationBase.put("좋아요 수", 0);
-
-                DocumentReference problemRef = db.collection("문제")
+                problemRef = db.collection("문제")
                         .document(subject)
                         .collection(subject)
                         .document(problemName);
 
+
+
+                // 2. 기존에 유저가 올린 적 있는지 체크 후 풀이 document의 필드 값 설정
                 problemRef
                         .collection(problemName)
-                        .document(userName + "님의 풀이")
-                        .set(explanationBase);
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    // 1. 유저가 기존에 해당 문제에 대한 풀이 올린 적 있다면 풀이 수 증가 X
+                                    for (QueryDocumentSnapshot document : task.getResult()){
+                                        if(document.getId().equals(userName + "님의 풀이")){
+                                            Toast.makeText(EnrollExplanationScreen.this, "기존에 올린 풀이를 갱신하셨습니다", Toast.LENGTH_SHORT).show();
+                                            solveNumFlag = true;
+                                        }
+                                    }
 
-                // 필드 값 1 증가시킬 때 사용
-                //.update("문제 수", FieldValue.increment(1));
+                                    // 2. 풀이 document의 필드 값 설정
+                                    Map<String, Object> explanationBase = new HashMap<>();
+                                    explanationBase.put("경로", fileName);
+                                    explanationBase.put("등록자명", userName);
+                                    explanationBase.put("등록자 티어", userTier);
+                                    explanationBase.put("좋아요 수", 0);
+
+                                    problemRef
+                                            .collection(problemName)
+                                            .document(userName + "님의 풀이")
+                                            .set(explanationBase);
+                                }
+                            }
+                        });
 
                 // 3. 해당 문제 난이도, 풀이 수 필드 값 수정
 
@@ -402,27 +429,54 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                                 long tierSum = document.getLong("난이도 평가의 합");
                                 long tierNum = document.getLong("난이도를 평가한 사람 수");
                                 long rating = document.getLong("레이팅");
-                                long solveNum = document.getLong("풀이 수");
+                                solveNum = document.getLong("풀이 수");
 
+                                ratingGap = rating;
                                 ++tierNum;
-                                ++solveNum;
+                                solveNum += 1;
                                 tierSum += getTotalTierNum();
-                                ;
 
                                 if (tierNum >= 10) {
                                     tier = tierSum / tierNum;
                                     rating = Problemrating.get(Long.toString(tier));
+                                    ratingGap = rating - ratingGap;
+                                    Log.d("Check", tier +"");
+                                    Log.d("Check", ratingGap +"");
                                 }
+                                else {
+                                    ratingGap = 0;
+                                }
+
 
                                 problemRef.update("난이도", tier);
                                 problemRef.update("난이도 평가의 합", tierSum);
                                 problemRef.update("난이도를 평가한 사람 수", tierNum);
                                 problemRef.update("레이팅", rating);
-                                problemRef.update("풀이 수", solveNum);
+                                if(!solveNumFlag)
+                                    problemRef.update("풀이 수", solveNum);
                             }
                         }
                     }
                 });
+
+                // 3. 난이도 평가한 사람이 10명 이상어서 레이팅 점수 바뀐 경우 기존 유저들 레이팅 변경
+                db.collection("문제")
+                        .document(subject)
+                        .collection(subject)
+                        .document(problemName)
+                        .collection("문제를 푼 유저")
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("Check", "뭐가 더 먼저 실행되나");
+                                    db.collection("유저")
+                                            .document(document.getId())
+                                            .update("레이팅", FieldValue.increment(ratingGap));
+                                }
+                            }
+                        });
+
 
                 // 4. 유저 collection의  내가 올린 풀이 document에 저장하고 필드 값 세팅
                 Map<String, Object> myExplanations = new HashMap<>();
@@ -509,6 +563,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                                 problemRef.update("난이도 평가의 합", tierSum);
                                 problemRef.update("난이도를 평가한 사람 수", tierNum);
                                 problemRef.update("레이팅", rating);
+
                             }
                         }
                     }
