@@ -108,7 +108,7 @@ public class ShowExplanationScreen extends AppCompatActivity {
                         for (DocumentSnapshot document : task.getResult()) {
                             String likedExplanationName = document.getId();
 
-                            if(likedExplanationName.equals(userName+"님의 풀이")) {
+                            if(likedExplanationName.equals(problemName  +" "+ userName+"님의 풀이")) {
                                 isLike= true;
                                 break;
                             }
@@ -239,7 +239,7 @@ public class ShowExplanationScreen extends AppCompatActivity {
             db.collection("유저")
                     .document(userID)
                     .collection("좋아요 한 풀이")
-                    .document(userName+ "님의 풀이")
+                    .document(problemName + " " + userName+ "님의 풀이")
                     .delete();
         }
         //좋아요 했던 문제가 아니라면 하트의 모양을 바꾸고 좋아요 한 문제 리스트에 추가
@@ -268,7 +268,7 @@ public class ShowExplanationScreen extends AppCompatActivity {
             db.collection("유저")
                     .document(userID)
                     .collection("좋아요 한 풀이")
-                    .document(userName+ "님의 풀이")
+                    .document(problemName + " " +userName + "님의 풀이")
                     .set(base);
         }
     }
