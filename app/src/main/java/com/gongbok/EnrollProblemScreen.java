@@ -322,7 +322,7 @@ public class EnrollProblemScreen extends AppCompatActivity{
                         .collection(subject)
                         .document(problemName)
                         .collection("문제를 푼 유저")
-                        .document(userName)
+                        .document("base")
                         .set(base);
 
                 // 업로드 성공 후 다시 메인화면으로 복귀
