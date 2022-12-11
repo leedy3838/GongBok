@@ -459,7 +459,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                     }
                 });
 
-                // 3. 난이도 평가한 사람이 10명 이상어서 레이팅 점수 바뀐 경우 기존 유저들 레이팅 변경
+                // 4. 난이도 평가한 사람이 10명 이상어서 레이팅 점수 바뀐 경우 기존 유저들 레이팅 변경
                 db.collection("문제")
                         .document(subject)
                         .collection(subject)
@@ -469,7 +469,6 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d("Check", "뭐가 더 먼저 실행되나");
                                     db.collection("유저")
                                             .document(document.getId())
                                             .update("레이팅", FieldValue.increment(ratingGap));
@@ -478,7 +477,7 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                         });
 
 
-                // 4. 유저 collection의  내가 올린 풀이 document에 저장하고 필드 값 세팅
+                // 5. 유저 collection의  내가 올린 풀이 document에 저장하고 필드 값 세팅
                 Map<String, Object> myExplanations = new HashMap<>();
                 myExplanations.put("경로", fileName);
 
@@ -549,14 +548,21 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                                 long tierNum = document.getLong("난이도를 평가한 사람 수");
                                 long rating = document.getLong("레이팅");
 
+                                ratingGap = rating;
                                 ++tierNum;
+                                solveNum += 1;
                                 tierSum += getTotalTierNum();
-                                ;
+
 
                                 if (tierNum >= 10) {
                                     tier = tierSum / tierNum;
                                     rating = Problemrating.get(Long.toString(tier));
-
+                                    ratingGap = rating - ratingGap;
+                                    Log.d("Check", tier +"");
+                                    Log.d("Check", ratingGap +"");
+                                }
+                                else {
+                                    ratingGap = 0;
                                 }
 
                                 problemRef.update("난이도", tier);
@@ -568,6 +574,24 @@ public class EnrollExplanationScreen extends AppCompatActivity {
                         }
                     }
                 });
+
+                // 난이도 평가한 사람이 10명 이상어서 레이팅 점수 바뀐 경우 기존 유저들 레이팅 변경
+                db.collection("문제")
+                        .document(subject)
+                        .collection(subject)
+                        .document(problemName)
+                        .collection("문제를 푼 유저")
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    db.collection("유저")
+                                            .document(document.getId())
+                                            .update("레이팅", FieldValue.increment(ratingGap));
+                                }
+                            }
+                        });
+
                 Intent homeIntent = new Intent(EnrollExplanationScreen.this, MainScreen.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(homeIntent);
